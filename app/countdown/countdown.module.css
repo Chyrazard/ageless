@@ -69,9 +69,9 @@
   border-radius: 999px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
   font-family: "Chivo Mono", monospace;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.075em;
   text-decoration: none;
   text-transform: uppercase;
   opacity: 0;
@@ -196,7 +196,8 @@
   margin-top: 8px;
   margin-bottom: 17px;
   font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
-  letter-spacing: -0.015em !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.025em !important;
   line-height: 1.1 !important;
 }
 
@@ -249,17 +250,25 @@
 @media (max-width: 700px) {
   :global(.hero-top-block) { gap: 5px !important; padding-top: 4px !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; }
-  :global(.ageless-event-date) { margin-top: 4px; margin-bottom: 11px; font-size: 1.05rem !important; }
+  :global(.ageless-event-date) { margin-top: 4px; margin-bottom: 11px; font-size: 1.12rem !important; font-weight: 750 !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
   :global(.hero) { height: auto !important; min-height: 100svh; }
-  :global(.hero-content-wrapper) { min-height: auto; gap: 92px; }
-  :global(.hero-left-time-block) { font-size: 8px; inset: -126px auto auto -7px !important; }
+  :global(.hero-content-wrapper) { min-height: auto; gap: 72px; }
+  :global(.hero-bottom-top-block) { justify-content: space-between !important; gap: 12px; }
+  :global(.hero-left-time-block) {
+    position: static !important;
+    gap: 3px !important;
+    font-size: 7px;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    transform: none !important;
+  }
   :global(.hero-event-date) { font-size: 9px; }
   .compactCountdown { height: 86px; }
   .numberCanvas { height: 63px; }
   .timeLabel { bottom: 5px; font-size: 8px; }
-  .ticketButton { min-height: 48px; }
+  .ticketButton { min-height: 48px; font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

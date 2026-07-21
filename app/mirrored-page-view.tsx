@@ -36,14 +36,14 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       '<div class="paragraph-text-mono">HAIL</div><div class="paragraph-text-mono">NY )</div>',
-      '<div class="paragraph-text-mono">LONGEVITY AND</div><div class="paragraph-text-mono">WELLNESS SUMMIT )</div>',
+      '<div class="paragraph-text-mono">LONGEVITY &amp;</div><div class="paragraph-text-mono">WELLNESS SUMMIT )</div>',
     );
 
   const brandedHtml = replaceAfter(
     transformedHtml,
     'class="hero-bottom-top-block"',
     HERO_SOCIAL_LINKS,
-    '<div class="hero-event-date paragraph-text-mono">01 / 17 / 27</div>',
+    '<div class="hero-event-date paragraph-text-mono">01 / 14 / 27</div>',
   );
 
   return (
