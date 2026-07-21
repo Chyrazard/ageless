@@ -6,14 +6,14 @@
   overflow: hidden;
   background: #fff;
   place-items: center;
-  animation: preloaderFade 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  animation: preloaderFade 820ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
 
 .preloader img {
   width: clamp(15rem, 32vw, 26rem);
   height: auto;
   mix-blend-mode: multiply;
-  animation: preloaderLogo 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: preloaderLogo 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .preloader span {
@@ -34,7 +34,7 @@
   background: #1e1e1e;
   content: "";
   transform-origin: left;
-  animation: preloaderLine 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation: preloaderLine 540ms cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
 .countdownExperience {
@@ -51,17 +51,19 @@
   border-top: 1px solid #d0d8e4;
   border-bottom: 1px solid #d0d8e4;
   opacity: 0;
-  animation: countdownReveal 700ms ease 650ms forwards;
+  animation: countdownReveal 360ms ease 80ms forwards;
 }
 
 .ticketButton {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: min(100%, 282px);
+  justify-content: flex-start;
+  width: max-content;
+  max-width: 100%;
   min-height: 50px;
   padding: 6px 7px 6px 20px;
+  gap: 15px;
   overflow: hidden;
   color: #fff;
   background: #171717;
@@ -76,7 +78,7 @@
   text-transform: uppercase;
   opacity: 0;
   isolation: isolate;
-  animation: ticketReveal 700ms ease 850ms forwards;
+  animation: ticketReveal 420ms ease 170ms forwards;
   transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease;
 }
 
@@ -104,6 +106,10 @@
 .ticketButtonArrow {
   position: relative;
   z-index: 1;
+}
+
+.ticketButtonLabel {
+  white-space: nowrap;
 }
 
 .ticketButtonArrow {
@@ -247,6 +253,11 @@
   white-space: nowrap;
 }
 
+:global(.hero [style*="opacity:0"]),
+:global(.hero [style*="opacity: 0"]) {
+  animation: fastHeroReveal 280ms ease-out 500ms both !important;
+}
+
 @media (max-width: 700px) {
   :global(.hero-top-block) { gap: 5px !important; padding-top: 4px !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; }
@@ -254,7 +265,8 @@
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
   :global(.hero) { height: auto !important; min-height: 100svh; }
-  :global(.hero-content-wrapper) { min-height: auto; gap: 72px; }
+  :global(.hero-content-wrapper) { min-height: auto; gap: 28px !important; }
+  :global(.hero-bottom-block) { gap: 24px !important; }
   :global(.hero-bottom-top-block) { justify-content: space-between !important; gap: 12px; }
   :global(.hero-left-time-block) {
     position: static !important;
@@ -268,7 +280,7 @@
   .compactCountdown { height: 86px; }
   .numberCanvas { height: 63px; }
   .timeLabel { bottom: 5px; font-size: 8px; }
-  .ticketButton { min-height: 48px; font-size: 11px; }
+  .ticketButton { min-height: 48px; padding-left: 18px; gap: 12px; font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -315,4 +327,9 @@
 @keyframes ticketGlow {
   from { left: -8%; top: -35%; transform: scale(0.8); }
   to { left: 76%; top: 20%; transform: scale(1.2); }
+}
+
+@keyframes fastHeroReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

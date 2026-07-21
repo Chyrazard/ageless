@@ -76,10 +76,16 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
       maskContext.font = `900 ${fontSize}px Arial Black, Helvetica Neue, Arial, sans-serif`;
       maskContext.textAlign = "center";
       maskContext.textBaseline = "middle";
+      if (width < 120) {
+        maskContext.strokeStyle = "#ffffff";
+        maskContext.lineWidth = Math.max(2, fontSize * 0.075);
+        maskContext.lineJoin = "round";
+        maskContext.strokeText(text, width / 2, height / 2 + fontSize * 0.035);
+      }
       maskContext.fillText(text, width / 2, height / 2 + fontSize * 0.035);
 
       const pixels = maskContext.getImageData(0, 0, mask.width, mask.height).data;
-      const gap = width < 230 ? 4 : 5;
+      const gap = width < 120 ? 3 : width < 230 ? 4 : 5;
       const targets: Array<{ x: number; y: number }> = [];
 
       for (let y = 0; y < mask.height; y += gap) {
@@ -102,7 +108,7 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
           targetY: height / 2,
           velocityX: 0,
           velocityY: 0,
-          size: 0.75 + Math.random() * 1.15,
+          size: width < 120 ? 1.1 + Math.random() * 1.05 : 0.75 + Math.random() * 1.15,
           color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)],
         });
       }
@@ -218,7 +224,7 @@ export function CountdownExperience() {
   }, []);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setPreloaderVisible(false), 1250);
+    const timer = window.setTimeout(() => setPreloaderVisible(false), 820);
     return () => window.clearTimeout(timer);
   }, []);
 
