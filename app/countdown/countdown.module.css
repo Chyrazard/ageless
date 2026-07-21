@@ -253,6 +253,50 @@
   white-space: nowrap;
 }
 
+:global(.ageless-live-marquee-block) {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+:global(.ageless-live-marquee) {
+  width: 100%;
+  overflow: hidden;
+  color: #090909;
+}
+
+:global(.ageless-live-marquee-track) {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: liveWellMarquee 18s linear infinite;
+}
+
+:global(.ageless-live-marquee-group) {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: clamp(24px, 2.4vw, 48px);
+  padding-right: clamp(24px, 2.4vw, 48px);
+  font-family: Interdisplay, Arial, sans-serif;
+  font-size: clamp(64px, 7.6vw, 124px);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+:global(.ageless-live-marquee-group i) {
+  display: block;
+  flex: none;
+  width: clamp(30px, 3.7vw, 60px);
+  height: clamp(30px, 3.7vw, 60px);
+  background: #b8ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 22px rgba(184, 255, 0, 0.28);
+}
+
 :global(.hero [style*="opacity:0"]),
 :global(.hero [style*="opacity: 0"]) {
   animation: fastHeroReveal 280ms ease-out 500ms both !important;
@@ -277,6 +321,14 @@
     transform: none !important;
   }
   :global(.hero-event-date) { font-size: 9px; }
+  :global(.ageless-live-marquee-group) {
+    gap: 16px;
+    padding-right: 16px;
+    font-size: clamp(42px, 13vw, 58px);
+    letter-spacing: -0.055em;
+  }
+  :global(.ageless-live-marquee-group i) { width: 22px; height: 22px; }
+  :global(.ageless-live-marquee-track) { animation-duration: 13s; }
   .compactCountdown { height: 86px; }
   .numberCanvas { height: 63px; }
   .timeLabel { bottom: 5px; font-size: 8px; }
@@ -291,6 +343,7 @@
   .ticketButton,
   .ticketButton::before,
   .ticketButtonGlow { animation-duration: 0.01ms; animation-delay: 0ms; }
+  :global(.ageless-live-marquee-track) { animation: none !important; }
 }
 
 @keyframes preloaderLogo {
@@ -332,4 +385,9 @@
 @keyframes fastHeroReveal {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes liveWellMarquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
 }

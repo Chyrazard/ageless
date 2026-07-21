@@ -4,6 +4,9 @@ import { WebflowRuntime } from "./webflow-runtime";
 const HERO_SOCIAL_LINKS =
   '<div class="social-links-block"><a href="https://www.behance.net/nayzakui" target="_blank" class="social-link">BE</a><div class="paragraph-text-mono">/</div><a href="https://dribbble.com/clonifylibrary" target="_blank" class="social-link">DR</a><div class="paragraph-text-mono">/</div><a href="https://x.com/ClonifyLibrary" target="_blank" class="social-link">X</a></div>';
 
+const LIVE_WELL_MARQUEE =
+  '<div class="ageless-live-marquee" role="img" aria-label="Live Well, Ageless"><div class="ageless-live-marquee-track" aria-hidden="true"><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGELESS</span><i></i></div><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGELESS</span><i></i></div></div></div>';
+
 function replaceAfter(
   source: string,
   anchor: string,
@@ -37,6 +40,10 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     .replace(
       '<div class="paragraph-text-mono">HAIL</div><div class="paragraph-text-mono">NY )</div>',
       '<div class="paragraph-text-mono">LONGEVITY &amp;</div><div class="paragraph-text-mono">WELLNESS SUMMIT )</div>',
+    )
+    .replace(
+      '<div class="home-about-text-block"><h2 class="heading-style-h3 split-text-effect">We’re Bungee® — a creative studio cultivating bold brands, beautiful websites, and ideas that refuse to be ordinary.</h2></div>',
+      `<div class="home-about-text-block ageless-live-marquee-block">${LIVE_WELL_MARQUEE}</div>`,
     );
 
   const brandedHtml = replaceAfter(
