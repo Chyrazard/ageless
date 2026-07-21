@@ -258,16 +258,26 @@ export function CountdownExperience() {
                   : "Loading countdown"}
               </p>
             </section>
-            <a
-              className={styles.ticketButton}
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className={styles.ticketButtonGlow} aria-hidden="true" />
-              <span className={styles.ticketButtonLabel}>Purchase your tickets</span>
-              <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
-            </a>
+            <div className={styles.ticketActions}>
+              <a
+                className={`${styles.ticketButton} ${styles.ticketButtonGreen}`}
+                href={TICKETS_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className={styles.ticketButtonGlow} aria-hidden="true" />
+                <span className={styles.ticketButtonLabel}>Buy tickets</span>
+                <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
+              </a>
+              <a
+                className={`${styles.ticketButton} ${styles.ticketButtonDark}`}
+                href="/contact"
+              >
+                <span className={styles.ticketButtonGlow} aria-hidden="true" />
+                <span className={styles.ticketButtonLabel}>Exhibit &amp; Sponsor</span>
+                <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>,
           portalTarget,
         )
