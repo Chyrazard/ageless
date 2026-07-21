@@ -15,6 +15,10 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     .replace(
       'class="heading-style-h5">Creative studio based in Gotham.</div>',
       'class="heading-style-h5 ageless-event-date">January 14th, 2027 · Silicon Valley</div><div id="ageless-countdown-slot" aria-label="Countdown to January 14, 2027"></div>',
+    )
+    .replace(
+      '<div class="paragraph-text-mono">HAIL</div><div class="paragraph-text-mono">NY )</div>',
+      '<div class="paragraph-text-mono">LONGEVITY AND</div><div class="paragraph-text-mono">WELLNESS SUMMIT )</div>',
     );
 
   return (

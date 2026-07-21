@@ -96,20 +96,25 @@
 }
 
 :global(.hero-top-block) {
-  gap: 10px !important;
-  padding-top: 30px !important;
+  gap: 8px !important;
+  padding-top: 10px !important;
 }
 
 :global(.hero-large-logo) {
   width: min(52vw, 760px) !important;
-  height: auto !important;
+  height: clamp(175px, 15vw, 225px) !important;
+  object-fit: cover;
+  object-position: 50% 50%;
   mix-blend-mode: multiply;
 }
 
 :global(.ageless-event-date) {
   color: #1e1e1e;
-  font-size: clamp(0.9rem, 1.25vw, 1.15rem) !important;
-  letter-spacing: 0.03em !important;
+  margin-top: 8px;
+  margin-bottom: 17px;
+  font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.1 !important;
 }
 
 :global(#ageless-countdown-slot) {
@@ -130,11 +135,25 @@
   mix-blend-mode: multiply;
 }
 
+:global(.hero) {
+  height: calc(100vh + 72px) !important;
+}
+
+:global(.hero-left-time-block) {
+  gap: 5px !important;
+  font-size: 10px;
+  white-space: nowrap;
+  inset: -78px auto auto 0% !important;
+}
+
 @media (max-width: 700px) {
-  :global(.hero-top-block) { gap: 7px !important; padding-top: 18px !important; }
-  :global(.hero-large-logo) { width: 78vw !important; }
+  :global(.hero-top-block) { gap: 5px !important; padding-top: 4px !important; }
+  :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; }
+  :global(.ageless-event-date) { margin-top: 4px; margin-bottom: 11px; font-size: 1.05rem !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 86px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
+  :global(.hero) { height: calc(100svh + 88px) !important; }
+  :global(.hero-left-time-block) { font-size: 8px; inset: -70px auto auto -7px !important; }
   .compactCountdown { height: 86px; }
   .numberCanvas { height: 63px; }
   .timeLabel { bottom: 5px; font-size: 8px; }

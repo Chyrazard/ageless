@@ -24,7 +24,14 @@ type Particle = {
   color: string;
 };
 
-const PARTICLE_COLORS = ["#101114", "#1e1e1e", "#2f3339", "#474d56"];
+const PARTICLE_COLORS = [
+  "#ef4f91",
+  "#3977e8",
+  "#f2b830",
+  "#8b5cf6",
+  "#ed6a45",
+  "#119d8f",
+];
 
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
