@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description:
     "A creative studio cultivating bold brands, beautiful websites, and ideas that refuse to be ordinary.",
   icons: {
-    icon: "/ageless-logo.png",
-    apple: "/ageless-logo.png",
+    icon: "/logo.jpeg",
+    apple: "/logo.jpeg",
   },
 };
 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        <link rel="preload" href="/ageless-logo.png" as="image" />
+        <link rel="preload" href="/logo.jpeg" as="image" />
         <link rel="stylesheet" href="/webflow/original.css?v=1" />
       </head>
       <body>{children}</body>

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./countdown.module.css";
 
 const TARGET_DATE = new Date("2027-01-14T00:00:00-08:00").getTime();
-const TICKETS_URL = "https://lu.ma/agelessevolution2025";
 
 type TimeLeft = {
   days: number;
@@ -24,7 +24,7 @@ type Particle = {
   color: string;
 };
 
-const PARTICLE_COLORS = ["#1e1e1e", "#333333", "#5a6271", "#8a919b"];
+const PARTICLE_COLORS = ["#101114", "#1e1e1e", "#2f3339", "#474d56"];
 
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
@@ -207,7 +207,7 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 export function CountdownExperience() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [preloaderVisible, setPreloaderVisible] = useState(true);
-  const [stickyVisible, setStickyVisible] = useState(false);
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
     const update = () => setTimeLeft(getTimeLeft());
@@ -222,14 +222,7 @@ export function CountdownExperience() {
   }, []);
 
   useEffect(() => {
-    const updateStickyHeader = () => {
-      const revealPoint = Math.min(window.innerHeight * 0.38, 360);
-      setStickyVisible(window.scrollY > revealPoint);
-    };
-
-    updateStickyHeader();
-    window.addEventListener("scroll", updateStickyHeader, { passive: true });
-    return () => window.removeEventListener("scroll", updateStickyHeader);
+    setPortalTarget(document.getElementById("ageless-countdown-slot"));
   }, []);
 
   const values = {
@@ -240,45 +233,17 @@ export function CountdownExperience() {
   };
 
   return (
-    <div className={styles.page}>
+    <>
       {preloaderVisible ? (
         <div className={styles.preloader} aria-label="Loading Ageless Evolution Summit">
-          <img src="/ageless-logo.png" alt="Ageless Evolution Longevity Summit" />
+          <img src="/logo.jpeg" alt="Ageless Evolution" />
           <span aria-hidden="true" />
         </div>
       ) : null}
 
-      <header
-        className={`${styles.stickyHeader} ${stickyVisible ? styles.stickyHeaderVisible : ""}`}
-        aria-hidden={!stickyVisible}
-      >
-        <span className={styles.stickyDate}>01.14.27</span>
-        <img
-          className={styles.stickyLogo}
-          src="/ageless-logo.png"
-          alt="Ageless Evolution Longevity Summit"
-        />
-        <a
-          className={styles.stickyTickets}
-          href={TICKETS_URL}
-          target="_blank"
-          rel="noreferrer"
-          tabIndex={stickyVisible ? 0 : -1}
-        >
-          Tickets ↗
-        </a>
-      </header>
-
-      <div className={styles.glowOne} aria-hidden="true" />
-      <div className={styles.glowTwo} aria-hidden="true" />
-      <header className={styles.topHeader}>
-        <img src="/ageless-logo.png" alt="Ageless Evolution Longevity Summit" />
-      </header>
-      <section className={styles.hero}>
-        <p className={styles.eventDate}>January 14th, 2027 · Silicon Valley</p>
-        <h1>Ageless Evolution Summit</h1>
-
-        <section className={styles.countdownShell} aria-label="Countdown to January 14, 2027">
+      {portalTarget
+        ? createPortal(
+          <section className={styles.compactCountdown} aria-label="Countdown to January 14, 2027">
           <div className={styles.countdownGrid}>
             <ParticleNumber value={values.days} label="Days" />
             <ParticleNumber value={values.hours} label="Hours" />
@@ -290,13 +255,10 @@ export function CountdownExperience() {
               ? `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes and ${timeLeft.seconds} seconds remaining`
               : "Loading countdown"}
           </p>
-        </section>
-
-        <p className={styles.interactionHint}>Move your cursor or tap the numbers</p>
-        <a className={styles.ticketButton} href={TICKETS_URL} target="_blank" rel="noreferrer">
-          Purchase tickets <span aria-hidden="true">↗</span>
-        </a>
-      </section>
-    </div>
+          </section>,
+          portalTarget,
+        )
+        : null}
+    </>
   );
 }

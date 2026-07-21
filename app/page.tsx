@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <CountdownExperience />
       <MirroredPageView page={home} />
+      <CountdownExperience />
     </>
   );
 }
