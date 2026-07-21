@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { mirroredPages } from "./generated-pages";
 import { MirroredPageView } from "./mirrored-page-view";
+import { CountdownExperience } from "./countdown/countdown-experience";
 
 const home = mirroredPages["/"];
 
@@ -15,5 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <MirroredPageView page={home} />;
+  return (
+    <>
+      <CountdownExperience />
+      <MirroredPageView page={home} />
+    </>
+  );
 }

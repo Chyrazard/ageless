@@ -24,7 +24,7 @@ type Particle = {
   color: string;
 };
 
-const PARTICLE_COLORS = ["#ffffff", "#f8f8f8", "#e7eeff", "#aff42b"];
+const PARTICLE_COLORS = ["#1e1e1e", "#333333", "#5a6271", "#8a919b"];
 
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
@@ -222,7 +222,7 @@ export function CountdownExperience() {
   };
 
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <div className={styles.glowOne} aria-hidden="true" />
       <div className={styles.glowTwo} aria-hidden="true" />
       <section className={styles.hero}>
@@ -248,6 +248,6 @@ export function CountdownExperience() {
           Purchase tickets <span aria-hidden="true">↗</span>
         </a>
       </section>
-    </main>
+    </div>
   );
 }
