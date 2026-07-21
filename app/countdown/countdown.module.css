@@ -228,6 +228,10 @@
   line-height: 1.1 !important;
 }
 
+:global(.ageless-event-location) {
+  font-weight: 400;
+}
+
 :global(#ageless-countdown-slot) {
   width: min(62vw, 660px);
   min-height: 168px;

@@ -35,7 +35,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     .replaceAll("Bungee Branding Logo Icon", "Ageless logo")
     .replace(
       'class="heading-style-h5">Creative studio based in Gotham.</div>',
-      'class="heading-style-h5 ageless-event-date">January 14th, 2027 · San Francisco</div><div id="ageless-countdown-slot" aria-label="Countdown to January 14, 2027"></div>',
+      'class="heading-style-h5 ageless-event-date">January 14th, 2027 · <span class="ageless-event-location">San Francisco</span></div><div id="ageless-countdown-slot" aria-label="Countdown to January 14, 2027"></div>',
     )
     .replace(
       '<div class="paragraph-text-mono">HAIL</div><div class="paragraph-text-mono">NY )</div>',
