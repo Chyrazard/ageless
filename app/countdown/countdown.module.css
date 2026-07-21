@@ -93,6 +93,15 @@
   animation-delay: 240ms;
 }
 
+.ticketButtonPrimary .ticketButtonLabel {
+  color: #b8ff00;
+  text-shadow: 0 0 14px rgba(184, 255, 0, 0.14);
+}
+
+.ticketButtonPrimary .ticketButtonLabel::after {
+  display: none;
+}
+
 .ticketButton::before {
   position: absolute;
   inset: -70% -30%;

@@ -260,7 +260,7 @@ export function CountdownExperience() {
             </section>
             <div className={styles.ticketActions}>
               <a
-                className={styles.ticketButton}
+                className={`${styles.ticketButton} ${styles.ticketButtonPrimary}`}
                 href={TICKETS_URL}
                 target="_blank"
                 rel="noreferrer"
