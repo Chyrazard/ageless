@@ -206,12 +206,30 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 
 export function CountdownExperience() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
+  const [preloaderVisible, setPreloaderVisible] = useState(true);
+  const [stickyVisible, setStickyVisible] = useState(false);
 
   useEffect(() => {
     const update = () => setTimeLeft(getTimeLeft());
     update();
     const timer = window.setInterval(update, 1000);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setPreloaderVisible(false), 1250);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const updateStickyHeader = () => {
+      const revealPoint = Math.min(window.innerHeight * 0.38, 360);
+      setStickyVisible(window.scrollY > revealPoint);
+    };
+
+    updateStickyHeader();
+    window.addEventListener("scroll", updateStickyHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateStickyHeader);
   }, []);
 
   const values = {
@@ -223,8 +241,39 @@ export function CountdownExperience() {
 
   return (
     <div className={styles.page}>
+      {preloaderVisible ? (
+        <div className={styles.preloader} aria-label="Loading Ageless Evolution Summit">
+          <img src="/ageless-logo.png" alt="Ageless Evolution Longevity Summit" />
+          <span aria-hidden="true" />
+        </div>
+      ) : null}
+
+      <header
+        className={`${styles.stickyHeader} ${stickyVisible ? styles.stickyHeaderVisible : ""}`}
+        aria-hidden={!stickyVisible}
+      >
+        <span className={styles.stickyDate}>01.14.27</span>
+        <img
+          className={styles.stickyLogo}
+          src="/ageless-logo.png"
+          alt="Ageless Evolution Longevity Summit"
+        />
+        <a
+          className={styles.stickyTickets}
+          href={TICKETS_URL}
+          target="_blank"
+          rel="noreferrer"
+          tabIndex={stickyVisible ? 0 : -1}
+        >
+          Tickets ↗
+        </a>
+      </header>
+
       <div className={styles.glowOne} aria-hidden="true" />
       <div className={styles.glowTwo} aria-hidden="true" />
+      <header className={styles.topHeader}>
+        <img src="/ageless-logo.png" alt="Ageless Evolution Longevity Summit" />
+      </header>
       <section className={styles.hero}>
         <p className={styles.eventDate}>January 14th, 2027 · Silicon Valley</p>
         <h1>Ageless Evolution Summit</h1>

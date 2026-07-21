@@ -32,6 +32,124 @@
     repeating-linear-gradient(25deg, transparent 0 8px, rgba(30, 30, 30, 0.018) 8px 9px);
 }
 
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  overflow: hidden;
+  background: var(--template-white);
+  place-items: center;
+  animation: preloaderFade 1.25s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.preloader img {
+  width: clamp(13rem, 28vw, 22rem);
+  height: auto;
+  animation: preloaderLogo 1.05s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.preloader span {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  width: min(12rem, 42vw);
+  height: 1px;
+  overflow: hidden;
+  background: var(--template-border);
+  transform: translateX(-50%);
+}
+
+.preloader span::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--template-black);
+  content: "";
+  transform-origin: left;
+  animation: preloaderLine 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.topHeader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(7.5rem, 13vw, 10.5rem);
+  padding: 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--template-border);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(12px);
+}
+
+.topHeader img {
+  width: clamp(9rem, 15vw, 13.5rem);
+  height: auto;
+}
+
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 9998;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: 0.45rem clamp(1rem, 3vw, 3rem);
+  border-bottom: 1px solid var(--template-border);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0.6rem 2rem rgba(30, 30, 30, 0.055);
+  backdrop-filter: blur(18px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-110%);
+  transition: opacity 320ms ease, transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stickyHeaderVisible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.stickyLogo {
+  width: clamp(4.6rem, 6vw, 5.6rem);
+  height: auto;
+}
+
+.stickyDate {
+  color: var(--template-text);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+}
+
+.stickyTickets {
+  justify-self: end;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--template-black);
+  border-radius: 999px;
+  color: var(--template-black);
+  background: transparent;
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease, background 200ms ease;
+}
+
+.stickyTickets:hover {
+  color: var(--template-white);
+  background: var(--template-black);
+}
+
 .glowOne,
 .glowTwo {
   position: absolute;
@@ -63,7 +181,7 @@
   justify-content: center;
   width: min(100% - 3rem, 88rem);
   min-height: 100svh;
-  padding: clamp(2rem, 5vw, 5rem) 0;
+  padding: clamp(11rem, 17vw, 14rem) 0 clamp(2rem, 5vw, 5rem);
   text-align: center;
 }
 
@@ -177,7 +295,14 @@
 }
 
 @media (max-width: 700px) {
+  .topHeader { min-height: 7rem; }
+  .topHeader img { width: 8rem; }
+  .stickyHeader { min-height: 4rem; }
+  .stickyDate { display: none; }
+  .stickyHeader { grid-template-columns: 1fr auto; }
+  .stickyLogo { justify-self: start; width: 4.4rem; }
   .hero { width: min(100% - 1.5rem, 88rem); }
+  .hero { padding-top: 9rem; }
   .eventDate { margin-bottom: 1rem; }
   .hero h1 { margin-bottom: 2rem; font-size: clamp(3.1rem, 16vw, 5.2rem); }
   .countdownGrid { grid-template-columns: 1.15fr 1fr; min-height: 21rem; }
@@ -190,5 +315,25 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .preloader,
+  .preloader img,
+  .preloader span::after { animation-duration: 0.01ms; }
+  .stickyHeader { transition: none; }
   .ticketButton { transition: none; }
+}
+
+@keyframes preloaderLogo {
+  0% { opacity: 0; transform: scale(0.94) translateY(0.7rem); }
+  45%, 82% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0.92; transform: scale(1.015) translateY(0); }
+}
+
+@keyframes preloaderLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes preloaderFade {
+  0%, 72% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
 }
