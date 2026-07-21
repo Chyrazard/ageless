@@ -254,7 +254,8 @@
 }
 
 :global(.ageless-live-marquee-block) {
-  width: 100vw;
+  width: 100vw !important;
+  min-width: 100vw !important;
   max-width: none !important;
   margin-left: calc(50% - 50vw);
   overflow: hidden;
