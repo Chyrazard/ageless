@@ -24,7 +24,7 @@ type Particle = {
   color: string;
 };
 
-const PARTICLE_COLORS = ["#f8f4e8", "#f6a667", "#e8a8ff", "#9fe8d2"];
+const PARTICLE_COLORS = ["#ffffff", "#f8f8f8", "#e7eeff", "#aff42b"];
 
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
@@ -223,42 +223,13 @@ export function CountdownExperience() {
 
   return (
     <main className={styles.page}>
-      <div className={styles.aurora} aria-hidden="true" />
-      <div className={styles.orbitOne} aria-hidden="true" />
-      <div className={styles.orbitTwo} aria-hidden="true" />
-
-      <header className={styles.header}>
-        <a className={styles.brand} href="/" aria-label="Ageless Evolution home">
-          <span className={styles.brandMark} aria-hidden="true">
-            <span />
-          </span>
-          <span>
-            AGELESS EVOLUTION
-            <small>LONGEVITY SUMMIT</small>
-          </span>
-        </a>
-        <div className={styles.headerDate}>
-          <span>01.14.27</span>
-          <span>Silicon Valley</span>
-        </div>
-      </header>
-
+      <div className={styles.glowOne} aria-hidden="true" />
+      <div className={styles.glowTwo} aria-hidden="true" />
       <section className={styles.hero}>
-        <div className={styles.kicker}>
-          <span className={styles.liveDot} /> The next evolution begins in
-        </div>
-
-        <h1>
-          Live well.
-          <em>Age less.</em>
-        </h1>
-        <p className={styles.intro}>Reimagine the future of longevity.</p>
+        <p className={styles.eventDate}>January 14th, 2027 · Silicon Valley</p>
+        <h1>Ageless Evolution Summit</h1>
 
         <section className={styles.countdownShell} aria-label="Countdown to January 14, 2027">
-          <div className={styles.counterInstruction}>
-            <span>Particles in motion</span>
-            <span>Move or tap to interact</span>
-          </div>
           <div className={styles.countdownGrid}>
             <ParticleNumber value={values.days} label="Days" />
             <ParticleNumber value={values.hours} label="Hours" />
@@ -272,51 +243,11 @@ export function CountdownExperience() {
           </p>
         </section>
 
-        <div className={styles.heroFooter}>
-          <div className={styles.eventMeta}>
-            <span>January 14th, 2027</span>
-            <span>The Ameswell · Silicon Valley</span>
-          </div>
-          <a className={styles.ticketButton} href={TICKETS_URL} target="_blank" rel="noreferrer">
-            <span>Purchase tickets</span>
-            <span className={styles.buttonArrow} aria-hidden="true">↗</span>
-          </a>
-        </div>
+        <p className={styles.interactionHint}>Move your cursor or tap the numbers</p>
+        <a className={styles.ticketButton} href={TICKETS_URL} target="_blank" rel="noreferrer">
+          Purchase tickets <span aria-hidden="true">↗</span>
+        </a>
       </section>
-
-      <section className={styles.manifesto}>
-        <p className={styles.sectionNumber}>01 — The summit</p>
-        <div className={styles.manifestoCopy}>
-          <h2>Reimagine the future of longevity.</h2>
-          <p>
-            Join founders, investors, scientists, and wellness leaders for a transformative
-            gathering at the frontiers of human health and lifespan extension.
-          </p>
-        </div>
-        <div className={styles.pillars}>
-          <article>
-            <span>01</span>
-            <h3>Science</h3>
-            <p>Breakthrough ideas translating longevity research into real human impact.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Vitality</h3>
-            <p>New rituals and technologies designed for longer, healthier lives.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Connection</h3>
-            <p>Curated conversations with the people shaping what comes next.</p>
-          </article>
-        </div>
-      </section>
-
-      <footer className={styles.footer}>
-        <p>Live Well. Age Less.</p>
-        <a href={TICKETS_URL} target="_blank" rel="noreferrer">Purchase tickets ↗</a>
-        <p>© 2027 Ageless Evolution</p>
-      </footer>
     </main>
   );
 }
