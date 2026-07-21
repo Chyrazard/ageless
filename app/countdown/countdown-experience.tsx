@@ -260,22 +260,20 @@ export function CountdownExperience() {
             </section>
             <div className={styles.ticketActions}>
               <a
-                className={`${styles.ticketButton} ${styles.ticketButtonGreen}`}
+                className={styles.ticketButton}
                 href={TICKETS_URL}
                 target="_blank"
                 rel="noreferrer"
               >
                 <span className={styles.ticketButtonGlow} aria-hidden="true" />
-                <span className={styles.ticketButtonLabel}>Buy tickets</span>
-                <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
+                <span className={styles.ticketButtonLabel} data-text="Buy tickets">Buy tickets</span>
               </a>
               <a
                 className={`${styles.ticketButton} ${styles.ticketButtonDark}`}
                 href="/contact"
               >
                 <span className={styles.ticketButtonGlow} aria-hidden="true" />
-                <span className={styles.ticketButtonLabel}>Exhibit &amp; Sponsor</span>
-                <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
+                <span className={styles.ticketButtonLabel} data-text="Exhibit &amp; Sponsor">Exhibit &amp; Sponsor</span>
               </a>
             </div>
           </div>,
