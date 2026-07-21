@@ -37,6 +37,14 @@
   animation: preloaderLine 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
+.countdownExperience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 14px;
+}
+
 .compactCountdown {
   width: 100%;
   height: 104px;
@@ -44,6 +52,81 @@
   border-bottom: 1px solid #d0d8e4;
   opacity: 0;
   animation: countdownReveal 700ms ease 650ms forwards;
+}
+
+.ticketButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 282px);
+  min-height: 50px;
+  padding: 6px 7px 6px 20px;
+  overflow: hidden;
+  color: #fff;
+  background: #171717;
+  border: 1px solid #171717;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+  font-family: "Chivo Mono", monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0;
+  isolation: isolate;
+  animation: ticketReveal 700ms ease 850ms forwards;
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 280ms ease;
+}
+
+.ticketButton::before {
+  position: absolute;
+  inset: -70% -30%;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.2) 49%, transparent 60%);
+  content: "";
+  transform: translateX(-70%) rotate(6deg);
+  animation: ticketShine 3.8s ease-in-out 1.4s infinite;
+}
+
+.ticketButtonGlow {
+  position: absolute;
+  z-index: -1;
+  width: 76px;
+  height: 76px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 67%);
+  border-radius: 50%;
+  animation: ticketGlow 4.6s ease-in-out infinite alternate;
+}
+
+.ticketButtonLabel,
+.ticketButtonArrow {
+  position: relative;
+  z-index: 1;
+}
+
+.ticketButtonArrow {
+  display: grid;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  color: #171717;
+  background: #fff;
+  border-radius: 50%;
+  place-items: center;
+  font-size: 16px;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ticketButton:hover {
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+  transform: translateY(-3px);
+}
+
+.ticketButton:hover .ticketButtonArrow {
+  transform: rotate(45deg) scale(1.04);
 }
 
 .countdownGrid {
@@ -119,7 +202,7 @@
 
 :global(#ageless-countdown-slot) {
   width: min(62vw, 660px);
-  min-height: 104px;
+  min-height: 168px;
 }
 
 :global(.nav-logo) {
@@ -136,34 +219,57 @@
 }
 
 :global(.hero) {
-  height: calc(100vh + 72px) !important;
+  height: auto !important;
+  min-height: 100svh;
+  overflow: visible !important;
+}
+
+:global(.hero-content-wrapper) {
+  height: auto !important;
+  min-height: calc(100svh - 137px);
+  gap: 38px;
 }
 
 :global(.hero-left-time-block) {
+  z-index: 3;
   gap: 5px !important;
   font-size: 10px;
   white-space: nowrap;
-  inset: -78px auto auto 0% !important;
+  inset: -150px auto auto 0% !important;
+}
+
+:global(.hero-event-date) {
+  color: #1e1e1e;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
 }
 
 @media (max-width: 700px) {
   :global(.hero-top-block) { gap: 5px !important; padding-top: 4px !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; }
   :global(.ageless-event-date) { margin-top: 4px; margin-bottom: 11px; font-size: 1.05rem !important; }
-  :global(#ageless-countdown-slot) { width: 92vw; min-height: 86px; }
+  :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
-  :global(.hero) { height: calc(100svh + 88px) !important; }
-  :global(.hero-left-time-block) { font-size: 8px; inset: -70px auto auto -7px !important; }
+  :global(.hero) { height: auto !important; min-height: 100svh; }
+  :global(.hero-content-wrapper) { min-height: auto; gap: 92px; }
+  :global(.hero-left-time-block) { font-size: 8px; inset: -126px auto auto -7px !important; }
+  :global(.hero-event-date) { font-size: 9px; }
   .compactCountdown { height: 86px; }
   .numberCanvas { height: 63px; }
   .timeLabel { bottom: 5px; font-size: 8px; }
+  .ticketButton { min-height: 48px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .preloader,
   .preloader img,
   .preloader span::after,
-  .compactCountdown { animation-duration: 0.01ms; animation-delay: 0ms; }
+  .compactCountdown,
+  .ticketButton,
+  .ticketButton::before,
+  .ticketButtonGlow { animation-duration: 0.01ms; animation-delay: 0ms; }
 }
 
 @keyframes preloaderLogo {
@@ -185,4 +291,19 @@
 @keyframes countdownReveal {
   from { opacity: 0; transform: translateY(0.6rem); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ticketReveal {
+  from { opacity: 0; transform: translateY(0.7rem) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes ticketShine {
+  0%, 58% { transform: translateX(-70%) rotate(6deg); }
+  82%, 100% { transform: translateX(70%) rotate(6deg); }
+}
+
+@keyframes ticketGlow {
+  from { left: -8%; top: -35%; transform: scale(0.8); }
+  to { left: 76%; top: 20%; transform: scale(1.2); }
 }

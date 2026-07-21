@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import styles from "./countdown.module.css";
 
 const TARGET_DATE = new Date("2027-01-14T00:00:00-08:00").getTime();
+const TICKETS_URL = "https://lu.ma/agelessevolution2025";
 
 type TimeLeft = {
   days: number;
@@ -24,14 +25,7 @@ type Particle = {
   color: string;
 };
 
-const PARTICLE_COLORS = [
-  "#ef4f91",
-  "#3977e8",
-  "#f2b830",
-  "#8b5cf6",
-  "#ed6a45",
-  "#119d8f",
-];
+const PARTICLE_COLORS = ["#000000"];
 
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
@@ -250,19 +244,31 @@ export function CountdownExperience() {
 
       {portalTarget
         ? createPortal(
-          <section className={styles.compactCountdown} aria-label="Countdown to January 14, 2027">
-          <div className={styles.countdownGrid}>
-            <ParticleNumber value={values.days} label="Days" />
-            <ParticleNumber value={values.hours} label="Hours" />
-            <ParticleNumber value={values.minutes} label="Minutes" />
-            <ParticleNumber value={values.seconds} label="Seconds" />
-          </div>
-          <p className={styles.srOnly} aria-live="polite">
-            {timeLeft
-              ? `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes and ${timeLeft.seconds} seconds remaining`
-              : "Loading countdown"}
-          </p>
-          </section>,
+          <div className={styles.countdownExperience}>
+            <section className={styles.compactCountdown} aria-label="Countdown to January 14, 2027">
+              <div className={styles.countdownGrid}>
+                <ParticleNumber value={values.days} label="Days" />
+                <ParticleNumber value={values.hours} label="Hours" />
+                <ParticleNumber value={values.minutes} label="Minutes" />
+                <ParticleNumber value={values.seconds} label="Seconds" />
+              </div>
+              <p className={styles.srOnly} aria-live="polite">
+                {timeLeft
+                  ? `${timeLeft.days} days, ${timeLeft.hours} hours, ${timeLeft.minutes} minutes and ${timeLeft.seconds} seconds remaining`
+                  : "Loading countdown"}
+              </p>
+            </section>
+            <a
+              className={styles.ticketButton}
+              href={TICKETS_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className={styles.ticketButtonGlow} aria-hidden="true" />
+              <span className={styles.ticketButtonLabel}>Purchase your tickets</span>
+              <span className={styles.ticketButtonArrow} aria-hidden="true">↗</span>
+            </a>
+          </div>,
           portalTarget,
         )
         : null}
