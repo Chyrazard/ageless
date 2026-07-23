@@ -207,7 +207,7 @@
 
 :global(.hero-top-block) {
   gap: 8px !important;
-  margin-top: 15px !important;
+  margin-top: 0 !important;
   padding-top: 10px !important;
 }
 
@@ -268,6 +268,7 @@
 :global(.hero) {
   height: auto !important;
   min-height: 100svh;
+  padding-top: 120px !important;
   overflow: visible !important;
 }
 
@@ -407,7 +408,7 @@
   :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: 1.12rem !important; font-weight: 750 !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
-  :global(.hero) { height: auto !important; min-height: 100svh; }
+  :global(.hero) { height: auto !important; min-height: 100svh; padding-top: 95px !important; }
   :global(.hero-content-wrapper) { min-height: auto; gap: 28px !important; }
   :global(.hero-bottom-block) { gap: 24px !important; }
   :global(.hero-bottom-top-block) { justify-content: space-between !important; gap: 12px; }
