@@ -7,6 +7,29 @@ const HERO_SOCIAL_LINKS =
 const LIVE_WELL_MARQUEE =
   '<div class="ageless-live-marquee" role="img" aria-label="Redefining Health. Extending Life."><div class="ageless-live-marquee-track" aria-hidden="true"><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div></div></div>';
 
+const HEADER_LINKS = [
+  { label: "Home", href: "/#home" },
+  { label: "Speakers", href: "/#speakers" },
+  { label: "Agenda", href: "/#agenda" },
+  {
+    label: "Buy Ticket",
+    href: "https://lu.ma/agelessevolution2025",
+    external: true,
+  },
+  { label: "Exhibit &amp; Sponsor", href: "/contact" },
+  { label: "Contact", href: "/contact" },
+];
+
+const HEADER_HORIZONTAL_MENU = `<nav class="ageless-header-links" aria-label="Primary navigation">${HEADER_LINKS.map(
+  ({ label, href, external }) =>
+    `<a class="ageless-header-link" href="${href}"${external ? ' target="_blank" rel="noreferrer"' : ""}>${label}</a>`,
+).join("")}</nav>`;
+
+const HEADER_OVERLAY_MENU = `<div class="nav-links-wrapper">${HEADER_LINKS.map(
+  ({ label, href, external }, index) =>
+    `<a href="${href}" class="nav-link w-inline-block"${external ? ' target="_blank" rel="noreferrer"' : ""}><div class="nav-link-inner"><div class="nav-link-number-block"><div class="paragraph-text-mono">( _0${index + 1} )</div></div><div>${label}</div></div><div class="nav-hover-line"></div></a>`,
+).join("")}</div>`;
+
 function replaceAfter(
   source: string,
   anchor: string,
@@ -33,6 +56,15 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
       "/logo.jpeg",
     )
     .replaceAll("Bungee Branding Logo Icon", "Ageless logo")
+    .replace(
+      /<div class="nav-links-wrapper">[\s\S]*?<\/div><div class="nav-bottom-block">/,
+      `${HEADER_OVERLAY_MENU}<div class="nav-bottom-block">`,
+    )
+    .replace(
+      '<div class="nav-menu-button w-nav-button">',
+      `${HEADER_HORIZONTAL_MENU}<div class="nav-menu-button w-nav-button">`,
+    )
+    .replace('<section class="hero">', '<section id="home" class="hero">')
     .replaceAll(
       /<div data-poster-url="\/webflow\/assets\/cafbb0c425-68f33158cced4a41f89d89a6_6903d92be1096c25ee0356a4_hero-marquee-video-01-poster-00001\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g,
       '<img loading="eager" src="/septimafoto.png" alt="" class="hero-marquee-asset ageless-event-photo"/>',
