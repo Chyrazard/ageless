@@ -384,7 +384,8 @@
 
   .desktopLink {
     min-height: 2.65rem;
-    padding: 0.55rem clamp(0.46rem, 0.7vw, 0.65rem);
+    min-width: 4.25rem;
+    padding: 0.55rem clamp(0.78rem, 1.05vw, 1rem);
     font-size: clamp(0.5rem, 0.68vw, 0.58rem);
   }
 
@@ -401,7 +402,8 @@
   }
 
   .desktopLink {
-    padding-inline: 0.45rem;
+    min-width: 4rem;
+    padding-inline: 0.72rem;
     font-size: 0.52rem;
   }
 }
