@@ -153,6 +153,10 @@
   will-change: transform;
 }
 
+.greenTitle {
+  color: #b8ff00;
+}
+
 .outerDown {
   transform: translateY(var(--cta-outer-down));
 }

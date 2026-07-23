@@ -118,7 +118,7 @@ export function UnusuallyCta() {
     <section
       ref={sectionRef}
       className={styles.section}
-      aria-label="Keep scrolling — let’s build your brand"
+      aria-label="Keep scrolling — Live Well, Ageless"
     >
       <div className={styles.stickyStage}>
         <video
@@ -156,15 +156,15 @@ export function UnusuallyCta() {
 
           <div className={styles.titleRow}>
             <span className={`${styles.title} ${styles.outerDown}`}>
-              Let&apos;s
-            </span>
-            <span className={`${styles.title} ${styles.innerDown}`}>
-              Build
+              Live Well
             </span>
           </div>
           <div className={styles.titleRow}>
-            <span className={`${styles.title} ${styles.innerUp}`}>Your</span>
-            <span className={`${styles.title} ${styles.outerUp}`}>Brand</span>
+            <span
+              className={`${styles.title} ${styles.greenTitle} ${styles.outerUp}`}
+            >
+              Ageless
+            </span>
           </div>
 
           <div className={styles.buttonMask}>
