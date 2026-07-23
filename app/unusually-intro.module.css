@@ -174,106 +174,58 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 1.5rem 2.25rem;
-  color: #fff;
+  color: #b8ff00;
   background: #0e0e0e;
   border-radius: 100px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
   text-decoration: none;
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 280ms ease;
 }
 
-.buttonRoll,
-.linkRoll {
+.buttonRoll {
   display: flex;
   height: 1rem;
   flex-direction: column;
   overflow: hidden;
 }
 
-.buttonRoll span,
-.linkRoll span {
+.buttonRoll span {
   flex: none;
-  font-family: "Ageless Mona", Arial, sans-serif;
+  color: #b8ff00;
+  font-family: "Chivo Mono", "Ageless DM Mono", monospace;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.075em;
   line-height: 1;
   text-transform: uppercase;
   transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .primaryButton:hover .buttonRoll span,
-.primaryButton:focus-visible .buttonRoll span,
-.textLink:hover .linkRoll span,
-.textLink:focus-visible .linkRoll span {
+.primaryButton:focus-visible .buttonRoll span {
   transform: translateY(-100%);
 }
 
 .buttonStar {
   position: relative;
   top: -0.05rem;
+  color: #b8ff00;
   font-size: 1.125rem;
   line-height: 1;
   transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
+.primaryButton:hover,
+.primaryButton:focus-visible {
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.18);
+  transform: translateY(-3px);
+}
+
 .primaryButton:hover .buttonStar,
 .primaryButton:focus-visible .buttonStar {
   transform: rotate(90deg) scale(1.08);
-}
-
-.textLink {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding-bottom: 0.35rem;
-  overflow: hidden;
-  color: #0e0e0e;
-  text-decoration: none;
-}
-
-.textLink::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: #0e0e0e;
-  content: "";
-  transform-origin: left;
-  transition: transform 450ms cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.textLink:hover::after,
-.textLink:focus-visible::after {
-  transform: scaleX(0.35);
-}
-
-.arrowRoll {
-  position: relative;
-  display: flex;
-  width: 1rem;
-  height: 1rem;
-  overflow: hidden;
-}
-
-.arrowRoll span {
-  position: absolute;
-  font-size: 1.15rem;
-  line-height: 0.9;
-  transition: transform 500ms cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-
-.arrowRoll span:last-child {
-  transform: translate(-100%, 100%);
-}
-
-.textLink:hover .arrowRoll span:first-child,
-.textLink:focus-visible .arrowRoll span:first-child {
-  transform: translate(100%, -100%);
-}
-
-.textLink:hover .arrowRoll span:last-child,
-.textLink:focus-visible .arrowRoll span:last-child {
-  transform: translate(0, 0);
 }
 
 @keyframes eyebrow-marquee {
@@ -341,13 +293,11 @@
     padding: 1.25rem 1.875rem;
   }
 
-  .buttonRoll,
-  .linkRoll {
+  .buttonRoll {
     height: 0.925rem;
   }
 
-  .buttonRoll span,
-  .linkRoll span {
+  .buttonRoll span {
     font-size: 0.875rem;
   }
 }

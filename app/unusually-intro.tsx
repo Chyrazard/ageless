@@ -6,15 +6,10 @@ import { createPortal } from "react-dom";
 import styles from "./unusually-intro.module.css";
 
 const headlineLines = [
-  <>We design digital experiences</>,
-  <>
-    that empower <span className={styles.barcode}>𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</span>{" "}
-    <span className={styles.secondary}>brands</span>
-  </>,
-  <span className={styles.secondary}>
-    to stand out and engage their
-  </span>,
-  <span className={styles.secondary}>audiences™ .</span>,
+  <>2 Years of Ageless:</>,
+  <>Be in the Room Where</>,
+  <span className={styles.secondary}>Wellness Meets</span>,
+  <span className={styles.secondary}>Decision-Makers</span>,
 ];
 
 export function UnusuallyIntro() {
@@ -88,30 +83,25 @@ export function UnusuallyIntro() {
 
             <div className={styles.descriptionBlock}>
               <p className={styles.description}>
-                By combining strategy, design, and technology, we transform
-                ideas into meaningful digital experiences. Our work blends
-                imagination with precision to create bold outcomes that drive
-                growth.
+                Ageless Evolution 2027 is timed to coincide with the JP Morgan
+                Healthcare Conference week in San Francisco—one of the largest
+                global conferences in the region. Connect with the world&apos;s
+                most important health, wellness, and biotech decision-makers,
+                and YOU&apos;LL be in the room alongside it.
               </p>
 
               <div className={styles.actions}>
-                <a className={styles.primaryButton} href="/about">
+                <a
+                  className={styles.primaryButton}
+                  href="https://lu.ma/agelessevolution2025"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <span className={styles.buttonRoll}>
-                    <span>Our story</span>
-                    <span>Our story</span>
+                    <span>Get your tickets</span>
+                    <span>Get your tickets</span>
                   </span>
                   <span className={styles.buttonStar} aria-hidden="true">✦</span>
-                </a>
-
-                <a className={styles.textLink} href="/contact">
-                  <span className={styles.linkRoll}>
-                    <span>Contact us</span>
-                    <span>Contact us</span>
-                  </span>
-                  <span className={styles.arrowRoll} aria-hidden="true">
-                    <span>↗</span>
-                    <span>↗</span>
-                  </span>
                 </a>
               </div>
             </div>
