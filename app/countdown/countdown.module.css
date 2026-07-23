@@ -205,9 +205,9 @@
   border: 0;
 }
 
-:global(.hero-top-block) {
+:global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) {
   gap: 8px !important;
-  margin-top: 45px !important;
+  margin-top: 80px !important;
   padding-top: 10px !important;
 }
 
@@ -402,7 +402,7 @@
 }
 
 @media (max-width: 700px) {
-  :global(.hero-top-block) { gap: 5px !important; margin-top: 28px !important; padding-top: 4px !important; }
+  :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; margin-top: 0 !important; }
   :global(.ageless-event-kicker) { margin-top: 14px; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: -0.02em; }
   :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: 1.12rem !important; font-weight: 750 !important; }
