@@ -8,8 +8,8 @@ import styles from "./unusually-intro.module.css";
 const headlineLines = [
   <>2 Years of Ageless:</>,
   <>Be in the Room Where</>,
-  <span className={`${styles.secondary} ${styles.accentItalic}`}>
-    Wellness &amp; Science meets
+  <span className={styles.secondary}>
+    <span className={styles.accentItalic}>Wellness &amp; Science</span> meets
   </span>,
   <span className={styles.secondary}>decisions makers</span>,
 ];
