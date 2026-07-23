@@ -94,7 +94,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       'class="heading-style-h5">Creative studio based in Gotham.</div>',
-      'class="ageless-event-kicker">Longevity &amp; Wellness Summit</div><div class="ageless-event-week">JP Morgan Week</div><div class="heading-style-h5 ageless-event-date">January 14th, 2027 · <span class="ageless-event-location">San Francisco</span></div><div id="ageless-countdown-slot" aria-label="Countdown to January 14, 2027"></div>',
+      'class="ageless-event-kicker">Longevity &amp; Wellness Summit</div><div class="heading-style-h5 ageless-event-date">JP Morgan Week • <span class="ageless-event-location">San Francisco</span> / January 14th, 2027</div><div id="ageless-countdown-slot" aria-label="Countdown to January 14, 2027"></div>',
     )
     .replace(
       '<div class="paragraph-text-mono">HAIL</div><div class="paragraph-text-mono">NY )</div>',
