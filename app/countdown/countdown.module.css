@@ -214,6 +214,7 @@
 :global(.hero-large-logo) {
   width: min(52vw, 760px) !important;
   height: clamp(175px, 15vw, 225px) !important;
+  margin-top: 30px !important;
   object-fit: cover;
   object-position: 50% 50%;
   mix-blend-mode: multiply;
@@ -268,7 +269,6 @@
 :global(.hero) {
   height: auto !important;
   min-height: 100svh;
-  padding-top: 120px !important;
   overflow: visible !important;
 }
 
@@ -403,12 +403,12 @@
 
 @media (max-width: 700px) {
   :global(.hero-top-block) { gap: 5px !important; padding-top: 4px !important; }
-  :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; }
+  :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; margin-top: 20px !important; }
   :global(.ageless-event-kicker) { margin-top: 14px; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: -0.02em; }
   :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: 1.12rem !important; font-weight: 750 !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
-  :global(.hero) { height: auto !important; min-height: 100svh; padding-top: 95px !important; }
+  :global(.hero) { height: auto !important; min-height: 100svh; }
   :global(.hero-content-wrapper) { min-height: auto; gap: 28px !important; }
   :global(.hero-bottom-block) { gap: 24px !important; }
   :global(.hero-bottom-top-block) { justify-content: space-between !important; gap: 12px; }
