@@ -155,15 +155,19 @@ export function UnusuallyCta() {
           </div>
 
           <div className={styles.titleRow}>
-            <span className={`${styles.title} ${styles.outerDown}`}>
-              Live Well
-            </span>
+            <span className={`${styles.title} ${styles.outerDown}`}>Live</span>
+            <span className={`${styles.title} ${styles.innerDown}`}>Well</span>
           </div>
           <div className={styles.titleRow}>
             <span
+              className={`${styles.title} ${styles.greenTitle} ${styles.innerUp}`}
+            >
+              Age
+            </span>
+            <span
               className={`${styles.title} ${styles.greenTitle} ${styles.outerUp}`}
             >
-              Ageless
+              Less
             </span>
           </div>
 
