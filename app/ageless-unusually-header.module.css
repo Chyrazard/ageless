@@ -343,6 +343,69 @@
   }
 }
 
+@media (min-width: 768px) and (max-width: 1260px) and (orientation: landscape) {
+  .header {
+    padding: 0 0.5rem;
+  }
+
+  .headerInner {
+    min-height: 4.25rem;
+    padding: 0.35rem;
+  }
+
+  .brandGroup {
+    gap: 0.5rem;
+    padding-left: 0.6rem;
+  }
+
+  .brandLink {
+    width: 5.6rem;
+    height: 1.5rem;
+  }
+
+  .brandRoll img {
+    height: 1.5rem;
+  }
+
+  .brandDescriptor {
+    max-width: 6.8rem;
+    font-size: 0.52rem;
+  }
+
+  .navigationControls {
+    gap: 0.3rem;
+    min-width: 0;
+  }
+
+  .desktopNavigation {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .desktopLink {
+    min-height: 2.65rem;
+    padding: 0.55rem clamp(0.46rem, 0.7vw, 0.65rem);
+    font-size: clamp(0.5rem, 0.68vw, 0.58rem);
+  }
+
+  .menuButton {
+    width: 3.35rem;
+    height: 3.35rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1040px) and (orientation: landscape) {
+  .brandDivider,
+  .brandDescriptor {
+    display: none;
+  }
+
+  .desktopLink {
+    padding-inline: 0.45rem;
+    font-size: 0.52rem;
+  }
+}
+
 @media (max-width: 767px) {
   .header {
     top: 0.75rem;
