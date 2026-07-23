@@ -231,9 +231,9 @@
 
 :global(.ageless-event-kicker) {
   color: #1e1e1e;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: Interdisplay, Arial, sans-serif;
   font-size: 2.5rem;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1;
   margin-top: 22px;

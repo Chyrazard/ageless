@@ -33,10 +33,9 @@ export function UnusuallyCta() {
     let targetProgress = 0;
 
     const paint = (progress: number) => {
-      const curtains = range(progress, 0, 0.2);
-      const outsideWords = range(progress, 0, 0.2);
-      const insideWords = range(progress, 0.2, 0.4);
-      const button = range(progress, 0.4, 0.5);
+      const curtains = range(progress, 0, 0.38);
+      const outsideWords = range(progress, 0.08, 0.42);
+      const insideWords = range(progress, 0.32, 0.78);
 
       section.style.setProperty(
         "--cta-curtain-top",
@@ -62,12 +61,6 @@ export function UnusuallyCta() {
         "--cta-inner-up",
         `${(1 - insideWords) * -110}%`,
       );
-      section.style.setProperty("--cta-copy-opacity", String(insideWords));
-      section.style.setProperty(
-        "--cta-button-y",
-        `${(1 - button) * 120}%`,
-      );
-      section.style.setProperty("--cta-button-opacity", String(button));
     };
 
     const measure = () => {
@@ -95,7 +88,7 @@ export function UnusuallyCta() {
     };
 
     if (reducedMotion) {
-      paint(0.55);
+      paint(1);
       return;
     }
 
@@ -118,7 +111,7 @@ export function UnusuallyCta() {
     <section
       ref={sectionRef}
       className={styles.section}
-      aria-label="Keep scrolling — Live Well, Ageless"
+      aria-label="Keep scrolling — Live Well, Age Less"
     >
       <div className={styles.stickyStage}>
         <video
@@ -140,20 +133,6 @@ export function UnusuallyCta() {
         <div className={styles.scrollPrompt}>Keep scrolling</div>
 
         <div className={styles.content}>
-          <div className={styles.eyebrow}>
-            <span className={styles.asterisk} aria-hidden="true">
-              ✱
-            </span>
-            <div className={styles.eyebrowMask}>
-              <div className={styles.eyebrowTrack}>
-                <span>Bring Ideas To Life —</span>
-                <span>Bring Ideas To Life —</span>
-                <span>Bring Ideas To Life —</span>
-                <span>Bring Ideas To Life —</span>
-              </div>
-            </div>
-          </div>
-
           <div className={styles.titleRow}>
             <span className={`${styles.title} ${styles.outerDown}`}>Live</span>
             <span
@@ -173,15 +152,6 @@ export function UnusuallyCta() {
             >
               Less
             </span>
-          </div>
-
-          <div className={styles.buttonMask}>
-            <a className={styles.button} href="/contact">
-              <span>Get in touch</span>
-              <span className={styles.buttonIcon} aria-hidden="true">
-                ✦
-              </span>
-            </a>
           </div>
         </div>
 
