@@ -70,7 +70,7 @@
   object-fit: cover;
   object-position: center;
   filter: invert(1) contrast(1.2);
-  mix-blend-mode: normal;
+  mix-blend-mode: screen;
 }
 
 .brandLink:hover .brandRoll,
