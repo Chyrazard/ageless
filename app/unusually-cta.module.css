@@ -1,0 +1,295 @@
+@font-face {
+  font-family: "Ageless Mona Narrow";
+  src: url("/mona-sans-bold-narrow.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "Ageless Mona";
+  src: url("/mona-sans-medium.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Ageless DM Mono";
+  src: url("/dm-mono-regular.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.section {
+  --cta-curtain-top: 0%;
+  --cta-curtain-bottom: 0%;
+  --cta-outer-down: 110%;
+  --cta-outer-up: -110%;
+  --cta-inner-down: 110%;
+  --cta-inner-up: -110%;
+  --cta-copy-opacity: 0;
+  --cta-button-y: 120%;
+  --cta-button-opacity: 0;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 300vh;
+  background: #fff;
+}
+
+.stickyStage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #050505;
+  border-radius: 0 0 2rem 2rem;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoShade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #0009;
+}
+
+.scrollPrompt {
+  position: absolute;
+  top: 8rem;
+  left: 50%;
+  z-index: 20;
+  color: #fff;
+  font-family: "Ageless DM Mono", monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.2;
+  mix-blend-mode: difference;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyebrow {
+  display: flex;
+  width: 16rem;
+  max-width: 72vw;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2.5rem;
+  color: #8d8d8d;
+  opacity: var(--cta-copy-opacity);
+  overflow: clip;
+}
+
+.asterisk {
+  flex: none;
+  color: #8d8d8d;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.eyebrowMask {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 18% 82%, transparent);
+}
+
+.eyebrowTrack {
+  display: flex;
+  width: max-content;
+  animation: ctaTicker 12s linear infinite;
+}
+
+.eyebrowTrack span {
+  padding-right: 0.75rem;
+  font-family: "Ageless DM Mono", monospace;
+  font-size: 1rem;
+  line-height: 1.25;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.titleRow {
+  display: flex;
+  max-width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  overflow: hidden;
+}
+
+.title {
+  display: block;
+  color: #fff;
+  font-family: "Ageless Mona Narrow", Impact, sans-serif;
+  font-size: 10rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.outerDown {
+  transform: translateY(var(--cta-outer-down));
+}
+
+.innerDown {
+  color: #8d8d8d;
+  transform: translateY(var(--cta-inner-down));
+}
+
+.innerUp {
+  color: #8d8d8d;
+  transform: translateY(var(--cta-inner-up));
+}
+
+.outerUp {
+  transform: translateY(var(--cta-outer-up));
+}
+
+.buttonMask {
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 2.25rem;
+  color: #111;
+  background: #fff;
+  border-radius: 100px;
+  font-family: "Ageless Mona", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: var(--cta-button-opacity);
+  transform: translateY(var(--cta-button-y));
+  transition: color 300ms ease, background-color 300ms ease;
+}
+
+.buttonIcon {
+  color: #111;
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: color 300ms ease, transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button:hover {
+  color: #111;
+}
+
+.button:hover .buttonIcon {
+  color: #111;
+  transform: rotate(90deg);
+}
+
+.curtains {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.curtainTop,
+.curtainBottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background: #fff;
+  will-change: transform;
+}
+
+.curtainTop {
+  top: 0;
+  transform: translateY(var(--cta-curtain-top));
+}
+
+.curtainBottom {
+  bottom: 0;
+  transform: translateY(var(--cta-curtain-bottom));
+}
+
+@keyframes ctaTicker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1440px) {
+  .title {
+    font-size: 12rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .section {
+    height: 250vh;
+  }
+
+  .titleRow {
+    gap: 1.5rem;
+  }
+
+  .title {
+    font-size: 8rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .titleRow {
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .titleRow {
+    gap: 3vw;
+  }
+
+  .title {
+    font-size: 18vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: 100vh;
+  }
+
+  .eyebrowTrack {
+    animation: none;
+  }
+}

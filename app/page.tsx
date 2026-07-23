@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { mirroredPages } from "./generated-pages";
 import { MirroredPageView } from "./mirrored-page-view";
 import { CountdownExperience } from "./countdown/countdown-experience";
+import { UnusuallyCta } from "./unusually-cta";
 
 const home = mirroredPages["/"];
 
@@ -20,6 +21,7 @@ export default function HomePage() {
     <>
       <MirroredPageView page={home} />
       <CountdownExperience />
+      <UnusuallyCta />
     </>
   );
 }
