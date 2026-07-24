@@ -106,7 +106,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       '</section><section class="home-projects">',
-      '</section><div id="ageless-avoora-stats-slot"></div><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">',
+      '</section><div id="ageless-renok-carousel-slot"></div><div id="ageless-avoora-stats-slot"></div><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">',
     );
 
   const brandedHtml = replaceAfter(
