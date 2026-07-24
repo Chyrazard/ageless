@@ -127,7 +127,7 @@
 
 .accentItalic {
   display: inline-block;
-  margin-right: 0.08em;
+  margin-right: 0.22em;
   color: #0e0e0e;
   font-style: italic;
   transform: skewX(-12deg);
