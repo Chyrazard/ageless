@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { mirroredPages } from "./generated-pages";
 import { MirroredPageView } from "./mirrored-page-view";
 import { CountdownExperience } from "./countdown/countdown-experience";
+import { AvooraStats } from "./avoora-stats";
 import { UnusuallyCta } from "./unusually-cta";
 import { UnusuallyIntro } from "./unusually-intro";
 
@@ -22,6 +23,7 @@ export default function HomePage() {
     <>
       <MirroredPageView page={home} />
       <CountdownExperience />
+      <AvooraStats />
       <UnusuallyIntro />
       <UnusuallyCta />
     </>

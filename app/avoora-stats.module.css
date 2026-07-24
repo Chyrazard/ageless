@@ -1,0 +1,256 @@
+@font-face {
+  font-family: "Ageless Avoora Inter";
+  src: url("/webflow/assets/d046eff711-6904dc1df486de33f3f03eca_InterDisplay-Regular.ttf")
+    format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Ageless Avoora Inter";
+  src: url("/webflow/assets/a3d2288b7b-6904dc1df100a9f3322c5e77_InterDisplay-Medium.ttf")
+    format("truetype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.section {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  overflow: hidden;
+  color: #111;
+  background: #fff;
+}
+
+.container {
+  width: min(100%, 90rem);
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 500ms ease,
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visible .metrics {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.metric {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 9.375rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding-right: clamp(1rem, 2.2vw, 2rem);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 300ms ease calc(var(--metric-index) * 300ms),
+    transform 650ms cubic-bezier(0.16, 1, 0.3, 1)
+      calc(var(--metric-index) * 300ms);
+}
+
+.visible .metric {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.metric:not(:first-child) {
+  padding-left: clamp(1rem, 2.2vw, 2rem);
+}
+
+.metric:not(:last-child)::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: #e3e3e3;
+  content: "";
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-family: "Ageless Avoora Inter", Inter, Arial, sans-serif;
+  font-size: 3.75rem;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.animatedValue {
+  display: flex;
+}
+
+.digit {
+  display: inline-block;
+}
+
+.bouncing .digit {
+  animation: digitBounce 1.15s cubic-bezier(0.2, 0.75, 0.35, 1) both;
+  animation-delay: calc(var(--digit-index) * 85ms);
+}
+
+.label {
+  margin: 0;
+  color: #5d5d5d;
+  font-family: "Ageless Avoora Inter", Inter, Arial, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+}
+
+.bottomDivider {
+  width: 100%;
+  height: 1px;
+  margin-top: 3rem;
+  background: #e3e3e3;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 300ms ease 300ms,
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+}
+
+.visible .bottomDivider {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+@keyframes digitBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  28% {
+    transform: translateY(-1.65rem);
+  }
+
+  55% {
+    transform: translateY(0);
+  }
+
+  72% {
+    transform: translateY(-0.55rem);
+  }
+
+  88% {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric {
+    min-height: 9rem;
+    padding: 0 1.5rem 2rem;
+  }
+
+  .metric:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  .metric:nth-child(even) {
+    padding-right: 0;
+  }
+
+  .metric:nth-child(2)::after {
+    display: none;
+  }
+
+  .metric:nth-child(n + 3) {
+    padding-top: 2rem;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .number {
+    font-size: 3rem;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    padding-left: 1rem;
+  }
+
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .metric,
+  .metric:nth-child(odd),
+  .metric:nth-child(even) {
+    min-height: 0;
+    padding: 1.35rem 0;
+    border-top: 1px solid #e3e3e3;
+  }
+
+  .metric:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .metric::after {
+    display: none;
+  }
+
+  .number {
+    font-size: 2.625rem;
+  }
+
+  .label {
+    font-size: 0.875rem;
+  }
+
+  .bottomDivider {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metrics,
+  .metric,
+  .bottomDivider {
+    transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+
+  .bouncing .digit {
+    animation: none;
+  }
+}
