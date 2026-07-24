@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 import styles from "./renok-orbit-carousel.module.css";
 
 const slides = [
-  { image: "/primerafoto.jpg", name: "Ageless Evolution" },
+  { image: "/aubrey-de-grey.png", name: "Aubrey de Grey" },
   { image: "/decimafoto.jpg", name: "Wellness Innovation" },
   { image: "/octavafoto.jpg", name: "Longevity Science" },
   { image: "/novenafoto.jpg", name: "Human Potential" },
