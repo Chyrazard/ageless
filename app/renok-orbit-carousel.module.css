@@ -54,8 +54,8 @@
 .orbit {
   --orbit-rotation: 0deg;
   position: relative;
-  width: 20rem;
-  height: 28.875rem;
+  width: 14rem;
+  height: 20.2rem;
   transform: rotateY(var(--orbit-rotation));
   transform-style: preserve-3d;
   will-change: transform;
@@ -91,6 +91,18 @@
     filter 500ms ease,
     transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
+}
+
+.transparentCard {
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.transparentCard img {
+  object-fit: contain;
+  object-position: center top;
+  filter: drop-shadow(0 24px 34px rgb(0 0 0 / 12%));
 }
 
 .imageShade {
@@ -140,6 +152,12 @@
 .selected img {
   filter: brightness(0.72);
   transform: scale(1.035);
+}
+
+.selected.transparentCard img {
+  filter:
+    brightness(0.72)
+    drop-shadow(0 24px 34px rgb(0 0 0 / 12%));
 }
 
 .selected .imageShade,
@@ -225,8 +243,8 @@
   }
 
   .orbit {
-    width: 15rem;
-    height: 20rem;
+    width: 11.5rem;
+    height: 15.4rem;
     transform: rotateX(-7deg) rotateY(var(--orbit-rotation));
   }
 
@@ -259,8 +277,8 @@
   }
 
   .orbit {
-    width: 8rem;
-    height: 11.55rem;
+    width: 6.75rem;
+    height: 9.75rem;
   }
 
   .card {

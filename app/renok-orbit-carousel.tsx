@@ -6,7 +6,11 @@ import { createPortal } from "react-dom";
 import styles from "./renok-orbit-carousel.module.css";
 
 const slides = [
-  { image: "/aubrey-de-grey.png", name: "Aubrey de Grey" },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
   { image: "/decimafoto.jpg", name: "Wellness Innovation" },
   { image: "/octavafoto.jpg", name: "Longevity Science" },
   { image: "/novenafoto.jpg", name: "Human Potential" },
@@ -166,7 +170,7 @@ export function RenokOrbitCarousel() {
             <button
               className={`${styles.card} ${
                 selectedSlide === index ? styles.selected : ""
-              }`}
+              } ${slide.transparent ? styles.transparentCard : ""}`}
               style={{ "--slide-index": index } as CSSProperties}
               type="button"
               key={slide.image}
