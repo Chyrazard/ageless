@@ -119,9 +119,13 @@ export function RenokOrbitCarousel() {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
 
-    if (!event.currentTarget.matches(":hover")) {
-      pausedRef.current = false;
-    }
+    const elementUnderPointer = document.elementFromPoint(
+      event.clientX,
+      event.clientY,
+    );
+    pausedRef.current =
+      event.pointerType === "mouse" &&
+      Boolean(elementUnderPointer?.closest(`.${styles.card}`));
   };
 
   if (!portalTarget) return null;
@@ -131,9 +135,6 @@ export function RenokOrbitCarousel() {
       ref={sectionRef}
       className={styles.section}
       aria-label="Ageless rotating experiences gallery"
-      onPointerEnter={() => {
-        pausedRef.current = true;
-      }}
       onPointerLeave={() => {
         if (!draggingRef.current) pausedRef.current = false;
         setSelectedSlide(null);
@@ -170,6 +171,14 @@ export function RenokOrbitCarousel() {
               type="button"
               key={slide.image}
               aria-label={`Show title for ${slide.name}`}
+              onPointerEnter={(event) => {
+                if (event.pointerType === "mouse") pausedRef.current = true;
+              }}
+              onPointerLeave={(event) => {
+                if (event.pointerType === "mouse" && !draggingRef.current) {
+                  pausedRef.current = false;
+                }
+              }}
               onClick={() => {
                 if (dragMovedRef.current) {
                   dragMovedRef.current = false;

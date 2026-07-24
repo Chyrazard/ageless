@@ -10,10 +10,12 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  height: clamp(32rem, 58vw, 47rem);
+  height: 50vh;
+  min-height: 31rem;
+  max-height: 42rem;
   overflow: hidden;
-  color: #fff;
-  background: #030303;
+  color: #0a0a0a;
+  background: #fff;
   cursor: grab;
   touch-action: pan-y;
 }
@@ -32,16 +34,16 @@
 }
 
 .gridLines i {
-  border-left: 1px solid rgb(255 255 255 / 12%);
+  border-left: 1px solid rgb(0 0 0 / 10%);
 }
 
 .gridLines i:last-child {
-  border-right: 1px solid rgb(255 255 255 / 12%);
+  border-right: 1px solid rgb(0 0 0 / 10%);
 }
 
 .viewport {
   position: absolute;
-  inset: 0;
+  inset: -10vh 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,9 +54,9 @@
 .orbit {
   --orbit-rotation: 0deg;
   position: relative;
-  width: clamp(15rem, 20vw, 30rem);
-  aspect-ratio: 0.695;
-  transform: rotateX(-5deg) rotateY(var(--orbit-rotation));
+  width: 20rem;
+  height: 28.875rem;
+  transform: rotateY(var(--orbit-rotation));
   transform-style: preserve-3d;
   will-change: transform;
 }
@@ -68,15 +70,15 @@
   overflow: hidden;
   padding: 0;
   color: #fff;
-  background: #111;
+  background: #f3f3f3;
   border: 0;
   cursor: pointer;
   transform:
     rotateY(calc(var(--slide-index) * 60deg))
-    translateZ(clamp(22rem, 33vw, 43rem));
+    translateZ(40vw);
   transform-style: preserve-3d;
-  backface-visibility: hidden;
-  box-shadow: 0 28px 70px rgb(0 0 0 / 42%);
+  backface-visibility: visible;
+  box-shadow: 0 24px 68px rgb(0 0 0 / 18%);
 }
 
 .card img {
@@ -158,9 +160,9 @@
   height: 4rem;
   place-items: center;
   padding: 0;
-  color: #080808;
-  background: #fff;
-  border: 1px solid rgb(0 0 0 / 10%);
+  color: #fff;
+  background: #0b0b0b;
+  border: 1px solid rgb(0 0 0 / 18%);
   border-radius: 50%;
   box-shadow: 0 14px 38px rgb(0 0 0 / 28%);
   cursor: pointer;
@@ -203,7 +205,7 @@
   bottom: 1.5rem;
   left: 50%;
   z-index: 15;
-  color: rgb(255 255 255 / 62%);
+  color: rgb(0 0 0 / 58%);
   font-family: "Ageless DM Mono", monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -214,17 +216,24 @@
 
 @media (max-width: 991px) {
   .section {
-    height: clamp(28rem, 65vw, 38rem);
+    height: 37vh;
+    min-height: 24rem;
+  }
+
+  .viewport {
+    inset: -16vh 0;
   }
 
   .orbit {
-    width: clamp(14rem, 29vw, 18rem);
+    width: 15rem;
+    height: 20rem;
+    transform: rotateX(-7deg) rotateY(var(--orbit-rotation));
   }
 
   .card {
     transform:
       rotateY(calc(var(--slide-index) * 60deg))
-      translateZ(clamp(17rem, 39vw, 25rem));
+      translateZ(40vw);
   }
 
   .arrow {
@@ -237,21 +246,27 @@
 
 @media (max-width: 600px) {
   .section {
-    height: 30rem;
+    height: 21vh;
+    min-height: 18rem;
   }
 
   .gridLines {
     inset-inline: 1rem;
   }
 
+  .viewport {
+    inset: -12vh 0;
+  }
+
   .orbit {
-    width: 12rem;
+    width: 8rem;
+    height: 11.55rem;
   }
 
   .card {
     transform:
       rotateY(calc(var(--slide-index) * 60deg))
-      translateZ(11.5rem);
+      translateZ(55vw);
   }
 
   .arrow {
