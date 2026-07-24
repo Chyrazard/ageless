@@ -11,11 +11,31 @@ const slides = [
     name: "Aubrey de Grey",
     transparent: true,
   },
-  { image: "/decimafoto.jpg", name: "Wellness Innovation" },
-  { image: "/octavafoto.jpg", name: "Longevity Science" },
-  { image: "/novenafoto.jpg", name: "Human Potential" },
-  { image: "/oncefoto.jpg", name: "Future Health" },
-  { image: "/docefoto.jpg", name: "San Francisco 2027" },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
+  {
+    image: "/aubrey-de-grey.png",
+    name: "Aubrey de Grey",
+    transparent: true,
+  },
 ];
 
 const easeInOutCubic = (progress: number) =>
@@ -173,7 +193,7 @@ export function RenokOrbitCarousel() {
               } ${slide.transparent ? styles.transparentCard : ""}`}
               style={{ "--slide-index": index } as CSSProperties}
               type="button"
-              key={slide.image}
+              key={`${slide.image}-${index}`}
               aria-label={`Show title for ${slide.name}`}
               onPointerEnter={(event) => {
                 if (event.pointerType === "mouse") pausedRef.current = true;
