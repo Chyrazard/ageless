@@ -138,11 +138,11 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
   const orderedHtml = conferenceCarousel.html
     .replace(
       '</section><section class="home-about">',
-      '</section><div id="ageless-renok-carousel-slot"></div><section class="home-about">',
+      '</section><div id="ageless-cinery-carousel-slot"></div><section class="home-about">',
     )
     .replace(
       '</section><section class="home-projects">',
-      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
+      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-renok-carousel-slot"></div><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
     );
 
   const brandedHtml = replaceAfter(

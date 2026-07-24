@@ -1,0 +1,277 @@
+.section {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: min(58rem, 92svh);
+  min-height: 44rem;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 18%, rgb(255 255 255 / 16%), transparent 28%),
+    radial-gradient(circle at 20% 30%, rgb(255 255 255 / 7%), transparent 24%),
+    #050505;
+  isolation: isolate;
+}
+
+.ambientGlow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(110deg, transparent 18%, rgb(255 255 255 / 6%) 48%, transparent 74%),
+    radial-gradient(ellipse at center, transparent 25%, rgb(0 0 0 / 72%) 90%);
+  pointer-events: none;
+}
+
+.identity {
+  position: absolute;
+  top: clamp(2rem, 4vw, 3.5rem);
+  left: clamp(1.5rem, 3.6vw, 4rem);
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.1rem;
+  font-family: Interdisplay, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.identity strong {
+  font-size: clamp(1.5rem, 2.35vw, 2.8rem);
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.82;
+}
+
+.identity span {
+  padding-left: 1.1rem;
+  color: rgb(255 255 255 / 56%);
+  border-left: 1px solid rgb(255 255 255 / 42%);
+  font-size: clamp(0.66rem, 0.9vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.giantTitle {
+  position: absolute;
+  top: 50%;
+  right: -0.03em;
+  left: -0.03em;
+  z-index: 1;
+  margin: 0;
+  color: transparent;
+  background: linear-gradient(180deg, #fff 22%, #fff 42%, #797979 72%, #151515 100%);
+  background-clip: text;
+  font-family: Interdisplay, Arial, sans-serif;
+  font-size: clamp(10rem, 29vw, 36rem);
+  font-weight: 900;
+  letter-spacing: -0.095em;
+  line-height: 0.72;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateY(-42%);
+  user-select: none;
+}
+
+.scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: clamp(14rem, 18vw, 20rem);
+  height: clamp(14rem, 18vw, 20rem);
+  perspective: 93.75rem;
+  transform: translate(-50%, -50%) scale(0.92);
+  transform-style: preserve-3d;
+}
+
+.wheel {
+  --cinery-rotation: 0deg;
+  position: absolute;
+  inset: 0;
+  transform: rotateZ(90deg) rotateX(var(--cinery-rotation));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.panel {
+  --panel-angle: calc(var(--panel-index) * 40deg);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: flex;
+  width: clamp(17rem, 22vw, 24rem);
+  height: clamp(14rem, 18vw, 20rem);
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(clamp(24rem, 27vw, 31rem));
+  transform-style: preserve-3d;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 24%, rgb(255 255 255 / 25%), transparent 42%),
+    linear-gradient(145deg, #d7d9dd, #9da1aa);
+  border: 2px solid rgb(255 255 255 / 20%);
+  border-radius: clamp(1.5rem, 2.2vw, 2.2rem);
+  box-shadow:
+    0 1.5rem 4rem rgb(0 0 0 / 38%),
+    inset 0 1px rgb(255 255 255 / 35%);
+  transform: rotateZ(-90deg);
+}
+
+.frame::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent 52%, rgb(0 0 0 / 38%));
+  pointer-events: none;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  filter: grayscale(1) contrast(1.04);
+  user-select: none;
+}
+
+.frame figcaption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 2;
+  color: #fff;
+  font-family: Interdisplay, Arial, sans-serif;
+  font-size: clamp(1.1rem, 1.65vw, 1.85rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-align: center;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 38%);
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: clamp(1.6rem, 3vw, 3rem);
+  left: clamp(1.5rem, 3.6vw, 4rem);
+  z-index: 20;
+  display: grid;
+  justify-items: center;
+  gap: 0.65rem;
+  font-family: Interdisplay, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.scrollCue span {
+  display: grid;
+  width: clamp(4.2rem, 6.7vw, 6.8rem);
+  aspect-ratio: 1;
+  place-items: center;
+  background: rgb(255 255 255 / 14%);
+  border: 1px solid rgb(255 255 255 / 26%);
+  border-radius: 50%;
+  box-shadow: inset 0 1px rgb(255 255 255 / 20%);
+  font-size: 1.35rem;
+}
+
+.scrollCue small,
+.location {
+  color: rgb(255 255 255 / 68%);
+  font-size: clamp(0.62rem, 0.78vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.location {
+  position: absolute;
+  right: clamp(1.5rem, 3.6vw, 4rem);
+  bottom: clamp(1.8rem, 3.2vw, 3.2rem);
+  z-index: 20;
+  margin: 0;
+  font-family: Interdisplay, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+@media (max-width: 991px) {
+  .section {
+    height: min(50rem, 78svh);
+    min-height: 39rem;
+  }
+
+  .scene {
+    transform: translate(-50%, -50%) scale(0.78);
+  }
+
+  .panel {
+    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(24rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    height: 40rem;
+    min-height: 40rem;
+  }
+
+  .identity {
+    top: 1.5rem;
+    left: 1.1rem;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .identity span {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .giantTitle {
+    font-size: 36vw;
+    transform: translateY(-40%);
+  }
+
+  .scene {
+    width: 11rem;
+    height: 11rem;
+    transform: translate(-50%, -50%) scale(0.65);
+  }
+
+  .panel {
+    width: 16rem;
+    height: 13rem;
+    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(20rem);
+  }
+
+  .scrollCue {
+    bottom: 1.2rem;
+    left: 1.1rem;
+  }
+
+  .scrollCue span {
+    width: 3.8rem;
+  }
+
+  .location {
+    right: 1.1rem;
+    bottom: 1.5rem;
+    max-width: 11rem;
+    text-align: right;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wheel {
+    transform: rotateZ(90deg) rotateX(18deg);
+  }
+}
