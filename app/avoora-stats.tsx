@@ -7,28 +7,29 @@ import styles from "./avoora-stats.module.css";
 
 const metrics = [
   {
-    prefix: "$",
-    value: 74,
-    suffix: "M",
-    label: "Driving growth with strategy.",
+    prefix: "",
+    value: 800,
+    suffix: "+",
+    label: "Attendees",
   },
   {
     prefix: "",
-    value: 95,
-    suffix: "%",
-    label: "Building trusted partnerships.",
-  },
-  {
-    prefix: "+",
-    value: 225,
-    suffix: "",
-    label: "Delivering industry success.",
+    value: 35,
+    suffix: "+",
+    label: "World-Class Speakers",
   },
   {
     prefix: "",
-    value: 92,
+    value: 1.2,
+    decimals: 1,
+    suffix: "M+",
+    label: "Media Reach Across Socials",
+  },
+  {
+    prefix: "",
+    value: 70,
     suffix: "%",
-    label: "Turning traffic into growth.",
+    label: "CEOs & Founders / 30% Investors & Family Offices",
   },
 ];
 
@@ -69,9 +70,11 @@ export function AvooraStats() {
 
           const tick = (now: number) => {
             const progress = Math.min((now - startedAt) / 3500, 1);
-            const nextValue = Math.floor(
-              metric.value * easeOutPower2(progress),
-            );
+            const decimals = metric.decimals ?? 0;
+            const rawValue = metric.value * easeOutPower2(progress);
+            const nextValue = decimals
+              ? Number(rawValue.toFixed(decimals))
+              : Math.floor(rawValue);
 
             setValues((current) => {
               if (current[index] === nextValue) return current;
@@ -142,7 +145,10 @@ export function AvooraStats() {
       <div className={styles.container}>
         <div className={styles.metrics}>
           {metrics.map((metric, index) => {
-            const digits = String(values[index]).split("");
+            const formattedValue = metric.decimals
+              ? values[index].toFixed(metric.decimals)
+              : String(values[index]);
+            const digits = formattedValue.split("");
 
             return (
               <div
