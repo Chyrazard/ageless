@@ -31,9 +31,27 @@
   padding: 0 2rem 3rem;
 }
 
+.topDivider {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 3rem;
+  background: #e3e3e3;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 300ms ease,
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.visible .topDivider {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
 .metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   opacity: 0;
   transform: translateY(1rem);
   transition:
@@ -52,7 +70,7 @@
   min-width: 0;
   min-height: 9.375rem;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 1rem;
   padding-right: clamp(1rem, 2.2vw, 2rem);
@@ -117,24 +135,7 @@
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.25;
-}
-
-.bottomDivider {
-  width: 100%;
-  height: 1px;
-  margin-top: 3rem;
-  background: #e3e3e3;
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition:
-    opacity 300ms ease 300ms,
-    transform 900ms cubic-bezier(0.16, 1, 0.3, 1) 300ms;
-}
-
-.visible .bottomDivider {
-  opacity: 1;
-  transform: scaleX(1);
+  text-align: center;
 }
 
 @keyframes digitBounce {
@@ -183,13 +184,17 @@
     padding-right: 0;
   }
 
-  .metric:nth-child(2)::after {
+  .metric:nth-child(even)::after {
     display: none;
   }
 
   .metric:nth-child(n + 3) {
     padding-top: 2rem;
     border-top: 1px solid #e3e3e3;
+  }
+
+  .metric:last-child {
+    grid-column: 1 / -1;
   }
 
   .number {
@@ -237,15 +242,15 @@
     font-size: 0.8125rem;
   }
 
-  .bottomDivider {
-    margin-top: 0;
+  .topDivider {
+    margin-bottom: 1.35rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .metrics,
   .metric,
-  .bottomDivider {
+  .topDivider {
     transition-duration: 0.01ms;
     transition-delay: 0ms;
   }

@@ -29,7 +29,13 @@ const metrics = [
     prefix: "",
     value: 70,
     suffix: "%",
-    label: "CEOs & Founders / 30% Investors & Family Offices",
+    label: "CEOs & Founders",
+  },
+  {
+    prefix: "",
+    value: 30,
+    suffix: "%",
+    label: "Investors & Family Offices",
   },
 ];
 
@@ -143,6 +149,7 @@ export function AvooraStats() {
       aria-label="Ageless impact statistics"
     >
       <div className={styles.container}>
+        <div className={styles.topDivider} aria-hidden="true" />
         <div className={styles.metrics}>
           {metrics.map((metric, index) => {
             const formattedValue = metric.decimals
@@ -190,7 +197,6 @@ export function AvooraStats() {
             );
           })}
         </div>
-        <div className={styles.bottomDivider} aria-hidden="true" />
       </div>
     </section>,
     portalTarget,
