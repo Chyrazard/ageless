@@ -346,6 +346,11 @@
   display: none !important;
 }
 
+:global(.home-about) {
+  padding-top: clamp(64px, 4.5vw, 84px) !important;
+  padding-bottom: clamp(64px, 4.5vw, 84px) !important;
+}
+
 :global(.hero [style*="opacity:0"]),
 :global(.hero [style*="opacity: 0"]) {
   animation: fastHeroReveal 180ms ease-out both !important;
@@ -404,6 +409,7 @@
 }
 
 @media (max-width: 700px) {
+  :global(.home-about) { padding-top: 28px !important; padding-bottom: 28px !important; }
   :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; margin-top: 0 !important; }
   :global(.ageless-event-kicker) { margin-top: 14px; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: -0.02em; }
