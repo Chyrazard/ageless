@@ -5,8 +5,8 @@ import { WebflowRuntime } from "./webflow-runtime";
 const HERO_SOCIAL_LINKS =
   '<div class="social-links-block"><a href="https://www.behance.net/nayzakui" target="_blank" class="social-link">BE</a><div class="paragraph-text-mono">/</div><a href="https://dribbble.com/clonifylibrary" target="_blank" class="social-link">DR</a><div class="paragraph-text-mono">/</div><a href="https://x.com/ClonifyLibrary" target="_blank" class="social-link">X</a></div>';
 
-const LIVE_WELL_MARQUEE =
-  '<div class="ageless-live-marquee" role="img" aria-label="Redefining Health. Extending Life."><div class="ageless-live-marquee-track" aria-hidden="true"><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div><div class="ageless-live-marquee-group"><span>REDEFINING HEALTH.</span><i></i><span>EXTENDING LIFE.</span><i></i></div></div></div>';
+const SPEAKERS_MARQUEE =
+  '<div class="ageless-live-marquee" role="img" aria-label="Speakers 2027"><div class="ageless-live-marquee-track" aria-hidden="true"><div class="ageless-live-marquee-group"><span>SPEAKERS 2027</span><i></i><span>SPEAKERS 2027</span><i></i></div><div class="ageless-live-marquee-group"><span>SPEAKERS 2027</span><i></i><span>SPEAKERS 2027</span><i></i></div><div class="ageless-live-marquee-group"><span>SPEAKERS 2027</span><i></i><span>SPEAKERS 2027</span><i></i></div><div class="ageless-live-marquee-group"><span>SPEAKERS 2027</span><i></i><span>SPEAKERS 2027</span><i></i></div></div></div>';
 
 function replaceAfter(
   source: string,
@@ -21,6 +21,32 @@ function replaceAfter(
   if (searchIndex === -1) return source;
 
   return `${source.slice(0, searchIndex)}${replacement}${source.slice(searchIndex + search.length)}`;
+}
+
+function extractBalancedDiv(source: string, className: string) {
+  const classIndex = source.indexOf(`class="${className}"`);
+  if (classIndex === -1) return { html: source, element: "" };
+
+  const startIndex = source.lastIndexOf("<div", classIndex);
+  if (startIndex === -1) return { html: source, element: "" };
+
+  const divPattern = /<\/?div\b[^>]*>/g;
+  divPattern.lastIndex = startIndex;
+  let depth = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = divPattern.exec(source))) {
+    depth += match[0].startsWith("</div") ? -1 : 1;
+    if (depth !== 0) continue;
+
+    const endIndex = divPattern.lastIndex;
+    return {
+      html: `${source.slice(0, startIndex)}${source.slice(endIndex)}`,
+      element: source.slice(startIndex, endIndex),
+    };
+  }
+
+  return { html: source, element: "" };
 }
 
 export function MirroredPageView({ page }: { page: MirroredPage }) {
@@ -102,15 +128,25 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       '<div class="home-about-text-block"><h2 class="heading-style-h3 split-text-effect">We’re Bungee® — a creative studio cultivating bold brands, beautiful websites, and ideas that refuse to be ordinary.</h2></div>',
-      `<div class="home-about-text-block ageless-live-marquee-block">${LIVE_WELL_MARQUEE}</div>`,
+      `<div class="home-about-text-block ageless-live-marquee-block">${SPEAKERS_MARQUEE}</div>`,
+    );
+
+  const conferenceCarousel = extractBalancedDiv(
+    transformedHtml,
+    "hero-marquee-wrapper-outer-block",
+  );
+  const orderedHtml = conferenceCarousel.html
+    .replace(
+      '</section><section class="home-about">',
+      '</section><div id="ageless-renok-carousel-slot"></div><section class="home-about">',
     )
     .replace(
       '</section><section class="home-projects">',
-      '</section><div id="ageless-renok-carousel-slot"></div><div id="ageless-avoora-stats-slot"></div><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">',
+      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
     );
 
   const brandedHtml = replaceAfter(
-    transformedHtml,
+    orderedHtml,
     'class="hero-bottom-top-block"',
     HERO_SOCIAL_LINKS,
     '<div class="hero-event-date paragraph-text-mono">01 / 14 / 27</div>',

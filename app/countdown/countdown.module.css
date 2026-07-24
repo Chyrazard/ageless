@@ -361,6 +361,19 @@
   animation: none !important;
 }
 
+:global(.ageless-conference-carousel-section) {
+  width: 100%;
+  padding: clamp(28px, 4vw, 64px) 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+:global(.ageless-conference-carousel-section .hero-marquee-wrapper-outer-block) {
+  width: 100%;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
 :global(.hero-marquee-block) {
   animation: agelessHeroMarquee 30s linear infinite !important;
   will-change: transform;
