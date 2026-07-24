@@ -36,10 +36,11 @@
 }
 
 .identity strong {
-  font-size: clamp(1.5rem, 2.35vw, 2.8rem);
+  font-size: clamp(1.25rem, 2.1vw, 2.55rem);
   font-weight: 900;
   letter-spacing: -0.055em;
   line-height: 0.82;
+  white-space: nowrap;
 }
 
 .identity span {
@@ -63,9 +64,10 @@
   background: linear-gradient(180deg, #fff 22%, #fff 42%, #797979 72%, #151515 100%);
   background-clip: text;
   font-family: Interdisplay, Arial, sans-serif;
-  font-size: clamp(10rem, 29vw, 36rem);
+  width: 100%;
+  font-size: min(20vw, 23rem);
   font-weight: 900;
-  letter-spacing: -0.095em;
+  letter-spacing: -0.08em;
   line-height: 0.72;
   text-align: center;
   text-transform: uppercase;
@@ -82,8 +84,15 @@
   width: clamp(14rem, 18vw, 20rem);
   height: clamp(14rem, 18vw, 20rem);
   perspective: 93.75rem;
+  cursor: grab;
+  touch-action: pan-x;
   transform: translate(-50%, -50%) scale(0.92);
   transform-style: preserve-3d;
+  user-select: none;
+}
+
+.dragging {
+  cursor: grabbing;
 }
 
 .wheel {
@@ -242,7 +251,7 @@
   }
 
   .giantTitle {
-    font-size: 36vw;
+    font-size: 20vw;
     transform: translateY(-40%);
   }
 
