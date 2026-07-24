@@ -90,7 +90,12 @@
   --cinery-rotation: 0deg;
   position: absolute;
   inset: 0;
-  transform: rotateZ(90deg) rotateX(var(--cinery-rotation));
+  /*
+   * Match Cinery's Webflow transform stack: the wheel rotates on X first,
+   * while the fixed 90deg Z turn converts the nine Y-distributed panels into
+   * a vertical conveyor. Reversing these functions produces a flat 360 spin.
+   */
+  transform: rotateX(var(--cinery-rotation)) rotateZ(90deg);
   transform-style: preserve-3d;
   will-change: transform;
 }
@@ -272,6 +277,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .wheel {
-    transform: rotateZ(90deg) rotateX(18deg);
+    transform: rotateX(18deg) rotateZ(90deg);
   }
 }
