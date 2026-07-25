@@ -8,11 +8,20 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./cinery-aubrey-carousel.module.css";
 
-const panels = Array.from({ length: 9 }, (_, index) => ({
-  id: index,
-  image: "/aubrey-de-grey.png",
-  name: "Aubrey de Grey",
-}));
+const panels = [
+  { image: "/speakers/alex-williams.webp", name: "Alex Williams" },
+  { image: "/speakers/aubrey-degrey.webp", name: "Aubrey Degrey" },
+  { image: "/speakers/daniel-kraft.webp", name: "Daniel Kraft" },
+  { image: "/speakers/david-kim.webp", name: "David Kim" },
+  { image: "/speakers/eric-verdin.webp", name: "Eric Verdin" },
+  { image: "/speakers/gary-brecka.webp", name: "Gary Brecka" },
+  { image: "/speakers/hillary-lin.webp", name: "Hillary Lin" },
+  { image: "/speakers/josejb.webp", name: "JoseJB" },
+  { image: "/speakers/mark-cofano.webp", name: "Mark Cofano" },
+  { image: "/speakers/niko.webp", name: "Niko" },
+  { image: "/speakers/peter-crone.webp", name: "Peter Crone" },
+  { image: "/speakers/zak-williams.webp", name: "Zak Williams" },
+];
 
 export function CineryAubreyCarousel() {
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
@@ -125,7 +134,7 @@ export function CineryAubreyCarousel() {
     <section
       ref={sectionRef}
       className={styles.section}
-      aria-label="Aubrey de Grey featured speaker"
+      aria-label="Ageless Speakers 2027"
     >
       <div className={styles.ambientGlow} aria-hidden="true" />
 
@@ -151,11 +160,21 @@ export function CineryAubreyCarousel() {
           {panels.map((panel, index) => (
             <figure
               className={styles.panel}
-              style={{ "--panel-index": index } as CSSProperties}
-              key={panel.id}
+              style={
+                {
+                  "--panel-angle": `${index * (360 / panels.length)}deg`,
+                } as CSSProperties
+              }
+              key={panel.name}
             >
               <div className={styles.frame}>
-                <img src={panel.image} alt="" draggable={false} />
+                <img
+                  src={panel.image}
+                  alt={panel.name}
+                  draggable={false}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <figcaption>{panel.name}</figcaption>
               </div>
             </figure>

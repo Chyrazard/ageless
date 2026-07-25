@@ -110,7 +110,6 @@
 }
 
 .panel {
-  --panel-angle: calc(var(--panel-index) * 40deg);
   position: absolute;
   top: 0;
   left: 50%;
@@ -120,7 +119,7 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(clamp(24rem, 27vw, 31rem));
+  transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(clamp(31rem, 36vw, 40rem));
   transform-style: preserve-3d;
 }
 
@@ -227,7 +226,7 @@
   }
 
   .panel {
-    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(24rem);
+    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(29rem);
   }
 }
 
@@ -264,7 +263,7 @@
   .panel {
     width: 16rem;
     height: 13rem;
-    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(20rem);
+    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(23rem);
   }
 
   .scrollCue {
