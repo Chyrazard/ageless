@@ -12,6 +12,41 @@ body {
   display: contents;
 }
 
+#home.hero {
+  position: relative !important;
+  isolation: isolate;
+  background-color: #fff;
+  background-image: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100% !important;
+}
+
+#home.hero > .ageless-okio-hero-background {
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  z-index: 0 !important;
+  display: block !important;
+  width: 100vw !important;
+  max-width: none !important;
+  height: 100% !important;
+  opacity: 0.18;
+  object-fit: cover !important;
+  object-position: center !important;
+  filter: grayscale(1) contrast(1.15) brightness(0.78);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transform: translateX(-50%) !important;
+}
+
+#home.hero > .hero-content-wrapper {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
 html .w-webflow-badge {
   display: none !important;
   visibility: hidden !important;

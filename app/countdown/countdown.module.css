@@ -207,17 +207,19 @@
 
 :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) {
   gap: 8px !important;
-  margin-top: 80px !important;
+  margin-top: 0 !important;
   padding-top: 10px !important;
+  transform: translateY(clamp(32px, 2.6vw, 42px)) !important;
 }
 
 :global(.hero-large-logo) {
-  width: min(52vw, 760px) !important;
-  height: clamp(175px, 15vw, 225px) !important;
+  width: min(33vw, 490px) !important;
+  height: auto !important;
+  max-height: 150px;
   margin-top: 0 !important;
-  object-fit: cover;
+  object-fit: contain;
   object-position: 50% 50%;
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 }
 
 :global(.ageless-event-date) {
@@ -244,6 +246,10 @@
   margin-bottom: 8px;
   text-align: center;
   white-space: nowrap;
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 :global(.ageless-event-location) {
@@ -269,14 +275,18 @@
 }
 
 :global(.hero) {
+  position: relative;
+  isolation: isolate;
   height: auto !important;
-  min-height: 100svh;
+  min-height: 0 !important;
   overflow: visible !important;
 }
 
 :global(.hero-content-wrapper) {
+  position: relative;
+  z-index: 2;
   height: auto !important;
-  min-height: calc(100svh - 137px);
+  min-height: 0 !important;
   gap: 38px;
 }
 
@@ -347,8 +357,14 @@
 }
 
 :global(.home-about) {
-  padding-top: clamp(64px, 4.5vw, 84px) !important;
-  padding-bottom: clamp(64px, 4.5vw, 84px) !important;
+  display: none !important;
+}
+
+:global(.ageless-relocated-marquee-section) {
+  width: 100%;
+  padding: clamp(38px, 4.5vw, 72px) 0;
+  overflow: hidden;
+  background: #fff;
 }
 
 :global(.hero [style*="opacity:0"]),
@@ -363,7 +379,7 @@
 
 :global(.ageless-conference-carousel-section) {
   width: 100%;
-  padding: clamp(28px, 4vw, 64px) 0;
+  padding: clamp(12px, 1.5vw, 24px) 0 clamp(28px, 4vw, 64px);
   overflow: hidden;
   background: #fff;
 }
@@ -392,20 +408,24 @@
   transform: none !important;
 }
 
-:global(.ageless-event-photo[src="/quintafoto.jpg"]) {
+:global(.ageless-event-photo[src="/quintafoto.webp"]) {
   object-position: 44% center;
 }
 
-:global(.ageless-event-photo[src="/novenafoto.jpg"]) {
+:global(.ageless-event-photo[src="/novenafoto.webp"]) {
   object-position: 38% center;
 }
 
-:global(.ageless-event-photo[src="/octavafoto.jpg"]) {
+:global(.ageless-event-photo[src="/swap.webp"]) {
+  object-position: 74% center;
+}
+
+:global(.ageless-event-photo[src="/octavafoto.webp"]) {
   transform: scale(1.1) !important;
   transform-origin: center 15%;
 }
 
-:global(.ageless-event-photo[src="/oncefoto.jpg"]) {
+:global(.ageless-event-photo[src="/oncefoto.webp"]) {
   transform: scale(1.1) !important;
   transform-origin: center;
 }
@@ -423,13 +443,13 @@
 
 @media (max-width: 700px) {
   :global(.home-about) { padding-top: 28px !important; padding-bottom: 28px !important; }
-  :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; }
-  :global(.hero-large-logo) { width: 82vw !important; height: 132px !important; margin-top: 0 !important; }
+  :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; transform: translateY(22px) !important; }
+  :global(.hero-large-logo) { width: 82vw !important; height: auto !important; max-height: 132px; margin-top: 0 !important; }
   :global(.ageless-event-kicker) { margin-top: 14px; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: -0.02em; }
   :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: clamp(0.76rem, 3.4vw, 1.12rem) !important; font-weight: 750 !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
-  :global(.hero) { height: auto !important; min-height: 100svh; }
+  :global(.hero) { height: auto !important; min-height: 0 !important; }
   :global(.hero-content-wrapper) { min-height: auto; gap: 28px !important; }
   :global(.hero-bottom-block) { gap: 24px !important; }
   :global(.hero-bottom-top-block) { justify-content: space-between !important; gap: 12px; }

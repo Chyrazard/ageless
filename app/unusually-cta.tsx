@@ -109,8 +109,9 @@ export function UnusuallyCta() {
 
   return createPortal(
     <section
+      id="video-cortina"
       ref={sectionRef}
-      className={styles.section}
+      className={`${styles.section} ${styles.videoCurtain}`}
       aria-label="Keep scrolling — Live Well, Age Less"
     >
       <div className={styles.stickyStage}>

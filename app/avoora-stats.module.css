@@ -28,7 +28,7 @@
 .container {
   width: min(100%, 90rem);
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 0 2rem 0.75rem;
 }
 
 .topDivider {
@@ -209,7 +209,7 @@
 @media (max-width: 560px) {
   .container {
     padding-right: 1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
     padding-left: 1rem;
   }
 

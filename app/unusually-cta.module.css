@@ -28,6 +28,10 @@
   background: #fff;
 }
 
+.videoCurtain {
+  display: none;
+}
+
 .stickyStage {
   position: sticky;
   top: 0;

@@ -1,0 +1,85 @@
+.recaps {
+  width: 100%;
+  background: #050505;
+}
+
+.section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: clamp(560px, 44vw, 790px);
+  overflow: hidden;
+  background: #72906a;
+}
+
+.mediaGrid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.videoPanel,
+.blackPanel {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.blackPanel {
+  display: grid;
+  padding: clamp(2rem, 4vw, 5rem);
+  color: #fff;
+  background: #050505;
+  place-items: center;
+  text-align: center;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.video {
+  transform: scale(1.01);
+}
+
+.recapTitle {
+  max-width: 42rem;
+  margin: 0;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: clamp(3.1rem, 5vw, 6.6rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .section {
+    height: min(900px, 125svh);
+  }
+
+  .mediaGrid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .recapTitle {
+    font-size: clamp(2.6rem, 11vw, 4.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .video {
+    animation: none;
+  }
+}

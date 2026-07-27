@@ -6,12 +6,11 @@ import { createPortal } from "react-dom";
 import styles from "./unusually-intro.module.css";
 
 const headlineLines = [
-  <>2 Years of Ageless:</>,
+  <>3 Years of Ageless:</>,
   <>Be in the Room Where</>,
   <span className={styles.secondary}>
-    <span className={styles.accentItalic}>Wellness &amp; Science</span> meets
+    <span className={styles.accentItalic}>Health</span> meets decisions.
   </span>,
-  <span className={styles.secondary}>decisions makers</span>,
 ];
 
 export function UnusuallyIntro() {
@@ -60,10 +59,10 @@ export function UnusuallyIntro() {
               <span className={styles.asterisk} aria-hidden="true">✱</span>
               <div className={styles.eyebrowMask}>
                 <div className={styles.eyebrowTrack} aria-hidden="true">
-                  <span>Driven by Design —</span>
-                  <span>Driven by Design —</span>
-                  <span>Driven by Design —</span>
-                  <span>Driven by Design —</span>
+                  <span>The Science of Aging Well /</span>
+                  <span>The Science of Aging Well /</span>
+                  <span>The Science of Aging Well /</span>
+                  <span>The Science of Aging Well /</span>
                 </div>
               </div>
             </div>
@@ -85,17 +84,17 @@ export function UnusuallyIntro() {
 
             <div className={styles.descriptionBlock}>
               <p className={styles.description}>
-                Ageless Evolution 2027 is timed to coincide with the JP Morgan
-                Healthcare Conference week in San Francisco—one of the largest
-                global conferences in the region. Connect with the world&apos;s
-                most important health, wellness, and biotech decision-makers,
-                and YOU&apos;LL be in the room alongside it.
+                When San Francisco becomes the epicenter of health and biotech
+                innovation, you want to be right in the middle of it. Ageless
+                Evolution 2027 leverages that massive city-wide momentum,
+                connecting you with forward-thinking decision-makers during the
+                most electric week of the year.
               </p>
 
               <div className={styles.actions}>
                 <a
                   className={styles.primaryButton}
-                  href="https://lu.ma/agelessevolution2025"
+                  href="https://luma.com/ageless3"
                   target="_blank"
                   rel="noreferrer"
                 >

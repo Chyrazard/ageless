@@ -13,13 +13,17 @@ const NAVIGATION_LINKS = [
   { label: "Speakers", href: "/#speakers" },
   { label: "Agenda", href: "/#agenda" },
   {
-    label: "Buy Ticket",
-    href: "https://lu.ma/agelessevolution2025",
+    label: "Buy Tickets",
+    href: "https://luma.com/ageless3",
     external: true,
   },
   { label: "Exhibit & Sponsor", href: "/contact" },
   { label: "Contact", href: "/contact" },
 ];
+
+const DESKTOP_NAVIGATION_LINKS = NAVIGATION_LINKS.filter(
+  ({ label }) => label !== "Home" && label !== "Contact",
+);
 
 function RollingText({ children }: { children: string }) {
   return (
@@ -32,7 +36,17 @@ function RollingText({ children }: { children: string }) {
 
 export function AgelessUnusuallyHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const firstMenuLink = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const updateHeaderState = () => setIsScrolled(window.scrollY > 12);
+
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeaderState);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -54,12 +68,14 @@ export function AgelessUnusuallyHeader() {
   }, [menuOpen]);
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}
+    >
       <div className={styles.headerInner}>
         <div className={styles.headerBackground} aria-hidden="true" />
 
         <div className={styles.brandGroup}>
-          <a className={styles.brandLink} href="/#home" aria-label="Ageless home">
+          <a className={styles.brandLink} href="/" aria-label="Ageless home">
             <span className={styles.brandRoll}>
               <img src="/ageless-logo-transparent.png" alt="" />
               <img src="/ageless-logo-transparent.png" alt="" />
@@ -73,7 +89,7 @@ export function AgelessUnusuallyHeader() {
 
         <div className={styles.navigationControls}>
           <nav className={styles.desktopNavigation} aria-label="Primary navigation">
-            {NAVIGATION_LINKS.map(({ label, href, external }) => (
+            {DESKTOP_NAVIGATION_LINKS.map(({ label, href, external }) => (
               <a
                 key={label}
                 className={styles.desktopLink}

@@ -1,26 +1,66 @@
 .section {
+  --cinery-radius: 26rem;
+  --cinery-perspective: 93.75rem;
   position: relative;
   z-index: 4;
   width: 100%;
-  height: min(58rem, 92svh);
-  min-height: 44rem;
+  height: 100vh;
+  min-height: 48rem;
   overflow: hidden;
   color: #fff;
-  background:
-    radial-gradient(circle at 50% 18%, rgb(255 255 255 / 16%), transparent 28%),
-    radial-gradient(circle at 20% 30%, rgb(255 255 255 / 7%), transparent 24%),
-    #050505;
+  background: #030303;
   isolation: isolate;
+}
+
+.backgroundVideo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.58;
+  filter: grayscale(1) contrast(1.18) brightness(0.96);
+  pointer-events: none;
 }
 
 .ambientGlow {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
+  overflow: hidden;
   background:
-    linear-gradient(110deg, transparent 18%, rgb(255 255 255 / 6%) 48%, transparent 74%),
-    radial-gradient(ellipse at center, transparent 25%, rgb(0 0 0 / 72%) 90%);
+    linear-gradient(180deg, rgb(0 0 0 / 12%), transparent 24%, transparent 70%, rgb(0 0 0 / 82%)),
+    radial-gradient(ellipse at center, transparent 24%, rgb(0 0 0 / 28%) 68%, rgb(0 0 0 / 76%) 100%);
   pointer-events: none;
+}
+
+.ambientGlow::before,
+.ambientGlow::after {
+  position: absolute;
+  width: 64vw;
+  height: 42vw;
+  border-radius: 48%;
+  content: "";
+  filter: blur(70px);
+  opacity: 0.56;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.ambientGlow::before {
+  top: -18%;
+  left: 8%;
+  background: radial-gradient(ellipse, rgb(255 255 255 / 42%), rgb(255 255 255 / 8%) 48%, transparent 72%);
+  animation: cineryGlowOne 15s ease-in-out infinite alternate;
+}
+
+.ambientGlow::after {
+  right: -10%;
+  bottom: -25%;
+  background: radial-gradient(ellipse, rgb(255 255 255 / 36%), rgb(255 255 255 / 7%) 46%, transparent 72%);
+  animation: cineryGlowTwo 19s ease-in-out infinite alternate;
 }
 
 .identity {
@@ -58,14 +98,14 @@
   top: 50%;
   right: -0.03em;
   left: -0.03em;
-  z-index: 1;
+  z-index: 3;
   margin: 0;
   color: transparent;
   background: linear-gradient(180deg, #fff 22%, #fff 42%, #797979 72%, #151515 100%);
   background-clip: text;
   font-family: Interdisplay, Arial, sans-serif;
   width: 100%;
-  font-size: min(20vw, 23rem);
+  font-size: min(21vw, 25rem);
   font-weight: 900;
   letter-spacing: -0.08em;
   line-height: 0.72;
@@ -80,15 +120,23 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 10;
-  width: clamp(14rem, 18vw, 20rem);
-  height: clamp(14rem, 18vw, 20rem);
-  perspective: 93.75rem;
-  cursor: grab;
-  touch-action: pan-x;
-  transform: translate(-50%, -50%) scale(0.92);
+  width: 18rem;
+  height: 18rem;
+  perspective: var(--cinery-perspective);
+  transform: translate(-50%, -50%) scale(0.88);
   transform-style: preserve-3d;
   user-select: none;
+}
+
+.sceneBack {
+  z-index: 2;
+  pointer-events: none;
+}
+
+.sceneFront {
+  z-index: 4;
+  cursor: grab;
+  touch-action: pan-x;
 }
 
 .dragging {
@@ -114,13 +162,15 @@
   top: 0;
   left: 50%;
   display: flex;
-  width: clamp(17rem, 22vw, 24rem);
-  height: clamp(14rem, 18vw, 20rem);
+  width: 16.5rem;
+  height: 13.5rem;
   align-items: center;
   justify-content: center;
   margin: 0;
-  transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(clamp(31rem, 36vw, 40rem));
+  transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(var(--cinery-radius));
   transform-style: preserve-3d;
+  transition: opacity 40ms linear;
+  will-change: opacity, transform;
 }
 
 .frame {
@@ -132,7 +182,7 @@
     radial-gradient(circle at 50% 24%, rgb(255 255 255 / 25%), transparent 42%),
     linear-gradient(145deg, #d7d9dd, #9da1aa);
   border: 2px solid rgb(255 255 255 / 20%);
-  border-radius: clamp(1.5rem, 2.2vw, 2.2rem);
+  border-radius: 2rem;
   box-shadow:
     0 1.5rem 4rem rgb(0 0 0 / 38%),
     inset 0 1px rgb(255 255 255 / 35%);
@@ -217,23 +267,19 @@
 
 @media (max-width: 991px) {
   .section {
-    height: min(50rem, 78svh);
-    min-height: 39rem;
+    height: 100dvh;
+    min-height: 48rem;
   }
 
   .scene {
-    transform: translate(-50%, -50%) scale(0.78);
-  }
-
-  .panel {
-    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(29rem);
+    transform: translate(-50%, -50%) scale(0.76);
   }
 }
 
 @media (max-width: 600px) {
   .section {
-    height: 40rem;
-    min-height: 40rem;
+    height: 100dvh;
+    min-height: 46rem;
   }
 
   .identity {
@@ -255,15 +301,15 @@
   }
 
   .scene {
-    width: 11rem;
-    height: 11rem;
-    transform: translate(-50%, -50%) scale(0.65);
+    width: 14rem;
+    height: 14rem;
+    transform: translate(-50%, -50%) scale(0.62);
   }
 
   .panel {
-    width: 16rem;
-    height: 13rem;
-    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(23rem);
+    width: 15rem;
+    height: 12.25rem;
+    transform: translateX(-50%) rotateY(var(--panel-angle)) translateZ(var(--cinery-radius));
   }
 
   .scrollCue {
@@ -287,4 +333,21 @@
   .wheel {
     transform: rotateX(18deg) rotateZ(90deg);
   }
+
+  .ambientGlow::before,
+  .ambientGlow::after {
+    animation: none;
+  }
+}
+
+@keyframes cineryGlowOne {
+  0% { transform: translate3d(-12%, -8%, 0) rotate(-8deg) scale(0.92); }
+  45% { transform: translate3d(34%, 22%, 0) rotate(12deg) scale(1.16); }
+  100% { transform: translate3d(4%, 48%, 0) rotate(-4deg) scale(0.98); }
+}
+
+@keyframes cineryGlowTwo {
+  0% { transform: translate3d(8%, 12%, 0) rotate(10deg) scale(1.08); }
+  55% { transform: translate3d(-42%, -26%, 0) rotate(-14deg) scale(0.9); }
+  100% { transform: translate3d(-10%, -52%, 0) rotate(6deg) scale(1.18); }
 }

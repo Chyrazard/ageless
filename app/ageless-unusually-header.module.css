@@ -21,18 +21,36 @@
   padding: 0.5rem;
   overflow: hidden;
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(22px) saturate(135%);
-  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(0) saturate(100%);
+  backdrop-filter: blur(0) saturate(100%);
   pointer-events: auto;
+  transition:
+    -webkit-backdrop-filter 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .headerBackground {
   position: absolute;
   z-index: -1;
   inset: 0;
-  border: 1px solid rgb(255 255 255 / 82%);
-  background: rgb(242 242 242 / 74%);
+  border: 1px solid transparent;
+  background: transparent;
   border-radius: inherit;
+  box-shadow: none;
+  transition:
+    background-color 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headerScrolled .headerInner {
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  backdrop-filter: blur(22px) saturate(135%);
+}
+
+.headerScrolled .headerBackground {
+  border-color: rgb(255 255 255 / 82%);
+  background: rgb(242 242 242 / 74%);
   box-shadow:
     0 14px 42px rgb(0 0 0 / 10%),
     inset 0 1px 0 rgb(255 255 255 / 80%);
@@ -86,7 +104,7 @@
 
 .brandDescriptor {
   max-width: 10.5rem;
-  color: #5f5f5f;
+  color: #000;
   font-size: 0.69rem;
   font-weight: 600;
   letter-spacing: -0.015em;

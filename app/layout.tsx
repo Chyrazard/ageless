@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import type { ReactNode } from "react";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./globals.css";
+import { WhatsAppButton } from "./whatsapp-button";
+
+config.autoAddCss = false;
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -33,7 +38,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preload" href="/logo.jpeg" as="image" />
         <link rel="stylesheet" href="/webflow/original.css?v=1" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

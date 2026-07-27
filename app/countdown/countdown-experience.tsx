@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import styles from "./countdown.module.css";
 
 const TARGET_DATE = new Date("2027-01-14T00:00:00-08:00").getTime();
-const TICKETS_URL = "https://lu.ma/agelessevolution2025";
+const TICKETS_URL = "https://luma.com/ageless3";
 
 type TimeLeft = {
   days: number;
