@@ -54,36 +54,22 @@ export function TuomSplitFeature() {
   if (!portalTarget) return null;
 
   return createPortal(
-    <section className={styles.recaps} aria-label="Ageless event recaps">
-      <article className={styles.section} aria-label="Ageless 2024 recap">
-        <div className={styles.mediaGrid}>
-          <div className={styles.videoPanel}>
-            <RecapVideo src={RECAP_2024_VIDEO} />
-          </div>
-          <div className={styles.textPanel}>
-            <h2 className={styles.recapTitle} aria-label="Looking Back at Ageless 2024 experience">
-              <span className={styles.recapLine}>Looking Back at</span>
-              <span className={styles.recapLine}>Ageless 2024</span>
-              <span className={styles.recapLine}>Experience</span>
-            </h2>
-          </div>
-        </div>
-      </article>
+    <section className={styles.recapSection} aria-labelledby="ageless-recap-title">
+      <h2 id="ageless-recap-title" className={styles.sectionTitle}>
+        Looking Back at Ageless Experience
+      </h2>
 
-      <article className={styles.section} aria-label="Ageless 2025 recap">
-        <div className={styles.mediaGrid}>
-          <div className={styles.textPanel}>
-            <h2 className={styles.recapTitle} aria-label="Looking Back at Ageless 2025 experience">
-              <span className={styles.recapLine}>Looking Back at</span>
-              <span className={styles.recapLine}>Ageless 2025</span>
-              <span className={styles.recapLine}>Experience</span>
-            </h2>
-          </div>
-          <div className={styles.videoPanel}>
-            <RecapVideo src={RECAP_2025_VIDEO} />
-          </div>
-        </div>
-      </article>
+      <div className={styles.recapGrid}>
+        <article className={styles.videoPanel} aria-label="Ageless 2025 recap">
+          <RecapVideo src={RECAP_2025_VIDEO} />
+          <span className={styles.year}>2025</span>
+        </article>
+
+        <article className={styles.videoPanel} aria-label="Ageless 2024 recap">
+          <RecapVideo src={RECAP_2024_VIDEO} />
+          <span className={styles.year}>2024</span>
+        </article>
+      </div>
     </section>,
     portalTarget,
   );

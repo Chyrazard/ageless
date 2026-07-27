@@ -145,7 +145,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       '</section><section class="home-projects">',
-      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><section class="ageless-relocated-marquee-section" aria-label="Live Well, Age Less">${SPEAKERS_MARQUEE}</section><div id="ageless-tuom-feature-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
+      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-tuom-feature-slot"></div><section class="ageless-relocated-marquee-section" aria-label="Live Well, Age Less">${SPEAKERS_MARQUEE}</section><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
     );
 
   const brandedHtml = replaceAfter(
