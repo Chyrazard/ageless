@@ -1,6 +1,6 @@
 .recaps {
   width: 100%;
-  background: #050505;
+  background: #fff;
 }
 
 .section {
@@ -23,18 +23,19 @@
 }
 
 .videoPanel,
-.blackPanel {
+.textPanel {
   position: relative;
   min-width: 0;
   height: 100%;
   overflow: hidden;
 }
 
-.blackPanel {
+.textPanel {
   display: grid;
   padding: clamp(2rem, 4vw, 5rem);
-  color: #fff;
-  background: #050505;
+  color: #050505;
+  background: #fff;
+  container-type: inline-size;
   place-items: center;
   text-align: center;
 }
@@ -53,14 +54,21 @@
 }
 
 .recapTitle {
-  max-width: 42rem;
+  width: 100%;
+  max-width: 46rem;
   margin: 0;
   font-family: var(--font-geist-sans), Arial, sans-serif;
-  font-size: clamp(3.1rem, 5vw, 6.6rem);
+  font-size: clamp(2rem, 4.7vw, 6.6rem);
+  font-size: clamp(2rem, 10cqw, 6.6rem);
   font-weight: 600;
   letter-spacing: -0.045em;
   line-height: 0.95;
   text-transform: uppercase;
+}
+
+.recapLine {
+  display: block;
+  white-space: nowrap;
 }
 
 @media (max-width: 767px) {
@@ -74,7 +82,8 @@
   }
 
   .recapTitle {
-    font-size: clamp(2.6rem, 11vw, 4.6rem);
+    font-size: clamp(2.2rem, 10vw, 4.6rem);
+    font-size: clamp(2.2rem, 10cqw, 4.6rem);
   }
 }
 

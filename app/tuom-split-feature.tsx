@@ -60,16 +60,24 @@ export function TuomSplitFeature() {
           <div className={styles.videoPanel}>
             <RecapVideo src={RECAP_2024_VIDEO} />
           </div>
-          <div className={styles.blackPanel}>
-            <h2 className={styles.recapTitle}>Recap of Ageless 2024</h2>
+          <div className={styles.textPanel}>
+            <h2 className={styles.recapTitle} aria-label="Looking Back at Ageless 2024 experience">
+              <span className={styles.recapLine}>Looking Back at</span>
+              <span className={styles.recapLine}>Ageless 2024</span>
+              <span className={styles.recapLine}>Experience</span>
+            </h2>
           </div>
         </div>
       </article>
 
       <article className={styles.section} aria-label="Ageless 2025 recap">
         <div className={styles.mediaGrid}>
-          <div className={styles.blackPanel}>
-            <h2 className={styles.recapTitle}>Recap of Ageless 2025</h2>
+          <div className={styles.textPanel}>
+            <h2 className={styles.recapTitle} aria-label="Looking Back at Ageless 2025 experience">
+              <span className={styles.recapLine}>Looking Back at</span>
+              <span className={styles.recapLine}>Ageless 2025</span>
+              <span className={styles.recapLine}>Experience</span>
+            </h2>
           </div>
           <div className={styles.videoPanel}>
             <RecapVideo src={RECAP_2025_VIDEO} />
