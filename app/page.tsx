@@ -5,7 +5,6 @@ import { MirroredPageView } from "./mirrored-page-view";
 import { CountdownExperience } from "./countdown/countdown-experience";
 import { AvooraStats } from "./avoora-stats";
 import { CineryAubreyCarousel } from "./cinery-aubrey-carousel";
-import { UnusuallyCta } from "./unusually-cta";
 import { UnusuallyIntro } from "./unusually-intro";
 import { TuomSplitFeature } from "./tuom-split-feature";
 
@@ -71,7 +70,6 @@ export default function HomePage() {
       <AvooraStats />
       <UnusuallyIntro />
       <TuomSplitFeature />
-      <UnusuallyCta />
     </>
   );
 }

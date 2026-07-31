@@ -173,7 +173,7 @@ export function MirroredPageView({
     )
     .replace(
       '</section><section class="home-projects">',
-      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-tuom-feature-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
+      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-tuom-feature-slot"></div><section class="home-projects">`,
     );
 
   const brandedHtml = replaceAfter(
@@ -188,12 +188,17 @@ export function MirroredPageView({
     brandedHtml,
   );
 
+  const withoutLegacyNavigation = extractBalancedDiv(
+    withoutLegacyGlobalSections,
+    "navbar w-nav",
+  ).html;
+
   const finalHtml = removeLegacyHomeSections
-    ? ["matrics", "home-projects", "home-blog"].reduce(
+    ? ["home-about", "home-projects", "services", "matrics", "home-blog"].reduce(
         (html, className) => removeBalancedSection(html, className),
-        withoutLegacyGlobalSections,
+        withoutLegacyNavigation,
       )
-    : withoutLegacyGlobalSections;
+    : withoutLegacyNavigation;
 
   return (
     <>

@@ -109,16 +109,6 @@ const TESTIMONIALS = [
 
 const PAST_SPEAKERS = [
   {
-    name: "Dr. Anastasia Chemeritskaya, MD, MHA",
-    role: "Physician · Longevity medicine leader",
-    image: "/assets/current-speakers/anastasia-chemeritskaya.png",
-  },
-  {
-    name: "Dr. Hillary Lin",
-    role: "Physician · Digital health and longevity innovator",
-    image: "/assets/current-speakers/hillary-lin.png",
-  },
-  {
     name: "Peter Crone",
     role: "The Mind Architect · Human potential and transformation",
     image: "/assets/past-speakers/peter-crone-final-v2.png",
@@ -149,6 +139,11 @@ const PAST_SPEAKERS = [
     image: "/assets/past-speakers/daniel-kraft-final-v2.png",
   },
   {
+    name: "Dr. Anastasia Chemeritskaya, MD, MHA",
+    role: "Physician · Longevity medicine leader",
+    image: "/assets/current-speakers/anastasia-chemeritskaya.png",
+  },
+  {
     name: "Dr. Niko Dimitriadis",
     role: "Applied neuroscientist · Award-winning author",
     image: "/assets/past-speakers/niko-dimitriadis-final-v2.png",
@@ -162,6 +157,11 @@ const PAST_SPEAKERS = [
     name: "Wei-Wu He, Ph.D.",
     role: "CEO, Human Longevity, Inc. · Precision health",
     image: "/assets/past-speakers/wei-wu-he-final-v2.png",
+  },
+  {
+    name: "Dr. Hillary Lin",
+    role: "Physician · Digital health and longevity innovator",
+    image: "/assets/current-speakers/hillary-lin.png",
   },
   {
     name: "Dr. David Furman",
@@ -664,38 +664,6 @@ export function TuomSplitFeature() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPortalTarget(document.getElementById("ageless-tuom-feature-slot"));
   }, []);
-
-  useEffect(() => {
-    if (!portalTarget) return;
-
-    const originalServices = Array.from(
-      document.querySelectorAll<HTMLElement>(".services"),
-    );
-    const previousDisplays = originalServices.map((section) =>
-      section.style.getPropertyValue("display"),
-    );
-    const previousPriorities = originalServices.map((section) =>
-      section.style.getPropertyPriority("display"),
-    );
-
-    originalServices.forEach((section) =>
-      section.style.setProperty("display", "none", "important"),
-    );
-
-    return () => {
-      originalServices.forEach((section, index) => {
-        if (previousDisplays[index]) {
-          section.style.setProperty(
-            "display",
-            previousDisplays[index],
-            previousPriorities[index],
-          );
-        } else {
-          section.style.removeProperty("display");
-        }
-      });
-    };
-  }, [portalTarget]);
 
   if (!portalTarget) return null;
 

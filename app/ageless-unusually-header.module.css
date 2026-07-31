@@ -706,10 +706,6 @@
   background: #fff;
 }
 
-:global(.mirrored-content > .page-wrapper > .navbar) {
-  display: none !important;
-}
-
 @media (max-width: 1260px) {
   .desktopNavigation {
     display: none;
