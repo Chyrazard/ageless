@@ -506,6 +506,7 @@
 
 .sponsorClose:focus-visible,
 .sponsorSubmit:focus-visible,
+.sponsorWhatsApp:focus-visible,
 .sponsorField input:focus-visible,
 .sponsorField textarea:focus-visible {
   outline: 2px solid #111;
@@ -654,13 +655,20 @@
   grid-column: 1 / -1;
 }
 
-.sponsorSubmit {
+.sponsorActions {
   grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.sponsorSubmit,
+.sponsorWhatsApp {
   display: flex;
   width: max-content;
   min-width: 12rem;
   min-height: 3.6rem;
-  margin-top: 0.25rem;
   padding: 0.85rem 0.9rem 0.85rem 1.5rem;
   align-items: center;
   justify-content: space-between;
@@ -675,6 +683,7 @@
   font-weight: 600 !important;
   letter-spacing: 0.07em;
   text-transform: uppercase;
+  text-decoration: none;
   transition:
     color 320ms ease,
     background-color 320ms ease,
@@ -704,6 +713,30 @@
 .sponsorSubmit:hover i,
 .sponsorSubmit:focus-visible i {
   background: #fff;
+}
+
+.sponsorWhatsApp {
+  min-width: 18rem;
+  justify-content: center;
+  padding-right: 1.5rem;
+  color: #fff;
+  background: #171717;
+  border: 1px solid rgb(255 255 255 / 8%);
+}
+
+.sponsorWhatsApp svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: #fff;
+}
+
+.sponsorWhatsApp:hover,
+.sponsorWhatsApp:focus-visible {
+  color: #fff;
+  background: #292929;
+  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 16%);
+  transform: translateY(-0.18rem);
 }
 
 @media (max-width: 1260px) {
@@ -873,11 +906,17 @@
   }
 
   .sponsorMessage,
-  .sponsorSubmit {
+  .sponsorActions {
     grid-column: 1;
   }
 
-  .sponsorSubmit {
+  .sponsorActions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .sponsorSubmit,
+  .sponsorWhatsApp {
     width: 100%;
   }
 }
@@ -931,7 +970,8 @@
   .sponsorClose,
   .sponsorField input,
   .sponsorField textarea,
-  .sponsorSubmit {
+  .sponsorSubmit,
+  .sponsorWhatsApp {
     transition-duration: 1ms !important;
     transition-delay: 0ms !important;
   }

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   type FormEvent,
   type MouseEvent as ReactMouseEvent,
@@ -10,6 +12,7 @@ import {
 } from "react";
 
 import styles from "./ageless-unusually-header.module.css";
+import { WHATSAPP_URL } from "./whatsapp-button";
 
 const NAVIGATION_LINKS = [
   { label: "Home", href: "/#home" },
@@ -342,10 +345,22 @@ export function AgelessUnusuallyHeader({
               <span>Message</span>
               <textarea name="message" placeholder="Message" required />
             </label>
-            <button className={styles.sponsorSubmit} type="submit">
-              <span>Submit inquiry</span>
-              <i aria-hidden="true">↗</i>
-            </button>
+            <div className={styles.sponsorActions}>
+              <button className={styles.sponsorSubmit} type="submit">
+                <span>Submit inquiry</span>
+                <i aria-hidden="true">↗</i>
+              </button>
+              <a
+                className={styles.sponsorWhatsApp}
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Talk to us on WhatsApp"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} aria-hidden="true" />
+                <span>Talk to us on WhatsApp</span>
+              </a>
+            </div>
           </form>
         </div>
       </div>
