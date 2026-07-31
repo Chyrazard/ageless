@@ -666,9 +666,10 @@
 .sponsorSubmit,
 .sponsorWhatsApp {
   display: flex;
-  width: max-content;
-  min-width: 12rem;
+  width: auto;
+  min-width: 0;
   min-height: 3.6rem;
+  flex: 1 1 0;
   padding: 0.85rem 0.9rem 0.85rem 1.5rem;
   align-items: center;
   justify-content: space-between;
@@ -690,7 +691,8 @@
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.sponsorSubmit i {
+.sponsorSubmit i,
+.sponsorWhatsAppIcon {
   display: grid;
   width: 2rem;
   aspect-ratio: 1;
@@ -716,15 +718,17 @@
 }
 
 .sponsorWhatsApp {
-  min-width: 18rem;
-  justify-content: center;
-  padding-right: 1.5rem;
   color: #fff;
   background: #171717;
   border: 1px solid rgb(255 255 255 / 8%);
 }
 
-.sponsorWhatsApp svg {
+.sponsorWhatsAppIcon {
+  color: #fff;
+  background: #171717;
+}
+
+.sponsorWhatsAppIcon svg {
   width: 1.25rem;
   height: 1.25rem;
   flex: none;
@@ -733,10 +737,21 @@
 
 .sponsorWhatsApp:hover,
 .sponsorWhatsApp:focus-visible {
-  color: #fff;
-  background: #292929;
+  color: #111;
+  background: #bdff39;
   box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 16%);
   transform: translateY(-0.18rem);
+}
+
+.sponsorWhatsApp:hover .sponsorWhatsAppIcon,
+.sponsorWhatsApp:focus-visible .sponsorWhatsAppIcon {
+  color: #111;
+  background: #fff;
+}
+
+.sponsorWhatsApp:hover .sponsorWhatsAppIcon svg,
+.sponsorWhatsApp:focus-visible .sponsorWhatsAppIcon svg {
+  color: #111;
 }
 
 @media (max-width: 1260px) {

@@ -357,8 +357,10 @@ export function AgelessUnusuallyHeader({
                 rel="noreferrer"
                 aria-label="Talk to us on WhatsApp"
               >
-                <FontAwesomeIcon icon={faWhatsapp} aria-hidden="true" />
                 <span>Talk to us on WhatsApp</span>
+                <i className={styles.sponsorWhatsAppIcon} aria-hidden="true">
+                  <FontAwesomeIcon icon={faWhatsapp} />
+                </i>
               </a>
             </div>
           </form>

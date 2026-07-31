@@ -20,7 +20,7 @@ export const speakers2027: AgelessSpeaker[] = [
     image: "/speakers/zak-williams.webp",
     pageImage: "/assets/current-speakers/zak-williams.png",
     name: "Zak Williams",
-    focus: "Mental Infrastructure",
+    focus: "Mental Health",
     description:
       "Prominent mental health advocate and speaker Zak Williams drives scalable infrastructure at the intersection of AI, prestige media, and clinical healthcare. As Co-President of Hypothesis and a seasoned venture builder, he scales cognitive architecture, premium film portfolios, and data-driven systems of care.",
   },
@@ -33,7 +33,7 @@ export const speakers2027: AgelessSpeaker[] = [
       "Founder and CEO of Holistic Hyperbarics, Alex Williams leverages patents in research modalities and chamber innovation to provide leading hyperbaric medicine and patient-centered care. Drawing from a diverse background as an EMT, birth doula, and athlete, she focuses acutely on health optimization and reversing the impact of structural systems on minority communities to deliver whole-person healing.",
   },
   {
-    image: "/speakers/aubrey-degrey.webp",
+    image: "/speakers/aubrey-de-grey-home-bw.png",
     pageImage: "/assets/current-speakers/aubrey-de-grey.png",
     name: "Aubrey de Grey",
     focus: "Anti-Aging Science",
