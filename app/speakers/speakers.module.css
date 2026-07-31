@@ -175,6 +175,11 @@
   line-height: 1.15 !important;
 }
 
+.speakerContent p {
+  font-size: clamp(0.88rem, 0.9vw, 0.96rem);
+  line-height: 1.42 !important;
+}
+
 .pricing,
 .contact {
   background: rgb(5 5 5 / 76%);
@@ -646,6 +651,10 @@
 }
 
 @media (max-width: 1300px) {
+  .speakerGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .pricingGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

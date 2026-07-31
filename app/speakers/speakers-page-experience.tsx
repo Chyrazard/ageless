@@ -111,10 +111,7 @@ export function SpeakersPageExperience() {
                 <div className={styles.speakerContent}>
                   <span>Ageless Speaker 2027</span>
                   <h2>{speaker.name}</h2>
-                  <p>
-                    A leading voice joining Ageless Evolution Summit to explore
-                    the future of longevity, health and human performance.
-                  </p>
+                  <p>{speaker.description}</p>
                 </div>
               </article>
             ))}
