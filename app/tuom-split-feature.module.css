@@ -248,6 +248,7 @@
   border-top: 1px solid var(--pricing-line);
   font-family: var(--font-family--canvasly-copy) !important;
   isolation: isolate;
+  scroll-margin-top: 7rem;
 }
 
 .pricingSection::before {

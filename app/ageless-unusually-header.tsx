@@ -17,8 +17,7 @@ const NAVIGATION_LINKS = [
   { label: "Agenda", href: "/agenda" },
   {
     label: "Buy Tickets",
-    href: "https://luma.com/ageless3",
-    external: true,
+    href: "/#tickets",
   },
   { label: "Exhibit & Sponsor", href: "/contact" },
   { label: "Contact", href: "/contact" },
@@ -186,7 +185,7 @@ export function AgelessUnusuallyHeader({
       <div className={styles.headerInner}>
         <div className={styles.headerBackground} aria-hidden="true" />
 
-        <Link className={styles.brandGroup} href="/" aria-label="Ageless home">
+        <Link className={styles.brandGroup} href="/#home" aria-label="Ageless home">
           <span className={styles.brandLink}>
             <span className={styles.brandRoll}>
               <img src="/ageless-logo-transparent.png" alt="" />
@@ -201,13 +200,11 @@ export function AgelessUnusuallyHeader({
 
         <div className={styles.navigationControls}>
           <nav className={styles.desktopNavigation} aria-label="Primary navigation">
-            {DESKTOP_NAVIGATION_LINKS.map(({ label, href, external }) => (
+            {DESKTOP_NAVIGATION_LINKS.map(({ label, href }) => (
               <a
                 key={label}
                 className={styles.desktopLink}
                 href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noreferrer" : undefined}
                 aria-haspopup={label === "Exhibit & Sponsor" ? "dialog" : undefined}
                 aria-controls={label === "Exhibit & Sponsor" ? "ageless-sponsor-dialog" : undefined}
                 onClick={label === "Exhibit & Sponsor" ? openSponsorModal : undefined}
@@ -249,7 +246,7 @@ export function AgelessUnusuallyHeader({
         <div className={styles.overlayPanel}>
           <div className={styles.overlayPanelBackground} aria-hidden="true" />
           <nav className={styles.overlayNavigation} aria-label="Menu navigation">
-            {NAVIGATION_LINKS.map(({ label, href, external }, index) => (
+            {NAVIGATION_LINKS.map(({ label, href }, index) => (
               <div
                 className={styles.overlayLinkClip}
                 key={label}
@@ -258,8 +255,6 @@ export function AgelessUnusuallyHeader({
                   ref={index === 0 ? firstMenuLink : undefined}
                   className={styles.overlayLink}
                   href={href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
                   tabIndex={menuOpen ? 0 : -1}
                   aria-haspopup={label === "Exhibit & Sponsor" ? "dialog" : undefined}
                   aria-controls={label === "Exhibit & Sponsor" ? "ageless-sponsor-dialog" : undefined}

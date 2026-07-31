@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -93,17 +94,15 @@ export function UnusuallyIntro() {
               </p>
 
               <div className={styles.actions}>
-                <a
+                <Link
                   className="ageless-cta ageless-cta--primary"
-                  href="https://luma.com/ageless3"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="/#tickets"
                 >
                   <span className="ageless-cta__glow" aria-hidden="true" />
                   <span className="ageless-cta__label" data-text="Get your tickets">
                     Get your tickets
                   </span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

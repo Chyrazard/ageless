@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./countdown.module.css";
 
 const TARGET_DATE = new Date("2027-01-14T00:00:00-08:00").getTime();
-const TICKETS_URL = "https://luma.com/ageless3";
+const TICKETS_SECTION_URL = "/#tickets";
 
 type TimeLeft = {
   days: number;
@@ -259,15 +260,13 @@ export function CountdownExperience() {
               </p>
             </section>
             <div className={styles.ticketActions}>
-              <a
+              <Link
                 className={`${styles.ticketButton} ${styles.ticketButtonPrimary}`}
-                href={TICKETS_URL}
-                target="_blank"
-                rel="noreferrer"
+                href={TICKETS_SECTION_URL}
               >
                 <span className={styles.ticketButtonGlow} aria-hidden="true" />
                 <span className={styles.ticketButtonLabel} data-text="Buy tickets">Buy tickets</span>
-              </a>
+              </Link>
               <a
                 className={`${styles.ticketButton} ${styles.ticketButtonDark}`}
                 href="/contact"

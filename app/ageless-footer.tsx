@@ -15,7 +15,7 @@ export function AgelessFooter() {
     <footer className={styles.footer} aria-label="Ageless footer">
       <div className={styles.inner}>
         <div className={styles.top}>
-          <Link href="/" className={styles.brand} aria-label="Ageless home">
+          <Link href="/#home" className={styles.brand} aria-label="Ageless home">
             <Image
               src="/ageless-logo-transparent.png"
               alt="Ageless"
@@ -38,7 +38,7 @@ export function AgelessFooter() {
             <h2>Ageless Evolution Summit</h2>
             <p>Longevity, wellness, science, and meaningful connections.</p>
             <div className={styles.actions}>
-              <a href="https://luma.com/ageless3" target="_blank" rel="noreferrer">Buy Tickets</a>
+              <Link href="/#tickets">Buy Tickets</Link>
               <a
                 href="#sponsor-inquiry"
                 aria-haspopup="dialog"
@@ -53,8 +53,8 @@ export function AgelessFooter() {
 
         <div className={styles.bottom}>
           <nav className={styles.links} aria-label="Footer navigation">
-            <Link href="/">Home</Link><Link href="/speakers">Speakers</Link>
-            <a href="https://luma.com/ageless3" target="_blank" rel="noreferrer">Buy Tickets</a>
+            <Link href="/#home">Home</Link><Link href="/speakers">Speakers</Link>
+            <Link href="/#tickets">Buy Tickets</Link>
             <a href="mailto:hello@agelessevo.com">Contact</a>
           </nav>
           <p className={styles.credit}>Ageless · by <a href="https://becltech.com" target="_blank" rel="noreferrer">Belctech</a></p>

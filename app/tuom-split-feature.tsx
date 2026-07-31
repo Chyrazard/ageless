@@ -382,6 +382,7 @@ function HomePricingSection() {
 
   return (
     <section
+      id="tickets"
       ref={sectionRef}
       className={styles.pricingSection}
       aria-labelledby="home-pricing-title"

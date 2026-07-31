@@ -7,6 +7,7 @@ import { AvooraStats } from "./avoora-stats";
 import { CineryAubreyCarousel } from "./cinery-aubrey-carousel";
 import { UnusuallyIntro } from "./unusually-intro";
 import { TuomSplitFeature } from "./tuom-split-feature";
+import { HomeScrollReset } from "./home-scroll-reset";
 
 const home = mirroredPages["/"];
 
@@ -64,6 +65,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
+      <HomeScrollReset />
       <MirroredPageView page={home} removeLegacyHomeSections />
       <CountdownExperience />
       <CineryAubreyCarousel />

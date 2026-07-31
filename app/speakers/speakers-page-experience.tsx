@@ -109,7 +109,7 @@ export function SpeakersPageExperience() {
                   />
                 </div>
                 <div className={styles.speakerContent}>
-                  <span>Ageless Speaker 2027</span>
+                  <span>{speaker.focus ?? "Ageless Speaker 2027"}</span>
                   <h2>{speaker.name}</h2>
                   <p>{speaker.description}</p>
                 </div>
