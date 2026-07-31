@@ -6,21 +6,11 @@ import type {
 } from "react";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import styles from "./cinery-aubrey-carousel.module.css";
+import { visibleSpeakers2027 } from "./speaker-data";
 
-const confirmedPanels = [
-  { image: "/speakers/alex-williams.webp", name: "Alex Williams" },
-  { image: "/speakers/aubrey-degrey.webp", name: "Aubrey de Grey" },
-  { image: "/speakers/daniel-kraft.webp", name: "Dr. Daniel Kraft" },
-  { image: "/speakers/david-kim.webp", name: "David Kim" },
-  { image: "/speakers/eric-verdin.webp", name: "Eric Verdin" },
-  { image: "/speakers/josejb.webp", name: "José Bitar" },
-  { image: "/speakers/niko.webp", name: "Dr. Niko Dimitriadis" },
-  { image: "/speakers/peter-crone.webp", name: "Peter Crone" },
-  { image: "/speakers/zak-williams.webp", name: "Zak Williams" },
-];
-
-const panels = confirmedPanels;
+const panels = visibleSpeakers2027;
 const wheelSlotCount = 9;
 const panelRadius = 21;
 const scenePerspective = panelRadius * 3.6;
@@ -303,10 +293,10 @@ export function CineryAubreyCarousel() {
         </div>
       </div>
 
-      <div className={styles.scrollCue} aria-hidden="true">
-        <span>↓</span>
-        <small>Keep scrolling</small>
-      </div>
+      <Link className={`${styles.scrollCue} ageless-cta ageless-cta--primary ageless-cta--speaker-cue`} href="/speakers">
+        <span className="ageless-cta__glow" aria-hidden="true" />
+        <span className="ageless-cta__label" data-text="All speakers">All speakers</span>
+      </Link>
 
       <p className={styles.location}>Ageless Evolution · San Francisco</p>
     </section>,

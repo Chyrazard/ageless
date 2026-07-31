@@ -224,11 +224,11 @@
 
 :global(.ageless-event-date) {
   color: #1e1e1e;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-family--primary);
   margin-top: 0;
   margin-bottom: 17px;
   font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
-  font-weight: 750 !important;
+  font-weight: 700 !important;
   letter-spacing: -0.025em !important;
   line-height: 1.1 !important;
   text-align: center;
@@ -237,9 +237,9 @@
 
 :global(.ageless-event-kicker) {
   color: #1e1e1e;
-  font-family: Interdisplay, Arial, sans-serif;
+  font-family: "Ageless Overused Grotesk", Interdisplay, Arial, sans-serif;
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
   margin-top: 22px;
@@ -253,7 +253,7 @@
 }
 
 :global(.ageless-event-location) {
-  font-weight: 400;
+  font-weight: 700;
 }
 
 :global(#ageless-countdown-slot) {
@@ -306,65 +306,12 @@
   white-space: nowrap;
 }
 
-:global(.ageless-live-marquee-block) {
-  width: 100vw !important;
-  min-width: 100vw !important;
-  max-width: none !important;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
-}
-
-:global(.ageless-live-marquee) {
-  width: 100%;
-  overflow: hidden;
-  color: #090909;
-}
-
-:global(.ageless-live-marquee-track) {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  animation: liveWellMarquee 18s linear infinite;
-}
-
-:global(.ageless-live-marquee-group) {
-  display: flex;
-  flex: none;
-  align-items: center;
-  gap: clamp(24px, 2.4vw, 48px);
-  padding-right: clamp(24px, 2.4vw, 48px);
-  font-family: Interdisplay, Arial, sans-serif;
-  font-size: clamp(64px, 7.6vw, 124px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-:global(.ageless-live-marquee-group i) {
-  display: block;
-  flex: none;
-  width: clamp(30px, 3.7vw, 60px);
-  height: clamp(30px, 3.7vw, 60px);
-  background: #b8ff00;
-  border-radius: 50%;
-  box-shadow: 0 0 22px rgba(184, 255, 0, 0.28);
-}
-
 :global(.home-about .partners-marquee-wrapper) {
   display: none !important;
 }
 
 :global(.home-about) {
   display: none !important;
-}
-
-:global(.ageless-relocated-marquee-section) {
-  width: 100%;
-  padding: clamp(38px, 4.5vw, 72px) 0;
-  overflow: hidden;
-  background: #fff;
 }
 
 :global(.hero [style*="opacity:0"]),
@@ -446,7 +393,7 @@
   :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; transform: translateY(22px) !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: auto !important; max-height: 132px; margin-top: 0 !important; }
   :global(.ageless-event-kicker) { margin-top: 14px; margin-bottom: 5px; font-size: 1.1rem; letter-spacing: -0.02em; }
-  :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: clamp(0.76rem, 3.4vw, 1.12rem) !important; font-weight: 750 !important; }
+  :global(.ageless-event-date) { margin-top: 0; margin-bottom: 11px; font-size: clamp(0.76rem, 3.4vw, 1.12rem) !important; font-weight: 700 !important; }
   :global(#ageless-countdown-slot) { width: 92vw; min-height: 150px; }
   :global(.nav-logo) { width: 4rem !important; height: 40px; }
   :global(.hero) { height: auto !important; min-height: 0 !important; }
@@ -462,14 +409,6 @@
     transform: none !important;
   }
   :global(.hero-event-date) { font-size: 9px; }
-  :global(.ageless-live-marquee-group) {
-    gap: 16px;
-    padding-right: 16px;
-    font-size: clamp(42px, 13vw, 58px);
-    letter-spacing: -0.02em;
-  }
-  :global(.ageless-live-marquee-group i) { width: 22px; height: 22px; }
-  :global(.ageless-live-marquee-track) { animation-duration: 13s; }
   .compactCountdown { height: 86px; }
   .countdownExperience { gap: 20px; }
   .numberCanvas { height: 63px; }
@@ -488,7 +427,6 @@
   .ticketButtonGlow { animation-duration: 0.01ms; animation-delay: 0ms; }
   .ticketButtonLabel,
   .ticketButtonLabel::after { transition-duration: 0.01ms; }
-  :global(.ageless-live-marquee-track) { animation: none !important; }
   :global(.hero-marquee-block) { animation: none !important; }
 }
 
@@ -536,9 +474,4 @@
 @keyframes agelessHeroMarquee {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(calc(-100% - 10px), 0, 0); }
-}
-
-@keyframes liveWellMarquee {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-25%, 0, 0); }
 }

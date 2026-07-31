@@ -1,0 +1,205 @@
+.page {
+  min-height: 100svh;
+  overflow: hidden;
+  color: #111;
+  background: #fff;
+}
+
+.hero {
+  box-sizing: border-box;
+  height: 100svh;
+  min-height: 36rem;
+  display: grid;
+  place-items: center;
+  padding: clamp(7.5rem, 10vw, 8.75rem) clamp(1rem, 3vw, 3rem)
+    clamp(1rem, 2vw, 1.5rem);
+}
+
+.panel {
+  position: relative;
+  width: min(100%, 1120px);
+  height: min(62svh, 36rem);
+  min-height: 26rem;
+  overflow: hidden;
+  border: 1px solid rgba(15, 15, 15, 0.08);
+  border-radius: clamp(24px, 3vw, 46px);
+  background: linear-gradient(145deg, #f7f7f5, #eaeae8);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.08);
+}
+
+.schedule {
+  padding: clamp(1.2rem, 3vw, 3.2rem);
+  filter: blur(4px);
+  opacity: 0.34;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(110px, 165px) 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.65rem) 0;
+  border-bottom: 1px solid rgba(15, 15, 15, 0.26);
+}
+
+.row time {
+  justify-self: start;
+  padding: 0.65em 1.15em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  font-family: var(--font-family--canvasly-copy, Arial, sans-serif);
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.row > div {
+  display: grid;
+  gap: 0.3rem;
+  text-align: right;
+}
+
+.row strong {
+  font-family: var(--font-family--canvasly-title, Arial, sans-serif);
+  font-size: clamp(1rem, 2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.row span {
+  font-family: var(--font-family--canvasly-copy, Arial, sans-serif);
+  font-size: clamp(0.8rem, 1.3vw, 1.1rem);
+}
+
+.status {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.94),
+    rgba(255, 255, 255, 0.56) 42%,
+    rgba(255, 255, 255, 0.08) 74%
+  );
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-family: "Chivo Mono", "Ageless DM Mono", monospace !important;
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  font-weight: 600 !important;
+  letter-spacing: 0.16em;
+}
+
+.comingSoon {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  color: #111;
+  font-family: var(--font-family--canvasly-title, Arial, sans-serif) !important;
+  font-size: clamp(3rem, 8vw, 8rem);
+  font-weight: 700 !important;
+  line-height: 0.88 !important;
+  letter-spacing: -0.055em !important;
+  white-space: nowrap;
+}
+
+.comingSoon span {
+  display: inline-block;
+  transform-origin: 50% 85%;
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 400ms ease,
+    text-shadow 400ms ease;
+}
+
+.comingSoon span:hover {
+  color: #b8ff00;
+  text-shadow: 0 0.16em 0.45em rgba(184, 255, 0, 0.25);
+  transform: translateY(-0.17em) rotate(-3deg) scale(1.08);
+}
+
+.comingSoon span:nth-child(even):hover {
+  transform: translateY(0.08em) rotate(3deg) scale(1.08);
+}
+
+.space {
+  width: 0.22em;
+}
+
+.note {
+  max-width: 34rem;
+  margin: 1.35rem 0 0;
+  font-family: var(--font-family--canvasly-copy, Arial, sans-serif) !important;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  font-weight: 400 !important;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 34rem;
+    padding: 7.25rem 0.75rem 0.75rem;
+  }
+
+  .panel {
+    width: min(100%, 36rem);
+    height: min(66svh, 32rem);
+    min-height: 24rem;
+    border-radius: 24px;
+  }
+
+  .schedule {
+    padding: 1rem;
+  }
+
+  .row {
+    grid-template-columns: 84px 1fr;
+    gap: 0.75rem;
+    padding: 1rem 0;
+  }
+
+  .row time {
+    padding: 0.7em 0.85em;
+    font-size: 0.68rem;
+  }
+
+  .row strong {
+    font-size: 0.9rem;
+  }
+
+  .row span {
+    font-size: 0.68rem;
+  }
+
+  .status {
+    padding: 1rem;
+  }
+
+  .comingSoon {
+    font-size: clamp(2.65rem, 14vw, 5rem);
+    letter-spacing: -0.06em !important;
+  }
+
+  .note {
+    max-width: 17rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comingSoon span {
+    transition: none;
+  }
+
+  .comingSoon span:hover,
+  .comingSoon span:nth-child(even):hover {
+    transform: none;
+  }
+}

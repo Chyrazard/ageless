@@ -5,9 +5,6 @@ import { WebflowRuntime } from "./webflow-runtime";
 const HERO_SOCIAL_LINKS =
   '<div class="social-links-block"><a href="https://www.behance.net/nayzakui" target="_blank" class="social-link">BE</a><div class="paragraph-text-mono">/</div><a href="https://dribbble.com/clonifylibrary" target="_blank" class="social-link">DR</a><div class="paragraph-text-mono">/</div><a href="https://x.com/ClonifyLibrary" target="_blank" class="social-link">X</a></div>';
 
-const SPEAKERS_MARQUEE =
-  '<div class="ageless-live-marquee" role="img" aria-label="Live Well · Age Less"><div class="ageless-live-marquee-track" aria-hidden="true"><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGE LESS</span><i></i></div><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGE LESS</span><i></i></div><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGE LESS</span><i></i></div><div class="ageless-live-marquee-group"><span>LIVE WELL</span><i></i><span>AGE LESS</span><i></i></div></div></div>';
-
 function replaceAfter(
   source: string,
   anchor: string,
@@ -49,7 +46,38 @@ function extractBalancedDiv(source: string, className: string) {
   return { html: source, element: "" };
 }
 
-export function MirroredPageView({ page }: { page: MirroredPage }) {
+function removeBalancedSection(source: string, className: string) {
+  const sectionPattern = /<\/?section\b[^>]*>/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = sectionPattern.exec(source))) {
+    if (match[0].startsWith("</section")) continue;
+
+    const classMatch = match[0].match(/\bclass="([^"]*)"/);
+    const classes = classMatch?.[1].split(/\s+/) ?? [];
+    if (!classes.includes(className)) continue;
+
+    const startIndex = match.index;
+    let depth = 1;
+
+    while ((match = sectionPattern.exec(source))) {
+      depth += match[0].startsWith("</section") ? -1 : 1;
+      if (depth !== 0) continue;
+
+      return `${source.slice(0, startIndex)}${source.slice(sectionPattern.lastIndex)}`;
+    }
+  }
+
+  return source;
+}
+
+export function MirroredPageView({
+  page,
+  removeLegacyHomeSections = false,
+}: {
+  page: MirroredPage;
+  removeLegacyHomeSections?: boolean;
+}) {
   const transformedHtml = page.html
     .replaceAll(
       "/webflow/assets/7c5b461c18-6904ca7a4abbe56dfff89523_about-logo.svg",
@@ -62,7 +90,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     .replaceAll("Bungee Branding Logo Icon", "Ageless logo")
     .replace(
       '<section class="hero">',
-      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="auto" poster="/okio-hero-background-poster.jpg" aria-hidden="true" tabindex="-1"><source src="/okio-hero-background.mp4" type="video/mp4"/><source src="/okio-hero-background.webm" type="video/webm"/></video>',
+      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="auto" poster="/colorful-centered-poster.png?v=3" aria-hidden="true" tabindex="-1"><source src="/colorful-centered-hevc.mov?v=3" type="video/quicktime; codecs=hvc1"/><source src="/colorful-centered.webm?v=3" type="video/webm"/></video>',
     )
     .replaceAll(
       /<div data-poster-url="\/webflow\/assets\/cafbb0c425-68f33158cced4a41f89d89a6_6903d92be1096c25ee0356a4_hero-marquee-video-01-poster-00001\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g,
@@ -145,7 +173,7 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     )
     .replace(
       '</section><section class="home-projects">',
-      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-tuom-feature-slot"></div><section class="ageless-relocated-marquee-section" aria-label="Live Well, Age Less">${SPEAKERS_MARQUEE}</section><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
+      `</section><div id="ageless-avoora-stats-slot"></div><section class="ageless-conference-carousel-section" aria-label="Ageless conference gallery">${conferenceCarousel.element}</section><div id="ageless-unusually-intro-slot"></div><div id="ageless-tuom-feature-slot"></div><div id="ageless-unusually-cta-slot"></div><section class="home-projects">`,
     );
 
   const brandedHtml = replaceAfter(
@@ -155,12 +183,24 @@ export function MirroredPageView({ page }: { page: MirroredPage }) {
     '<div class="hero-event-date paragraph-text-mono">01 / 14 / 27</div>',
   );
 
+  const withoutLegacyGlobalSections = ["testimonials", "faq", "footer"].reduce(
+    (html, className) => removeBalancedSection(html, className),
+    brandedHtml,
+  );
+
+  const finalHtml = removeLegacyHomeSections
+    ? ["matrics", "home-projects", "home-blog"].reduce(
+        (html, className) => removeBalancedSection(html, className),
+        withoutLegacyGlobalSections,
+      )
+    : withoutLegacyGlobalSections;
+
   return (
     <>
       <AgelessUnusuallyHeader />
       <main
         className="mirrored-content"
-        dangerouslySetInnerHTML={{ __html: brandedHtml }}
+        dangerouslySetInnerHTML={{ __html: finalHtml }}
       />
       <WebflowRuntime page={page} />
     </>

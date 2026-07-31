@@ -56,6 +56,33 @@
     inset 0 1px 0 rgb(255 255 255 / 80%);
 }
 
+.headerDark .headerInner,
+.headerDark.headerScrolled .headerInner {
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+}
+
+.headerDark .headerBackground,
+.headerDark.headerScrolled .headerBackground {
+  border-color: rgb(255 255 255 / 16%);
+  background: rgb(24 24 24 / 78%);
+  box-shadow:
+    0 14px 42px rgb(0 0 0 / 24%),
+    inset 0 1px 0 rgb(255 255 255 / 12%);
+}
+
+.headerDark .brandRoll img {
+  filter: brightness(0) invert(1);
+}
+
+.headerDark .brandDivider {
+  background: rgb(255 255 255 / 28%);
+}
+
+.headerDark .brandDescriptor {
+  color: #fff;
+}
+
 .brandGroup {
   position: relative;
   z-index: 2;
@@ -351,6 +378,326 @@
   letter-spacing: -0.02em;
 }
 
+.sponsorModal {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  padding: clamp(0.75rem, 2vw, 1.5rem);
+  visibility: hidden;
+  pointer-events: none;
+  place-items: center;
+  transition: visibility 0s linear 700ms;
+}
+
+.sponsorModalOpen {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.sponsorModalBackdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: rgb(6 6 6 / 52%);
+  border: 0;
+  cursor: default;
+  opacity: 0;
+  -webkit-backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
+  transition:
+    opacity 520ms ease,
+    -webkit-backdrop-filter 650ms ease,
+    backdrop-filter 650ms ease;
+}
+
+.sponsorModalOpen .sponsorModalBackdrop {
+  opacity: 1;
+  -webkit-backdrop-filter: blur(15px) saturate(88%);
+  backdrop-filter: blur(15px) saturate(88%);
+}
+
+.sponsorDialog {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.78fr) minmax(27rem, 1.22fr);
+  width: min(100%, 69rem);
+  max-height: calc(100dvh - clamp(1.5rem, 4vw, 3rem));
+  padding: clamp(2.5rem, 4.5vw, 5rem);
+  overflow: hidden auto;
+  color: #111;
+  background:
+    linear-gradient(145deg, rgb(249 249 246 / 94%), rgb(231 231 227 / 90%));
+  border: 1px solid rgb(255 255 255 / 84%);
+  border-radius: clamp(1.75rem, 3vw, 3rem);
+  box-shadow:
+    0 2.5rem 7rem rgb(0 0 0 / 30%),
+    inset 0 1px rgb(255 255 255 / 92%);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  opacity: 0;
+  transform: translateY(3rem) scale(0.96);
+  -webkit-backdrop-filter: blur(28px) saturate(110%);
+  backdrop-filter: blur(28px) saturate(110%);
+  transition:
+    opacity 420ms ease,
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sponsorModalOpen .sponsorDialog {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.sponsorGlow {
+  position: absolute;
+  z-index: -1;
+  right: -12rem;
+  bottom: -13rem;
+  width: 34rem;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 38% 36%, rgb(255 255 255 / 82%), transparent 38%),
+    radial-gradient(circle at 58% 54%, rgb(202 214 198 / 58%), transparent 62%);
+  border-radius: 50%;
+  filter: blur(32px);
+  pointer-events: none;
+}
+
+.sponsorClose {
+  position: absolute;
+  z-index: 4;
+  top: clamp(1rem, 2vw, 1.5rem);
+  right: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  width: 3rem;
+  aspect-ratio: 1;
+  padding: 0;
+  color: #fff;
+  background: #1b1b1b;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  place-items: center;
+  transition:
+    color 320ms ease,
+    background-color 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sponsorClose:hover,
+.sponsorClose:focus-visible {
+  color: #111;
+  background: #bdff39;
+  transform: rotate(90deg) scale(1.06);
+}
+
+.sponsorClose:focus-visible,
+.sponsorSubmit:focus-visible,
+.sponsorField input:focus-visible,
+.sponsorField textarea:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 3px;
+}
+
+.sponsorClose span,
+.sponsorClose span::before,
+.sponsorClose span::after {
+  display: block;
+}
+
+.sponsorClose span {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+}
+
+.sponsorClose span::before,
+.sponsorClose span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1.5px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sponsorClose span::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.sponsorIntro {
+  align-self: start;
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.sponsorIntro > p {
+  margin: 0 0 1.4rem;
+  color: rgb(17 17 17 / 52%);
+  font-family: "Chivo Mono", monospace !important;
+  font-size: 0.7rem;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sponsorIntro h2 {
+  max-width: 27rem;
+  margin: 0;
+  color: #111;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(2.65rem, 4.4vw, 4.8rem);
+  font-weight: 700 !important;
+  letter-spacing: -0.06em !important;
+  line-height: 0.88 !important;
+}
+
+.sponsorIntro h2 em {
+  color: rgb(17 17 17 / 48%);
+  font-style: italic;
+}
+
+.sponsorIntro > span {
+  display: block;
+  max-width: 24rem;
+  margin-top: 1.75rem;
+  color: rgb(17 17 17 / 58%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  font-weight: 400 !important;
+  line-height: 1.35;
+}
+
+.sponsorForm {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 1rem;
+}
+
+.sponsorField {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sponsorField > span {
+  padding-left: 0.15rem;
+  color: #252525;
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.78rem;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+
+.sponsorField input,
+.sponsorField textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 1rem 1.15rem;
+  color: #111;
+  background: rgb(255 255 255 / 72%);
+  border: 1px solid rgb(17 17 17 / 10%);
+  border-radius: 1.05rem;
+  box-shadow: inset 0 1px rgb(255 255 255 / 90%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 1rem;
+  font-weight: 400 !important;
+  line-height: 1.2;
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    box-shadow 260ms ease;
+}
+
+.sponsorField input {
+  height: 3.65rem;
+}
+
+.sponsorField textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+}
+
+.sponsorField input::placeholder,
+.sponsorField textarea::placeholder {
+  color: rgb(17 17 17 / 30%);
+}
+
+.sponsorField input:hover,
+.sponsorField textarea:hover,
+.sponsorField input:focus,
+.sponsorField textarea:focus {
+  background: rgb(255 255 255 / 92%);
+  border-color: rgb(17 17 17 / 30%);
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 100%),
+    0 0.75rem 2rem rgb(0 0 0 / 5%);
+}
+
+.sponsorMessage {
+  grid-column: 1 / -1;
+}
+
+.sponsorSubmit {
+  grid-column: 1 / -1;
+  display: flex;
+  width: max-content;
+  min-width: 12rem;
+  min-height: 3.6rem;
+  margin-top: 0.25rem;
+  padding: 0.85rem 0.9rem 0.85rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  color: #fff;
+  background: #171717;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: "Chivo Mono", monospace !important;
+  font-size: 0.72rem;
+  font-weight: 600 !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition:
+    color 320ms ease,
+    background-color 320ms ease,
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sponsorSubmit i {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  color: #111;
+  background: #bdff39;
+  border-radius: 50%;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  place-items: center;
+}
+
+.sponsorSubmit:hover,
+.sponsorSubmit:focus-visible {
+  color: #111;
+  background: #bdff39;
+  transform: translateY(-0.18rem);
+}
+
+.sponsorSubmit:hover i,
+.sponsorSubmit:focus-visible i {
+  background: #fff;
+}
+
 :global(.mirrored-content > .page-wrapper > .navbar) {
   display: none !important;
 }
@@ -490,6 +837,45 @@
   .overlayLinkRoll > span {
     font-size: clamp(2.25rem, 10vw, 3.3rem);
   }
+
+  .sponsorModal {
+    padding: 0.5rem;
+  }
+
+  .sponsorDialog {
+    grid-template-columns: 1fr;
+    width: min(100%, 42rem);
+    max-height: calc(100dvh - 1rem);
+    padding: 4.5rem 1.25rem 1.5rem;
+    border-radius: 1.75rem;
+    gap: 2.25rem;
+  }
+
+  .sponsorIntro {
+    padding-top: 0;
+  }
+
+  .sponsorIntro h2 {
+    max-width: 24rem;
+    font-size: clamp(2.65rem, 12vw, 4.25rem);
+  }
+
+  .sponsorIntro > span {
+    margin-top: 1.25rem;
+  }
+
+  .sponsorForm {
+    grid-template-columns: 1fr;
+  }
+
+  .sponsorMessage,
+  .sponsorSubmit {
+    grid-column: 1;
+  }
+
+  .sponsorSubmit {
+    width: 100%;
+  }
 }
 
 @media (max-width: 420px) {
@@ -516,6 +902,15 @@
   .overlayLinkNumber {
     font-size: 0.6rem;
   }
+
+  .sponsorDialog {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sponsorIntro h2 {
+    font-size: clamp(2.35rem, 11.5vw, 3.25rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -526,7 +921,13 @@
   .overlayShade,
   .overlayPanelBackground,
   .overlayLink,
-  .overlayLinkRoll > span {
+  .overlayLinkRoll > span,
+  .sponsorModalBackdrop,
+  .sponsorDialog,
+  .sponsorClose,
+  .sponsorField input,
+  .sponsorField textarea,
+  .sponsorSubmit {
     transition-duration: 1ms !important;
     transition-delay: 0ms !important;
   }

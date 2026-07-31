@@ -6,10 +6,10 @@ import { createPortal } from "react-dom";
 import styles from "./unusually-intro.module.css";
 
 const headlineLines = [
-  <>3 Years of Ageless:</>,
-  <>Be in the Room Where</>,
+  <>3 years of Ageless:</>,
+  <>be in the room where</>,
   <span className={styles.secondary}>
-    <span className={styles.accentItalic}>Health</span> meets decisions.
+    <span className={styles.accentWord}>health</span> meets decisions.
   </span>,
 ];
 
@@ -85,24 +85,24 @@ export function UnusuallyIntro() {
             <div className={styles.descriptionBlock}>
               <p className={styles.description}>
                 When San Francisco becomes the epicenter of health and biotech
-                innovation, you want to be right in the middle of it. Ageless
-                Evolution 2027 leverages that massive city-wide momentum,
+                innovation, you want to be right in the middle of it.
+                <br />
+                Ageless Evolution 2027 leverages that massive city-wide momentum,
                 connecting you with forward-thinking decision-makers during the
                 most electric week of the year.
               </p>
 
               <div className={styles.actions}>
                 <a
-                  className={styles.primaryButton}
+                  className="ageless-cta ageless-cta--primary"
                   href="https://luma.com/ageless3"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className={styles.buttonRoll}>
-                    <span>Get your tickets</span>
-                    <span>Get your tickets</span>
+                  <span className="ageless-cta__glow" aria-hidden="true" />
+                  <span className="ageless-cta__label" data-text="Get your tickets">
+                    Get your tickets
                   </span>
-                  <span className={styles.buttonStar} aria-hidden="true">✦</span>
                 </a>
               </div>
             </div>

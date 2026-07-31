@@ -1,0 +1,739 @@
+.page {
+  --iron-black: #050505;
+  --iron-card: #1a1a1a;
+  --iron-line: rgb(255 255 255 / 18%);
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+  overflow: clip;
+  color: #fff;
+  background: var(--iron-black);
+  font-family: var(--font-family--canvasly-copy);
+  isolation: isolate;
+}
+
+.fixedBackdrop {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  background: #020202;
+  pointer-events: none;
+}
+
+.fixedBackdrop video {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  width: min(41vw, 36rem);
+  height: min(41vw, 36rem);
+  object-fit: contain;
+  opacity: 1;
+  filter: none;
+  transform: translateX(-50%);
+}
+
+.results,
+.pricing,
+.contact {
+  position: relative;
+  z-index: 1;
+  padding: clamp(7rem, 10vw, 9rem) clamp(1.25rem, 4vw, 4rem);
+  border-top: 1px solid var(--iron-line);
+}
+
+.results {
+  padding-top: clamp(9rem, 11vw, 11rem);
+}
+
+.sectionIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(18rem, 5fr);
+  gap: 2rem;
+  align-items: start;
+  max-width: 100rem;
+  margin: 0 auto clamp(4rem, 7vw, 7rem);
+}
+
+.resultsIntro {
+  display: block;
+  margin-bottom: clamp(2.75rem, 3.5vw, 3.5rem);
+  text-align: center;
+}
+
+.sectionIntro.resultsIntro h1 {
+  max-width: none;
+  font-size: var(--font-size--ageless-section-title);
+}
+
+.resultsIntro h1 span {
+  display: block;
+}
+
+.resultsIntro h1 em {
+  color: #a8a8a8;
+  font-style: italic;
+}
+
+.sectionIntro h1,
+.sectionIntro h2,
+.contact h2 {
+  max-width: 53rem;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: var(--font-size--ageless-section-title);
+  font-weight: 400 !important;
+  letter-spacing: -0.045em !important;
+  line-height: 0.9 !important;
+  text-transform: none;
+}
+
+.sectionIntro > p,
+.contactCopy > p {
+  max-width: 42rem;
+  margin: 0;
+  color: rgb(255 255 255 / 62%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: clamp(1.15rem, 1.7vw, 1.75rem);
+  font-weight: 400 !important;
+  line-height: 1.15 !important;
+}
+
+.speakerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.2vw, 2.4rem);
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.speakerCard {
+  overflow: hidden;
+  background: var(--iron-card);
+  border: 1px solid rgb(255 255 255 / 7%);
+  border-radius: 1.1rem;
+}
+
+.speakerImageWrap {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: linear-gradient(145deg, #ececec, #b9b9b9);
+}
+
+.speakerImageWrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: none;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.speakerCard:hover .speakerImageWrap img {
+  transform: scale(1.035);
+}
+
+.speakerContent {
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(1.3rem, 2.2vw, 2rem);
+}
+
+.speakerContent span {
+  color: rgb(255 255 255 / 62%);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.speakerContent h2,
+.planCard h3,
+.faq h3 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 1 !important;
+}
+
+.speakerContent h2 {
+  font-size: clamp(1.55rem, 2vw, 2rem);
+}
+
+.speakerContent p,
+.planCard p,
+.faq p {
+  margin: 0;
+  color: rgb(255 255 255 / 60%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.98rem;
+  font-weight: 400 !important;
+  line-height: 1.15 !important;
+}
+
+.pricing,
+.contact {
+  background: rgb(5 5 5 / 76%);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.pricing {
+  padding: clamp(6rem, 9vw, 9rem) clamp(1.25rem, 4vw, 4rem);
+  font-family: var(--font-family--canvasly-copy) !important;
+}
+
+.pricingGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 100rem;
+  margin: 0 auto;
+  border-top: 1px solid var(--iron-line);
+  border-left: 1px solid var(--iron-line);
+}
+
+.pricing .sectionIntro {
+  display: block;
+}
+
+.pricing .sectionIntro h2 {
+  max-width: none;
+  font-size: var(--font-size--ageless-section-title);
+  font-weight: 700 !important;
+  text-align: center;
+}
+
+.pricing .sectionIntro h2 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.pricing .sectionIntro h2 em {
+  color: #9b9b9b;
+  font-style: italic;
+}
+
+.planCard {
+  display: flex;
+  min-height: 33rem;
+  padding: clamp(1.6rem, 2.4vw, 2.6rem);
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--iron-line);
+  border-bottom: 1px solid var(--iron-line);
+  font-family: var(--font-family--canvasly-copy) !important;
+}
+
+.featuredPlan {
+  background: linear-gradient(180deg, #171717 82%, transparent);
+}
+
+.planLabel {
+  display: flex;
+  min-height: clamp(4.7rem, 5.3vw, 5.8rem);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.planLabel h3 {
+  max-width: none;
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(1.4rem, 1.75vw, 2.1rem);
+  font-weight: 400 !important;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-transform: none;
+}
+
+.planLabel h3 > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.planLabel em {
+  padding: 0.4rem 0.7rem;
+  color: #090909;
+  background: #fff;
+  border-radius: 99px;
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.68rem;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.priceRow {
+  display: flex;
+  min-height: 4.65rem;
+  margin-top: 0.55rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.45rem 1rem;
+}
+
+.primaryPrice {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.primaryPrice strong {
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(2.4rem, 3.2vw, 3.8rem);
+  font-weight: 700 !important;
+  letter-spacing: -0.05em !important;
+  line-height: 1 !important;
+}
+
+.primaryPrice > span,
+.regularPrice span {
+  color: rgb(255 255 255 / 58%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.regularPrice {
+  display: grid;
+  padding-bottom: 0.42rem;
+  gap: 0.08rem;
+}
+
+.regularPrice del {
+  color: rgb(255 255 255 / 50%);
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(1rem, 1.35vw, 1.4rem);
+  font-weight: 500;
+  text-decoration-thickness: 2px;
+}
+
+.included {
+  margin-top: clamp(2.5rem, 4vw, 4.5rem);
+}
+
+.included h4 {
+  margin: 0 0 0.9rem;
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.sponsorCard .primaryPrice strong {
+  display: block;
+  max-width: none;
+  color: rgb(255 255 255 / 56%);
+  font-size: clamp(1.45rem, 1.8vw, 2.1rem);
+  line-height: 0.98 !important;
+  white-space: nowrap;
+}
+
+.planCard ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.planCard li {
+  padding: 0.75rem 0 0.75rem 1.9rem;
+  color: rgb(255 255 255 / 72%);
+  border-bottom: 1px solid var(--iron-line);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.planCard li::before {
+  position: absolute;
+  top: 0.68rem;
+  left: 0;
+  display: grid;
+  width: 1.15rem;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "✓";
+  font-size: 0.68rem;
+  line-height: 1;
+  place-items: center;
+}
+
+.planCard > a,
+.form button {
+  width: 100%;
+  padding: 1.2rem 1.6rem;
+  color: #111;
+  background: #fff;
+  border: 0;
+  border-radius: 999px;
+  font-family: Interdisplay, Arial, sans-serif !important;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.planCard > a:hover,
+.planCard > a:focus-visible {
+  color: #050505;
+  background: #bdff39;
+  box-shadow: 0 0 2.25rem rgb(189 255 57 / 24%);
+  transform: translateY(-0.18rem);
+}
+
+.ticketFaq {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1.6fr);
+  padding: clamp(5.5rem, 8vw, 8.5rem)
+    max(clamp(1.25rem, 4vw, 4rem), calc((100vw - 100rem) / 2));
+  gap: clamp(3rem, 7vw, 8rem);
+  overflow: hidden;
+  color: #fff;
+  background: rgb(5 5 5 / 76%);
+  border-top: 1px solid var(--iron-line);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  isolation: isolate;
+}
+
+.faqGlow {
+  position: absolute;
+  bottom: -16rem;
+  left: 50%;
+  z-index: -2;
+  width: min(65vw, 62rem);
+  height: 28rem;
+  background:
+    radial-gradient(circle at 36% 45%, rgb(95 220 255 / 34%), transparent 43%),
+    radial-gradient(circle at 68% 42%, rgb(230 102 255 / 38%), transparent 48%);
+  filter: blur(64px);
+  opacity: 0.72;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.ticketFaqIntro {
+  position: relative;
+  z-index: 1;
+  align-self: start;
+}
+
+.ticketFaqIntro p {
+  margin: 0 0 1.15rem;
+  color: rgb(255 255 255 / 48%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.72rem;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ticketFaqIntro h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(4.5rem, 9vw, 9.5rem);
+  font-weight: 700 !important;
+  letter-spacing: -0.065em !important;
+  line-height: 0.78 !important;
+}
+
+.ticketFaqList {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+}
+
+.ticketFaqItem {
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+.ticketFaqItem summary {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr) 2.6rem;
+  min-height: 5.5rem;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.6rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.ticketFaqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.ticketFaqItem summary:focus-visible {
+  outline: 2px solid #bdff39;
+  outline-offset: 5px;
+}
+
+.faqNumber {
+  color: rgb(255 255 255 / 38%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.faqQuestion {
+  color: rgb(255 255 255 / 90%);
+  font-family: var(--font-family--canvasly-title) !important;
+  font-size: clamp(1.15rem, 1.65vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  transition: color 280ms ease;
+}
+
+.faqToggle {
+  position: relative;
+  width: 2.6rem;
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 28%);
+  border-radius: 50%;
+  transition:
+    background-color 320ms ease,
+    border-color 320ms ease,
+    transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faqToggle::before,
+.faqToggle::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.8rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.faqToggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.ticketFaqItem[open] .faqToggle {
+  color: #050505;
+  background: #bdff39;
+  border-color: #bdff39;
+  transform: rotate(45deg);
+}
+
+.ticketFaqItem[open] .faqQuestion,
+.ticketFaqItem summary:hover .faqQuestion {
+  color: #bdff39;
+}
+
+.ticketFaqAnswer {
+  padding: 0 4.9rem 2rem;
+}
+
+.ticketFaqAnswer p {
+  max-width: 48rem;
+  margin: 0;
+  color: rgb(255 255 255 / 58%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: clamp(0.98rem, 1.2vw, 1.15rem);
+  font-weight: 400 !important;
+  line-height: 1.35 !important;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.contactCopy,
+.form {
+  max-width: 44rem;
+}
+
+.contactCopy > p {
+  margin-top: 1.5rem;
+}
+
+.faq {
+  display: grid;
+  gap: 0;
+  margin-top: 3rem;
+}
+
+.faq h3 {
+  padding: 1.25rem 0 0.65rem;
+  border-top: 1px solid var(--iron-line);
+  font-size: 1rem;
+  letter-spacing: 0 !important;
+}
+
+.faq p {
+  padding-bottom: 1.25rem;
+}
+
+.form {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.65rem;
+  color: rgb(255 255 255 / 74%);
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 1rem 0;
+  color: #fff;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--iron-line);
+  border-radius: 0;
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+  text-transform: none;
+}
+
+.form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #fff;
+}
+
+.success {
+  color: #fff;
+}
+
+.page [data-reveal] {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition:
+    opacity 900ms ease,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page [data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1300px) {
+  .pricingGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .sectionIntro,
+  .contact {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionIntro {
+    gap: 1.5rem;
+  }
+
+  .speakerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pricingGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .planCard {
+    min-height: 27rem;
+  }
+
+  .ticketFaq {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .results,
+  .pricing,
+  .ticketFaq,
+  .contact {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .results {
+    padding-top: 8.5rem;
+  }
+
+  .speakerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fixedBackdrop video {
+    width: 125vw;
+    height: 125vw;
+  }
+
+  .ticketFaq {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .ticketFaqIntro h2 {
+    font-size: clamp(4rem, 22vw, 6rem);
+  }
+
+  .ticketFaqItem summary {
+    grid-template-columns: 1.65rem minmax(0, 1fr) 2.35rem;
+    min-height: 5rem;
+  }
+
+  .faqToggle {
+    width: 2.35rem;
+  }
+
+  .ticketFaqAnswer {
+    padding-right: 0;
+    padding-left: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .faqToggle,
+  .faqQuestion {
+    transition: none;
+  }
+}

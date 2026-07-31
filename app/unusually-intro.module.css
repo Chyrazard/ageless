@@ -83,7 +83,7 @@
 .eyebrowTrack span {
   padding-right: 0.75rem;
   color: #0e0e0e;
-  font-family: "Ageless DM Mono", monospace;
+  font-family: var(--font-family--canvasly-copy);
   font-size: 1rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -97,15 +97,18 @@
 .headline {
   margin: 0;
   color: #0e0e0e;
-  font-family: "Ageless Mona Narrow", Impact, sans-serif;
-  font-size: 4rem;
+  font-family: var(--font-family--canvasly-title);
+  font-size: var(--font-size--ageless-section-title);
   font-weight: 700;
-  line-height: 1.1;
-  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  text-transform: none;
 }
 
 .lineClip {
   display: block;
+  margin-bottom: -0.18em;
+  padding-bottom: 0.18em;
   overflow: hidden;
 }
 
@@ -123,15 +126,14 @@
 
 .secondary {
   color: #8d8d8d;
+  font-style: italic;
 }
 
-.accentItalic {
+.accentWord {
   display: inline-block;
-  margin-right: 0.35em;
   color: #0e0e0e;
-  font-style: italic;
-  transform: skewX(-12deg);
-  transform-origin: left center;
+  font-style: normal;
+  transform: none;
 }
 
 .barcode {
@@ -163,10 +165,10 @@
 .description {
   max-width: 38rem;
   margin: 0;
-  font-family: "Ageless Mona", Arial, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.4;
+  font-family: var(--font-family--canvasly-copy);
+  font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.15;
 }
 
 .actions {
@@ -249,7 +251,7 @@
   }
 
   .headline {
-    font-size: 5rem;
+    font-size: var(--font-size--ageless-section-title);
   }
 }
 
@@ -269,7 +271,7 @@
   }
 
   .headline {
-    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-size: var(--font-size--ageless-section-title);
   }
 }
 
@@ -283,7 +285,7 @@
   }
 
   .headline {
-    font-size: 12.5vw;
+    font-size: var(--font-size--ageless-section-title);
     line-height: 1.05;
   }
 

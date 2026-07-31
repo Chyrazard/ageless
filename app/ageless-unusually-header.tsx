@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  type FormEvent,
+  type MouseEvent as ReactMouseEvent,
   useEffect,
   useRef,
   useState,
@@ -10,8 +12,8 @@ import styles from "./ageless-unusually-header.module.css";
 
 const NAVIGATION_LINKS = [
   { label: "Home", href: "/#home" },
-  { label: "Speakers", href: "/#speakers" },
-  { label: "Agenda", href: "/#agenda" },
+  { label: "Speakers", href: "/speakers" },
+  { label: "Agenda", href: "/agenda" },
   {
     label: "Buy Tickets",
     href: "https://luma.com/ageless3",
@@ -34,10 +36,22 @@ function RollingText({ children }: { children: string }) {
   );
 }
 
-export function AgelessUnusuallyHeader() {
+type AgelessUnusuallyHeaderProps = {
+  alwaysBackdrop?: boolean;
+  darkBackdrop?: boolean;
+};
+
+export function AgelessUnusuallyHeader({
+  alwaysBackdrop = false,
+  darkBackdrop = false,
+}: AgelessUnusuallyHeaderProps = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sponsorModalOpen, setSponsorModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const firstMenuLink = useRef<HTMLAnchorElement>(null);
+  const sponsorCloseButton = useRef<HTMLButtonElement>(null);
+  const sponsorDialog = useRef<HTMLDivElement>(null);
+  const sponsorTrigger = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const updateHeaderState = () => setIsScrolled(window.scrollY > 12);
@@ -51,8 +65,6 @@ export function AgelessUnusuallyHeader() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     const focusTimer = window.setTimeout(() => firstMenuLink.current?.focus(), 850);
 
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -63,13 +75,112 @@ export function AgelessUnusuallyHeader() {
     return () => {
       window.clearTimeout(focusTimer);
       window.removeEventListener("keydown", closeOnEscape);
-      document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen && !sponsorModalOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen, sponsorModalOpen]);
+
+  useEffect(() => {
+    if (!sponsorModalOpen) return;
+
+    const focusTimer = window.setTimeout(
+      () => sponsorCloseButton.current?.focus(),
+      380,
+    );
+
+    const handleModalKeys = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSponsorModalOpen(false);
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusableElements = Array.from(
+        sponsorDialog.current?.querySelectorAll<HTMLElement>(
+          'button, input, textarea, select, a[href], [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((element) => !element.hasAttribute("disabled"));
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+      if (!firstElement || !lastElement) return;
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleModalKeys);
+    return () => {
+      window.clearTimeout(focusTimer);
+      window.removeEventListener("keydown", handleModalKeys);
+      sponsorTrigger.current?.focus();
+    };
+  }, [sponsorModalOpen]);
+
+  useEffect(() => {
+    const openFromExternalTrigger = () => {
+      if (document.activeElement instanceof HTMLElement) {
+        sponsorTrigger.current = document.activeElement;
+      }
+
+      setMenuOpen(false);
+      setSponsorModalOpen(true);
+    };
+
+    window.addEventListener(
+      "ageless:open-sponsor-inquiry",
+      openFromExternalTrigger,
+    );
+
+    return () => {
+      window.removeEventListener(
+        "ageless:open-sponsor-inquiry",
+        openFromExternalTrigger,
+      );
+    };
+  }, []);
+
+  const openSponsorModal = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    sponsorTrigger.current = event.currentTarget;
+    setMenuOpen(false);
+    setSponsorModalOpen(true);
+  };
+
+  const submitSponsorInquiry = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const body = [
+      `Name: ${formData.get("name") ?? ""}`,
+      `Company: ${formData.get("company") ?? ""}`,
+      `Email: ${formData.get("email") ?? ""}`,
+      `Phone: ${formData.get("phone") ?? ""}`,
+      "",
+      String(formData.get("message") ?? ""),
+    ].join("\n");
+
+    window.location.href = `mailto:hello@agelessevo.com?subject=${encodeURIComponent(
+      "Ageless sponsor and exhibitor inquiry",
+    )}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <header
-      className={`${styles.header} ${isScrolled ? styles.headerScrolled : ""}`}
+      className={`${styles.header} ${isScrolled || alwaysBackdrop ? styles.headerScrolled : ""} ${darkBackdrop ? styles.headerDark : ""}`}
     >
       <div className={styles.headerInner}>
         <div className={styles.headerBackground} aria-hidden="true" />
@@ -96,6 +207,9 @@ export function AgelessUnusuallyHeader() {
                 href={href}
                 target={external ? "_blank" : undefined}
                 rel={external ? "noreferrer" : undefined}
+                aria-haspopup={label === "Exhibit & Sponsor" ? "dialog" : undefined}
+                aria-controls={label === "Exhibit & Sponsor" ? "ageless-sponsor-dialog" : undefined}
+                onClick={label === "Exhibit & Sponsor" ? openSponsorModal : undefined}
               >
                 <RollingText>{label}</RollingText>
               </a>
@@ -146,7 +260,13 @@ export function AgelessUnusuallyHeader() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noreferrer" : undefined}
                   tabIndex={menuOpen ? 0 : -1}
-                  onClick={() => setMenuOpen(false)}
+                  aria-haspopup={label === "Exhibit & Sponsor" ? "dialog" : undefined}
+                  aria-controls={label === "Exhibit & Sponsor" ? "ageless-sponsor-dialog" : undefined}
+                  onClick={
+                    label === "Exhibit & Sponsor"
+                      ? openSponsorModal
+                      : () => setMenuOpen(false)
+                  }
                 >
                   <span className={styles.overlayLinkRoll}>
                     <span>{label}</span>
@@ -159,6 +279,78 @@ export function AgelessUnusuallyHeader() {
               </div>
             ))}
           </nav>
+        </div>
+      </div>
+
+      <div
+        className={`${styles.sponsorModal} ${sponsorModalOpen ? styles.sponsorModalOpen : ""}`}
+        aria-hidden={!sponsorModalOpen}
+      >
+        <button
+          type="button"
+          className={styles.sponsorModalBackdrop}
+          aria-label="Close sponsor inquiry"
+          tabIndex={sponsorModalOpen ? 0 : -1}
+          onClick={() => setSponsorModalOpen(false)}
+        />
+
+        <div
+          id="ageless-sponsor-dialog"
+          ref={sponsorDialog}
+          className={styles.sponsorDialog}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="ageless-sponsor-title"
+        >
+          <div className={styles.sponsorGlow} aria-hidden="true" />
+          <button
+            ref={sponsorCloseButton}
+            type="button"
+            className={styles.sponsorClose}
+            aria-label="Close sponsor inquiry"
+            tabIndex={sponsorModalOpen ? 0 : -1}
+            onClick={() => setSponsorModalOpen(false)}
+          >
+            <span aria-hidden="true" />
+          </button>
+
+          <div className={styles.sponsorIntro}>
+            <p>Exhibit · Sponsor</p>
+            <h2 id="ageless-sponsor-title">
+              Let&apos;s build something <em>meaningful.</em>
+            </h2>
+            <span>
+              Tell us a little about you and your organization. Our team will
+              help shape the right Ageless partnership.
+            </span>
+          </div>
+
+          <form className={styles.sponsorForm} onSubmit={submitSponsorInquiry}>
+            <label className={styles.sponsorField}>
+              <span>Name</span>
+              <input name="name" autoComplete="name" placeholder="Name" required />
+            </label>
+            <label className={styles.sponsorField}>
+              <span>Company</span>
+              <input name="company" autoComplete="organization" placeholder="Company" />
+            </label>
+            <label className={styles.sponsorField}>
+              <span>Email</span>
+              <input name="email" type="email" autoComplete="email" placeholder="Email" required />
+            </label>
+            <label className={styles.sponsorField}>
+              <span>Phone</span>
+              <input name="phone" type="tel" autoComplete="tel" placeholder="Phone" />
+            </label>
+            <label className={`${styles.sponsorField} ${styles.sponsorMessage}`}>
+              <span>Message</span>
+              <textarea name="message" placeholder="Message" required />
+            </label>
+            <button className={styles.sponsorSubmit} type="submit">
+              <span>Submit inquiry</span>
+              <i aria-hidden="true">↗</i>
+            </button>
+          </form>
         </div>
       </div>
     </header>

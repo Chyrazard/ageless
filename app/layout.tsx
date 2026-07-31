@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "./globals.css";
+import { AgelessFooter } from "./ageless-footer";
 import { WhatsAppButton } from "./whatsapp-button";
 
 config.autoAddCss = false;
@@ -15,13 +16,36 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://moving-hood-primary-allen.trycloudflare.com"),
-  title: "Bungee — Creative Studio",
+  metadataBase: new URL("https://agelessevo.com"),
+  title: "Longevity and Wellness Summit",
   description:
-    "A creative studio cultivating bold brands, beautiful websites, and ideas that refuse to be ordinary.",
+    "Ageless Evolution Summit — longevity, wellness, science, and meaningful connections.",
   icons: {
-    icon: "/logo.jpeg",
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
     apple: "/logo.jpeg",
+  },
+  openGraph: {
+    title: "Longevity and Wellness Summit",
+    description:
+      "Ageless Evolution Summit — longevity, wellness, science, and meaningful connections.",
+    type: "website",
+    siteName: "Ageless Evolution Summit",
+    images: [
+      {
+        url: "/logo.jpeg",
+        width: 1600,
+        height: 836,
+        alt: "Ageless logo on a white background",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Longevity and Wellness Summit",
+    description:
+      "Ageless Evolution Summit — longevity, wellness, science, and meaningful connections.",
+    images: ["/logo.jpeg"],
   },
 };
 
@@ -40,6 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <AgelessFooter />
         <WhatsAppButton />
       </body>
     </html>
