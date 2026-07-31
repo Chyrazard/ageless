@@ -109,6 +109,16 @@ const TESTIMONIALS = [
 
 const PAST_SPEAKERS = [
   {
+    name: "Dr. Anastasia Chemeritskaya, MD, MHA",
+    role: "Physician · Longevity medicine leader",
+    image: "/assets/current-speakers/anastasia-chemeritskaya.png",
+  },
+  {
+    name: "Dr. Hillary Lin",
+    role: "Physician · Digital health and longevity innovator",
+    image: "/assets/current-speakers/hillary-lin.png",
+  },
+  {
     name: "Peter Crone",
     role: "The Mind Architect · Human potential and transformation",
     image: "/assets/past-speakers/peter-crone-final-v2.png",

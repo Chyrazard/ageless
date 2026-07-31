@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   type FormEvent,
   type MouseEvent as ReactMouseEvent,
@@ -185,18 +186,18 @@ export function AgelessUnusuallyHeader({
       <div className={styles.headerInner}>
         <div className={styles.headerBackground} aria-hidden="true" />
 
-        <div className={styles.brandGroup}>
-          <a className={styles.brandLink} href="/" aria-label="Ageless home">
+        <Link className={styles.brandGroup} href="/" aria-label="Ageless home">
+          <span className={styles.brandLink}>
             <span className={styles.brandRoll}>
               <img src="/ageless-logo-transparent.png" alt="" />
               <img src="/ageless-logo-transparent.png" alt="" />
             </span>
-          </a>
+          </span>
           <span className={styles.brandDivider} aria-hidden="true" />
           <span className={styles.brandDescriptor}>
             Longevity &amp; Wellness Summit
           </span>
-        </div>
+        </Link>
 
         <div className={styles.navigationControls}>
           <nav className={styles.desktopNavigation} aria-label="Primary navigation">

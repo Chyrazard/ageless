@@ -7,19 +7,9 @@ export type AgelessSpeaker = {
 
 export const speakers2027: AgelessSpeaker[] = [
   {
-    image: "/assets/current-speakers/hillary-lin.png",
-    pageImage: "/assets/current-speakers/hillary-lin.png",
-    name: "Dr. Hillary Lin",
-  },
-  {
     image: "/speakers/eric-verdin.webp",
     pageImage: "/assets/current-speakers/eric-verdin.png",
     name: "Eric Verdin",
-  },
-  {
-    image: "/assets/current-speakers/anastasia-chemeritskaya.png",
-    pageImage: "/assets/current-speakers/anastasia-chemeritskaya.png",
-    name: "Dr. Anastasia Chemeritskaya, MD, MHA",
   },
   {
     image: "/speakers/zak-williams.webp",
