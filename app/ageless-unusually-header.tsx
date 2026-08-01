@@ -44,12 +44,17 @@ type AgelessUnusuallyHeaderProps = {
   darkBackdrop?: boolean;
 };
 
+type SubmissionStatus = "error" | "idle" | "sending" | "success";
+
 export function AgelessUnusuallyHeader({
   alwaysBackdrop = false,
   darkBackdrop = false,
 }: AgelessUnusuallyHeaderProps = {}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sponsorModalOpen, setSponsorModalOpen] = useState(false);
+  const [sponsorSubmissionStatus, setSponsorSubmissionStatus] =
+    useState<SubmissionStatus>("idle");
+  const [sponsorStartedAt, setSponsorStartedAt] = useState(() => Date.now());
   const [isScrolled, setIsScrolled] = useState(false);
   const firstMenuLink = useRef<HTMLAnchorElement>(null);
   const sponsorCloseButton = useRef<HTMLButtonElement>(null);
@@ -140,6 +145,8 @@ export function AgelessUnusuallyHeader({
         sponsorTrigger.current = document.activeElement;
       }
 
+      setSponsorSubmissionStatus("idle");
+      setSponsorStartedAt(Date.now());
       setMenuOpen(false);
       setSponsorModalOpen(true);
     };
@@ -160,25 +167,41 @@ export function AgelessUnusuallyHeader({
   const openSponsorModal = (event: ReactMouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     sponsorTrigger.current = event.currentTarget;
+    setSponsorSubmissionStatus("idle");
+    setSponsorStartedAt(Date.now());
     setMenuOpen(false);
     setSponsorModalOpen(true);
   };
 
-  const submitSponsorInquiry = (event: FormEvent<HTMLFormElement>) => {
+  const submitSponsorInquiry = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const body = [
-      `Name: ${formData.get("name") ?? ""}`,
-      `Company: ${formData.get("company") ?? ""}`,
-      `Email: ${formData.get("email") ?? ""}`,
-      `Phone: ${formData.get("phone") ?? ""}`,
-      "",
-      String(formData.get("message") ?? ""),
-    ].join("\n");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    setSponsorSubmissionStatus("sending");
 
-    window.location.href = `mailto:hello@agelessevo.com?subject=${encodeURIComponent(
-      "Ageless sponsor and exhibitor inquiry",
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "sponsor",
+          name: formData.get("name"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          message: formData.get("message"),
+          website: formData.get("website"),
+          startedAt: sponsorStartedAt,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Inquiry request failed");
+
+      form.reset();
+      setSponsorSubmissionStatus("success");
+    } catch {
+      setSponsorSubmissionStatus("error");
+    }
   };
 
   return (
@@ -325,29 +348,43 @@ export function AgelessUnusuallyHeader({
           </div>
 
           <form className={styles.sponsorForm} onSubmit={submitSponsorInquiry}>
+            <label className={styles.sponsorTrap} aria-hidden="true">
+              Website
+              <input name="website" tabIndex={-1} autoComplete="off" />
+            </label>
             <label className={styles.sponsorField}>
               <span>Name</span>
-              <input name="name" autoComplete="name" placeholder="Name" required />
+              <input name="name" autoComplete="name" placeholder="Name" minLength={2} maxLength={100} required />
             </label>
             <label className={styles.sponsorField}>
               <span>Company</span>
-              <input name="company" autoComplete="organization" placeholder="Company" />
+              <input name="company" autoComplete="organization" placeholder="Company" maxLength={120} />
             </label>
             <label className={styles.sponsorField}>
               <span>Email</span>
-              <input name="email" type="email" autoComplete="email" placeholder="Email" required />
+              <input name="email" type="email" autoComplete="email" placeholder="Email" maxLength={254} required />
             </label>
             <label className={styles.sponsorField}>
               <span>Phone</span>
-              <input name="phone" type="tel" autoComplete="tel" placeholder="Phone" />
+              <input name="phone" type="tel" autoComplete="tel" placeholder="Phone" maxLength={50} />
             </label>
             <label className={`${styles.sponsorField} ${styles.sponsorMessage}`}>
               <span>Message</span>
-              <textarea name="message" placeholder="Message" required />
+              <textarea name="message" placeholder="Message" minLength={10} maxLength={5000} required />
             </label>
             <div className={styles.sponsorActions}>
-              <button className={styles.sponsorSubmit} type="submit">
-                <span>Submit inquiry</span>
+              <button
+                className={styles.sponsorSubmit}
+                type="submit"
+                disabled={sponsorSubmissionStatus === "sending" || sponsorSubmissionStatus === "success"}
+              >
+                <span>
+                  {sponsorSubmissionStatus === "sending"
+                    ? "Sending…"
+                    : sponsorSubmissionStatus === "success"
+                      ? "Inquiry sent"
+                      : "Submit inquiry"}
+                </span>
                 <i aria-hidden="true">↗</i>
               </button>
               <a
@@ -363,6 +400,17 @@ export function AgelessUnusuallyHeader({
                 </i>
               </a>
             </div>
+            <p
+              className={`${styles.sponsorStatus} ${sponsorSubmissionStatus === "error" ? styles.sponsorStatusError : ""}`}
+              role="status"
+              aria-live="polite"
+            >
+              {sponsorSubmissionStatus === "success"
+                ? "Thank you — your inquiry was sent successfully."
+                : sponsorSubmissionStatus === "error"
+                  ? "We couldn’t send your inquiry. Please try again or contact us on WhatsApp."
+                  : ""}
+            </p>
           </form>
         </div>
       </div>

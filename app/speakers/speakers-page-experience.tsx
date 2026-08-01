@@ -6,6 +6,8 @@ import { AGELESS_PRICING_PLANS } from "../ageless-pricing-data";
 import { visibleSpeakers2027 } from "../speaker-data";
 import styles from "./speakers.module.css";
 
+type SubmissionStatus = "error" | "idle" | "sending" | "success";
+
 const frequentlyAskedQuestions = [
   {
     question: "What’s included in a the monthly package?",
@@ -51,7 +53,9 @@ const frequentlyAskedQuestions = [
 
 export function SpeakersPageExperience() {
   const rootRef = useRef<HTMLElement>(null);
-  const [sent, setSent] = useState(false);
+  const [submissionStatus, setSubmissionStatus] =
+    useState<SubmissionStatus>("idle");
+  const [formStartedAt] = useState(() => Date.now());
 
   useEffect(() => {
     const root = rootRef.current;
@@ -74,10 +78,43 @@ export function SpeakersPageExperience() {
     return () => observer.disconnect();
   }, []);
 
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    setSubmissionStatus("sending");
+
+    try {
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          kind: "contact",
+          name: formData.get("name"),
+          company: "",
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          message: formData.get("message"),
+          website: formData.get("website"),
+          startedAt: formStartedAt,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Contact request failed");
+
+      form.reset();
+      setSubmissionStatus("success");
+    } catch {
+      setSubmissionStatus("error");
+    }
   };
+
+  const contactButtonLabel =
+    submissionStatus === "sending"
+      ? "Sending…"
+      : submissionStatus === "success"
+        ? "Message sent"
+        : "Send message";
 
   return (
     <>
@@ -233,15 +270,34 @@ export function SpeakersPageExperience() {
           </div>
 
           <form className={styles.form} onSubmit={submitForm} data-reveal>
-            <label>Name:<input name="name" placeholder="Your full name" /></label>
-            <label>* Email:<input name="email" type="email" placeholder="me@mail.com" required /></label>
-            <label>Phone:<input name="phone" type="tel" placeholder="Your phone number" /></label>
-            <label>* Message:<textarea name="message" placeholder="Your message..." required /></label>
-            <button className="ageless-cta ageless-cta--primary" type="submit">
+            <label className={styles.formTrap} aria-hidden="true">
+              Website<input name="website" tabIndex={-1} autoComplete="off" />
+            </label>
+            <label>* Name:<input name="name" placeholder="Your full name" minLength={2} maxLength={100} required /></label>
+            <label>* Email:<input name="email" type="email" placeholder="me@mail.com" maxLength={254} required /></label>
+            <label>Phone:<input name="phone" type="tel" placeholder="Your phone number" maxLength={50} /></label>
+            <label>* Message:<textarea name="message" placeholder="Your message..." minLength={10} maxLength={5000} required /></label>
+            <button
+              className="ageless-cta ageless-cta--primary"
+              type="submit"
+              disabled={submissionStatus === "sending" || submissionStatus === "success"}
+            >
               <span className="ageless-cta__glow" aria-hidden="true" />
-              <span className="ageless-cta__label" data-text="Send message">Send message</span>
+              <span className="ageless-cta__label" data-text={contactButtonLabel}>
+                {contactButtonLabel}
+              </span>
             </button>
-            {sent ? <p className={styles.success}>Thank you! Your message is ready to be sent.</p> : null}
+            <p
+              className={`${styles.success} ${submissionStatus === "error" ? styles.formError : ""}`}
+              role="status"
+              aria-live="polite"
+            >
+              {submissionStatus === "success"
+                ? "Thank you! Your message was sent successfully."
+                : submissionStatus === "error"
+                  ? "We couldn’t send your message. Please try again."
+                  : ""}
+            </p>
           </form>
         </section>
       </main>

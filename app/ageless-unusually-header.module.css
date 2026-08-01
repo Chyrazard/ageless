@@ -590,6 +590,14 @@
   gap: 1rem;
 }
 
+.sponsorTrap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .sponsorField {
   display: grid;
   gap: 0.5rem;
@@ -712,6 +720,12 @@
   transform: translateY(-0.18rem);
 }
 
+.sponsorSubmit:disabled {
+  cursor: default;
+  opacity: 0.72;
+  transform: none;
+}
+
 .sponsorSubmit:hover i,
 .sponsorSubmit:focus-visible i {
   background: #fff;
@@ -752,6 +766,25 @@
 .sponsorWhatsApp:hover .sponsorWhatsAppIcon svg,
 .sponsorWhatsApp:focus-visible .sponsorWhatsAppIcon svg {
   color: #111;
+}
+
+.sponsorStatus {
+  grid-column: 1 / -1;
+  min-height: 1.2rem;
+  margin: 0;
+  color: rgb(17 17 17 / 68%);
+  font-family: var(--font-family--canvasly-copy) !important;
+  font-size: 0.82rem;
+  font-weight: 500 !important;
+  line-height: 1.35;
+}
+
+.sponsorStatus:empty {
+  display: none;
+}
+
+.sponsorStatusError {
+  color: #8b2424;
 }
 
 @media (max-width: 1260px) {
