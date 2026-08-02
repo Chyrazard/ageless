@@ -12,6 +12,7 @@ import {
 } from "react";
 
 import styles from "./ageless-unusually-header.module.css";
+import { TurnstileWidget } from "./turnstile-widget";
 import { WHATSAPP_URL } from "./whatsapp-button";
 
 const NAVIGATION_LINKS = [
@@ -44,7 +45,7 @@ type AgelessUnusuallyHeaderProps = {
   darkBackdrop?: boolean;
 };
 
-type SubmissionStatus = "error" | "idle" | "sending" | "success";
+type SubmissionStatus = "error" | "idle" | "security" | "sending" | "success";
 
 export function AgelessUnusuallyHeader({
   alwaysBackdrop = false,
@@ -55,6 +56,8 @@ export function AgelessUnusuallyHeader({
   const [sponsorSubmissionStatus, setSponsorSubmissionStatus] =
     useState<SubmissionStatus>("idle");
   const [sponsorStartedAt, setSponsorStartedAt] = useState(() => Date.now());
+  const [sponsorTurnstileToken, setSponsorTurnstileToken] = useState("");
+  const [sponsorTurnstileReset, setSponsorTurnstileReset] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const firstMenuLink = useRef<HTMLAnchorElement>(null);
   const sponsorCloseButton = useRef<HTMLButtonElement>(null);
@@ -147,6 +150,8 @@ export function AgelessUnusuallyHeader({
 
       setSponsorSubmissionStatus("idle");
       setSponsorStartedAt(Date.now());
+      setSponsorTurnstileToken("");
+      setSponsorTurnstileReset((current) => current + 1);
       setMenuOpen(false);
       setSponsorModalOpen(true);
     };
@@ -169,6 +174,8 @@ export function AgelessUnusuallyHeader({
     sponsorTrigger.current = event.currentTarget;
     setSponsorSubmissionStatus("idle");
     setSponsorStartedAt(Date.now());
+    setSponsorTurnstileToken("");
+    setSponsorTurnstileReset((current) => current + 1);
     setMenuOpen(false);
     setSponsorModalOpen(true);
   };
@@ -177,6 +184,10 @@ export function AgelessUnusuallyHeader({
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+    if (!sponsorTurnstileToken) {
+      setSponsorSubmissionStatus("security");
+      return;
+    }
     setSponsorSubmissionStatus("sending");
 
     try {
@@ -192,6 +203,7 @@ export function AgelessUnusuallyHeader({
           message: formData.get("message"),
           website: formData.get("website"),
           startedAt: sponsorStartedAt,
+          turnstileToken: sponsorTurnstileToken,
         }),
       });
 
@@ -201,6 +213,9 @@ export function AgelessUnusuallyHeader({
       setSponsorSubmissionStatus("success");
     } catch {
       setSponsorSubmissionStatus("error");
+    } finally {
+      setSponsorTurnstileToken("");
+      setSponsorTurnstileReset((current) => current + 1);
     }
   };
 
@@ -372,6 +387,13 @@ export function AgelessUnusuallyHeader({
               <span>Message</span>
               <textarea name="message" placeholder="Message" minLength={10} maxLength={5000} required />
             </label>
+            <TurnstileWidget
+              active={sponsorModalOpen}
+              className={styles.sponsorTurnstile}
+              context="sponsor"
+              onTokenChange={setSponsorTurnstileToken}
+              resetSignal={sponsorTurnstileReset}
+            />
             <div className={styles.sponsorActions}>
               <button
                 className={styles.sponsorSubmit}
@@ -401,12 +423,14 @@ export function AgelessUnusuallyHeader({
               </a>
             </div>
             <p
-              className={`${styles.sponsorStatus} ${sponsorSubmissionStatus === "error" ? styles.sponsorStatusError : ""}`}
+              className={`${styles.sponsorStatus} ${sponsorSubmissionStatus === "error" || sponsorSubmissionStatus === "security" ? styles.sponsorStatusError : ""}`}
               role="status"
               aria-live="polite"
             >
               {sponsorSubmissionStatus === "success"
                 ? "Thank you — your inquiry was sent successfully."
+                : sponsorSubmissionStatus === "security"
+                  ? "Please wait a moment for the security check, then try again."
                 : sponsorSubmissionStatus === "error"
                   ? "We couldn’t send your inquiry. Please try again or contact us on WhatsApp."
                   : ""}

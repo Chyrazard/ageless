@@ -4,9 +4,10 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { AgelessUnusuallyHeader } from "../ageless-unusually-header";
 import { AGELESS_PRICING_PLANS } from "../ageless-pricing-data";
 import { visibleSpeakers2027 } from "../speaker-data";
+import { TurnstileWidget } from "../turnstile-widget";
 import styles from "./speakers.module.css";
 
-type SubmissionStatus = "error" | "idle" | "sending" | "success";
+type SubmissionStatus = "error" | "idle" | "security" | "sending" | "success";
 
 const frequentlyAskedQuestions = [
   {
@@ -56,6 +57,8 @@ export function SpeakersPageExperience() {
   const [submissionStatus, setSubmissionStatus] =
     useState<SubmissionStatus>("idle");
   const [formStartedAt] = useState(() => Date.now());
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileReset, setTurnstileReset] = useState(0);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -82,6 +85,10 @@ export function SpeakersPageExperience() {
     event.preventDefault();
     const form = event.currentTarget;
     const formData = new FormData(form);
+    if (!turnstileToken) {
+      setSubmissionStatus("security");
+      return;
+    }
     setSubmissionStatus("sending");
 
     try {
@@ -97,6 +104,7 @@ export function SpeakersPageExperience() {
           message: formData.get("message"),
           website: formData.get("website"),
           startedAt: formStartedAt,
+          turnstileToken,
         }),
       });
 
@@ -106,6 +114,9 @@ export function SpeakersPageExperience() {
       setSubmissionStatus("success");
     } catch {
       setSubmissionStatus("error");
+    } finally {
+      setTurnstileToken("");
+      setTurnstileReset((current) => current + 1);
     }
   };
 
@@ -277,6 +288,12 @@ export function SpeakersPageExperience() {
             <label>* Email:<input name="email" type="email" placeholder="me@mail.com" maxLength={254} required /></label>
             <label>Phone:<input name="phone" type="tel" placeholder="Your phone number" maxLength={50} /></label>
             <label>* Message:<textarea name="message" placeholder="Your message..." minLength={10} maxLength={5000} required /></label>
+            <TurnstileWidget
+              className={styles.formTurnstile}
+              context="contact"
+              onTokenChange={setTurnstileToken}
+              resetSignal={turnstileReset}
+            />
             <button
               className="ageless-cta ageless-cta--primary"
               type="submit"
@@ -288,12 +305,14 @@ export function SpeakersPageExperience() {
               </span>
             </button>
             <p
-              className={`${styles.success} ${submissionStatus === "error" ? styles.formError : ""}`}
+              className={`${styles.success} ${submissionStatus === "error" || submissionStatus === "security" ? styles.formError : ""}`}
               role="status"
               aria-live="polite"
             >
               {submissionStatus === "success"
                 ? "Thank you! Your message was sent successfully."
+                : submissionStatus === "security"
+                  ? "Please wait a moment for the security check, then try again."
                 : submissionStatus === "error"
                   ? "We couldn’t send your message. Please try again."
                   : ""}

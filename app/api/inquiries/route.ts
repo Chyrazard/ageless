@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { sendTransactionalEmail } from "@/app/lib/transactional-email";
+import { verifyTurnstile } from "@/app/lib/turnstile";
 
 export const runtime = "nodejs";
 
@@ -19,6 +20,7 @@ type Inquiry = {
   name: string;
   phone: string;
   startedAt: number;
+  turnstileToken: string;
   website: string;
 };
 
@@ -60,6 +62,7 @@ function parseInquiry(payload: unknown): Inquiry | null {
     message: readString(data.message, 5_000),
     website: readString(data.website, 200),
     startedAt: typeof data.startedAt === "number" ? data.startedAt : 0,
+    turnstileToken: readString(data.turnstileToken, 2_048),
   };
 }
 
@@ -80,6 +83,12 @@ function requestIp(request: NextRequest) {
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
     "unknown"
   );
+}
+
+function requestHostname(request: NextRequest) {
+  const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+  const host = forwardedHost ?? request.headers.get("host") ?? "";
+  return host.replace(/:\d+$/, "").toLowerCase();
 }
 
 function hasRateLimitCapacity(ip: string) {
@@ -222,6 +231,37 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       { ok: false, error: "Too many requests. Please try again later." },
       { status: 429, headers: { "Retry-After": "900" } },
+    );
+  }
+
+  if (!inquiry.turnstileToken) {
+    return NextResponse.json(
+      { ok: false, error: "Please complete the security check and try again." },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const turnstileIsValid = await verifyTurnstile({
+      token: inquiry.turnstileToken,
+      remoteIp: requestIp(request),
+      expectedHostname: requestHostname(request),
+      expectedContext: inquiry.kind,
+    });
+
+    if (!turnstileIsValid) {
+      return NextResponse.json(
+        { ok: false, error: "The security check expired. Please try again." },
+        { status: 403 },
+      );
+    }
+  } catch (error) {
+    console.error("Turnstile verification unavailable", {
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
+    return NextResponse.json(
+      { ok: false, error: "The security check is unavailable. Please try again." },
+      { status: 503 },
     );
   }
 
