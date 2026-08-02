@@ -205,7 +205,7 @@
 .buttonRoll span {
   flex: none;
   color: #b8ff00;
-  font-family: "Chivo Mono", "Ageless DM Mono", monospace;
+  font-family: var(--font-chivo-mono), "Ageless DM Mono", monospace;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.075em;

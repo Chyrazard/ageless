@@ -499,7 +499,7 @@
   color: #111;
   background: #fff;
   border-radius: 999px;
-  font-family: Interdisplay, Arial, sans-serif !important;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif !important;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;

@@ -177,7 +177,7 @@ export function CineryAubreyCarousel() {
     <section
       id="speakers"
       ref={sectionRef}
-      className={styles.section}
+      className={`${styles.section} ageless-defer-render`}
       aria-label="Ageless Speakers 2027"
       style={
         {
@@ -192,10 +192,11 @@ export function CineryAubreyCarousel() {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="none"
+        data-ageless-deferred-video="viewport"
         aria-hidden="true"
       >
-        <source src="/cinery-light-background.mp4" type="video/mp4" />
+        <source data-src="/cinery-light-background.mp4" type="video/mp4" />
       </video>
       <div className={styles.ambientGlow} aria-hidden="true" />
 

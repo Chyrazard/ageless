@@ -50,7 +50,7 @@ export function UnusuallyIntro() {
   return createPortal(
     <section
       ref={sectionRef}
-      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
+      className={`${styles.section} ${isVisible ? styles.visible : ""} ageless-defer-render`}
       aria-labelledby="ageless-intro-title"
     >
       <div className={styles.container}>

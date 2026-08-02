@@ -10,7 +10,7 @@ export type AgelessSpeaker = {
 export const speakers2027: AgelessSpeaker[] = [
   {
     image: "/speakers/eric-verdin.webp",
-    pageImage: "/assets/current-speakers/eric-verdin.png",
+    pageImage: "/assets/current-speakers/optimized/eric-verdin.webp",
     name: "Eric Verdin",
     focus: "Biological Longevity",
     description:
@@ -18,7 +18,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/zak-williams.webp",
-    pageImage: "/assets/current-speakers/zak-williams.png",
+    pageImage: "/assets/current-speakers/optimized/zak-williams.webp",
     name: "Zak Williams",
     focus: "Mental Health",
     description:
@@ -26,15 +26,15 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/alex-williams.webp",
-    pageImage: "/assets/current-speakers/alex-williams.png",
+    pageImage: "/assets/current-speakers/optimized/alex-williams.webp",
     name: "Alex Williams",
     focus: "Holistic Hyperbarics",
     description:
       "Founder and CEO of Holistic Hyperbarics, Alex Williams leverages patents in research modalities and chamber innovation to provide leading hyperbaric medicine and patient-centered care. Drawing from a diverse background as an EMT, birth doula, and athlete, she focuses acutely on health optimization and reversing the impact of structural systems on minority communities to deliver whole-person healing.",
   },
   {
-    image: "/speakers/aubrey-de-grey-home-bw.png",
-    pageImage: "/assets/current-speakers/aubrey-de-grey.png",
+    image: "/speakers/aubrey-de-grey-home-bw.webp",
+    pageImage: "/assets/current-speakers/optimized/aubrey-de-grey.webp",
     name: "Aubrey de Grey",
     focus: "Anti-Aging Science",
     description:
@@ -42,7 +42,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/daniel-kraft.webp",
-    pageImage: "/assets/current-speakers/daniel-kraft.png",
+    pageImage: "/assets/current-speakers/optimized/daniel-kraft.webp",
     name: "Dr. Daniel Kraft",
     focus: "Predictive Medicine",
     description:
@@ -50,7 +50,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/niko.webp",
-    pageImage: "/assets/current-speakers/nikolae-sin-fondo.png",
+    pageImage: "/assets/current-speakers/optimized/nikolae-sin-fondo.webp",
     name: "Dr. Niko Dimitriadis",
     focus: "Neuro-Performance",
     description:
@@ -58,7 +58,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/david-kim.webp",
-    pageImage: "/assets/current-speakers/david-kim.png",
+    pageImage: "/assets/current-speakers/optimized/david-kim.webp",
     name: "David Kim",
     focus: "Peptide Engineering",
     description:
@@ -66,7 +66,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/josejb.webp",
-    pageImage: "/assets/current-speakers/jose-bitar.png",
+    pageImage: "/assets/current-speakers/optimized/jose-bitar.webp",
     name: "José Bitar",
     focus: "Mood Optimization",
     description:
@@ -74,7 +74,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/peter-crone.webp",
-    pageImage: "/assets/current-speakers/peter-crone.png",
+    pageImage: "/assets/current-speakers/optimized/peter-crone.webp",
     name: "Peter Crone",
     hidden: true,
   },

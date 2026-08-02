@@ -229,8 +229,8 @@ export function AgelessUnusuallyHeader({
         <Link className={styles.brandGroup} href="/#home" aria-label="Ageless home">
           <span className={styles.brandLink}>
             <span className={styles.brandRoll}>
-              <img src="/ageless-logo-transparent.png" alt="" />
-              <img src="/ageless-logo-transparent.png" alt="" />
+              <img src="/ageless-logo-transparent.webp" alt="" />
+              <img src="/ageless-logo-transparent.webp" alt="" />
             </span>
           </span>
           <span className={styles.brandDivider} aria-hidden="true" />

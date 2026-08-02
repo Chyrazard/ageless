@@ -93,7 +93,7 @@
 
 .eyebrow {
   margin: 0 0 1rem;
-  font-family: "Chivo Mono", "Ageless DM Mono", monospace !important;
+  font-family: var(--font-chivo-mono), "Ageless DM Mono", monospace !important;
   font-size: clamp(0.7rem, 0.9vw, 0.85rem);
   font-weight: 600 !important;
   letter-spacing: 0.16em;

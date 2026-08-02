@@ -12,12 +12,12 @@ export function AgelessFooter() {
   };
 
   return (
-    <footer className={styles.footer} aria-label="Ageless footer">
+    <footer className={`${styles.footer} ageless-defer-render`} aria-label="Ageless footer">
       <div className={styles.inner}>
         <div className={styles.top}>
           <Link href="/#home" className={styles.brand} aria-label="Ageless home">
             <Image
-              src="/ageless-logo-transparent.png"
+              src="/ageless-logo-transparent.webp"
               alt="Ageless"
               width={1450}
               height={392}

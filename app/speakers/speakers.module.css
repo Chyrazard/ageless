@@ -114,6 +114,8 @@
   background: var(--iron-card);
   border: 1px solid rgb(255 255 255 / 7%);
   border-radius: 1.1rem;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 620px;
 }
 
 .speakerImageWrap {
@@ -382,7 +384,7 @@
   background: #fff;
   border: 0;
   border-radius: 999px;
-  font-family: Interdisplay, Arial, sans-serif !important;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif !important;
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;

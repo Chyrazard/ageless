@@ -85,52 +85,52 @@ export function MirroredPageView({
     )
     .replace(
       "/webflow/assets/f2a06b015f-6904ca7a4abbe56dfff89564_hero_large_logo.svg",
-      "/ageless-logo-transparent.png",
+      "/ageless-logo-transparent.webp",
     )
     .replaceAll("Bungee Branding Logo Icon", "Ageless logo")
     .replace(
       '<section class="hero">',
-      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="auto" poster="/colorful-centered-poster.png?v=3" aria-hidden="true" tabindex="-1"><source src="/colorful-centered-hevc.mov?v=3" type="video/quicktime; codecs=hvc1"/><source src="/colorful-centered.webm?v=3" type="video/webm"/></video>',
+      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="none" poster="/colorful-centered-poster.webp?v=4" data-ageless-deferred-video="after-paint" aria-hidden="true" tabindex="-1"><source data-src="/colorful-centered-hevc.mov?v=3" type="video/quicktime; codecs=hvc1"/><source data-src="/colorful-centered.webm?v=3" type="video/webm"/></video>',
     )
     .replaceAll(
       /<div data-poster-url="\/webflow\/assets\/cafbb0c425-68f33158cced4a41f89d89a6_6903d92be1096c25ee0356a4_hero-marquee-video-01-poster-00001\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g,
-      '<img loading="eager" src="/septimafoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/>',
+      '<img loading="lazy" decoding="async" src="/assets/event-gallery/septimafoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/>',
     )
     .replaceAll(
       /<div data-poster-url="\/webflow\/assets\/c3ff434d74-68f33158cced4a41f89d89a6_6903da528f19a5a4baf4d58b_hero-marquee-video-03-poster-00001\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g,
-      '<video autoplay="" loop="" muted="" playsinline="" preload="auto" aria-hidden="true" class="hero-marquee-asset ageless-event-video"><source src="/video1.mp4" type="video/mp4"/></video>',
+      '<video autoplay="" loop="" muted="" playsinline="" preload="none" data-ageless-deferred-video="viewport" aria-hidden="true" class="hero-marquee-asset ageless-event-video"><source data-src="/video1.mp4" type="video/mp4"/></video>',
     )
     .replaceAll(
       "/webflow/assets/2d1591e803-6904ca7a4abbe56dfff89585_273373949f9a4faf1a9827a5ba3c5c5d_hero-marquee-img-02-p-500.avif",
-      "/decimafoto.webp",
+      "/assets/event-gallery/decimafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/be1727bb38-6904ca7a4abbe56dfff89585_hero-marquee-img-02.avif",
-      "/decimafoto.webp",
+      "/assets/event-gallery/decimafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/6168620f29-6904ca7a4abbe56dfff89567_hero-marquee-img-04.avif",
-      "/octavafoto.webp",
+      "/assets/event-gallery/octavafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/6e34cd6958-6904ca7a4abbe56dfff8956d_e88bd0e0ccbf22364181e9cd94c3965d_hero-marquee-img-05-p-500.avif",
-      "/novenafoto.webp",
+      "/assets/event-gallery/novenafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/b863435d43-6904ca7a4abbe56dfff8956d_hero-marquee-img-05.avif",
-      "/novenafoto.webp",
+      "/assets/event-gallery/novenafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/56f8b4a9d7-6904ca7a4abbe56dfff89573_hero-marquee-img-06.avif",
-      "/cuartafoto.webp",
+      "/assets/event-gallery/cuartafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/315ae5dcf2-6904ca7a4abbe56dfff89578_c623e282854bbace99faadc327266619_hero-marquee-img-07-p-500.avif",
-      "/sextafoto.webp",
+      "/assets/event-gallery/sextafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/d66d1b4a72-6904ca7a4abbe56dfff89578_hero-marquee-img-07.avif",
-      "/sextafoto.webp",
+      "/assets/event-gallery/sextafoto.webp",
     )
     .replaceAll('class="hero-marquee-asset _02"', 'class="hero-marquee-asset ageless-event-photo"')
     .replaceAll('class="hero-marquee-asset _04"', 'class="hero-marquee-asset ageless-event-photo"')
@@ -139,15 +139,15 @@ export function MirroredPageView({
     .replaceAll('class="hero-marquee-asset _07"', 'class="hero-marquee-asset ageless-event-photo"')
     .replaceAll(
       "/webflow/assets/2d25429cc4-6904ca7a4abbe56dfff8957d_654504435d3422f5108fdd728d5d4763_hero-marquee-img-08-p-500.avif",
-      "/primerafoto.webp",
+      "/assets/event-gallery/primerafoto.webp",
     )
     .replaceAll(
       "/webflow/assets/56c7994a9d-6904ca7a4abbe56dfff8957d_hero-marquee-img-08.avif",
-      "/primerafoto.webp",
+      "/assets/event-gallery/primerafoto.webp",
     )
     .replaceAll(
-      '<div class="hero-item-single v2"><img sizes="(max-width: 960px) 100vw, 960px" srcset="/primerafoto.webp 500w, /primerafoto.webp 960w" alt="" src="/primerafoto.webp" loading="lazy" class="hero-marquee-asset"/></div>',
-      '<div class="hero-item-single v2"><img sizes="(max-width: 960px) 100vw, 960px" srcset="/primerafoto.webp 500w, /primerafoto.webp 960w" alt="" src="/primerafoto.webp" loading="lazy" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single"><img loading="lazy" src="/quintafoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single v2"><img loading="lazy" src="/oncefoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single"><img loading="lazy" src="/swap.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div>',
+      '<div class="hero-item-single v2"><img sizes="(max-width: 960px) 100vw, 960px" srcset="/assets/event-gallery/primerafoto.webp 960w" alt="" src="/assets/event-gallery/primerafoto.webp" loading="lazy" class="hero-marquee-asset"/></div>',
+      '<div class="hero-item-single v2"><img sizes="(max-width: 960px) 100vw, 960px" srcset="/assets/event-gallery/primerafoto.webp 960w" alt="" src="/assets/event-gallery/primerafoto.webp" loading="lazy" decoding="async" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single"><img loading="lazy" decoding="async" src="/assets/event-gallery/quintafoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single v2"><img loading="lazy" decoding="async" src="/assets/event-gallery/oncefoto.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div><div class="hero-item-single"><img loading="lazy" decoding="async" src="/assets/event-gallery/swap.webp" alt="" class="hero-marquee-asset ageless-event-photo"/></div>',
     )
     .replace(
       'class="heading-style-h5">Creative studio based in Gotham.</div>',
@@ -200,14 +200,23 @@ export function MirroredPageView({
       )
     : withoutLegacyNavigation;
 
+  const visibleHtml = removeLegacyHomeSections
+    ? finalHtml
+        .replaceAll('style="opacity:0"', "")
+        .replace(
+          'loading="lazy" class="hero-large-logo"',
+          'loading="eager" fetchpriority="high" decoding="async" class="hero-large-logo"',
+        )
+    : finalHtml;
+
   return (
     <>
       <AgelessUnusuallyHeader />
       <main
         className="mirrored-content"
-        dangerouslySetInnerHTML={{ __html: finalHtml }}
+        dangerouslySetInnerHTML={{ __html: visibleHtml }}
       />
-      <WebflowRuntime page={page} />
+      {removeLegacyHomeSections ? null : <WebflowRuntime page={page} />}
     </>
   );
 }

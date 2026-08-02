@@ -5,7 +5,7 @@
   right: 0;
   left: 0;
   padding: 0 clamp(0.75rem, 2.2vw, 2.75rem);
-  font-family: Interdisplay, Arial, sans-serif;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif;
   pointer-events: none;
 }
 
@@ -549,7 +549,7 @@
 .sponsorIntro > p {
   margin: 0 0 1.4rem;
   color: rgb(17 17 17 / 52%);
-  font-family: "Chivo Mono", monospace !important;
+  font-family: var(--font-chivo-mono), monospace !important;
   font-size: 0.7rem;
   font-weight: 600 !important;
   letter-spacing: 0.12em;
@@ -700,7 +700,7 @@
   border: 0;
   border-radius: 999px;
   cursor: pointer;
-  font-family: "Chivo Mono", monospace !important;
+  font-family: var(--font-chivo-mono), monospace !important;
   font-size: 0.72rem;
   font-weight: 600 !important;
   letter-spacing: 0.07em;

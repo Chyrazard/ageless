@@ -23,6 +23,8 @@
 }
 
 :root {
+  --_typography---font-families--primary-font-family: var(--font-geist-sans), Geist, Arial, sans-serif;
+  --_typography---font-families--secondary-font-family: var(--font-chivo-mono), monospace;
   --font-family--primary: "OpeningHoursSans", Arial, sans-serif;
   --font-family--canvasly-title: var(--font-geist-sans), Geist, Arial, sans-serif;
   --font-family--canvasly-copy: var(--font-geist-sans), Geist, Arial, sans-serif;
@@ -37,7 +39,7 @@ body {
   margin: 0;
   padding: 0;
   --_typography---font-weights--font-weight-400: 500;
-  font-family: Interdisplay, Arial, sans-serif;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif;
   font-weight: 500;
   overflow-x: hidden;
   overflow-x: clip;
@@ -59,7 +61,7 @@ body p:not([class*="giantTitle"]) {
 
 body :is(button, [role="button"], a[class*="button" i], .w-button),
 body :is(button, [role="button"], a[class*="button" i], .w-button) * {
-  font-family: Interdisplay, Arial, sans-serif !important;
+  font-family: var(--font-geist-sans), Geist, Arial, sans-serif !important;
   font-weight: 600 !important;
 }
 
@@ -83,7 +85,7 @@ body :is(a.ageless-cta, button.ageless-cta) {
   border: 1px solid #171717 !important;
   border-radius: 999px !important;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12) !important;
-  font-family: "Chivo Mono", "Ageless DM Mono", monospace !important;
+  font-family: var(--font-chivo-mono), "Ageless DM Mono", monospace !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
@@ -143,7 +145,7 @@ body .ageless-cta__label {
   display: inline-block;
   overflow: hidden;
   color: #fff;
-  font-family: "Chivo Mono", "Ageless DM Mono", monospace !important;
+  font-family: var(--font-chivo-mono), "Ageless DM Mono", monospace !important;
   font-size: inherit !important;
   font-weight: 600 !important;
   line-height: 1.15 !important;
@@ -243,6 +245,11 @@ video,
 img,
 svg {
   max-width: 100%;
+}
+
+.ageless-defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 @media (prefers-reduced-motion: reduce) {

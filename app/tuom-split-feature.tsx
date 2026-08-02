@@ -73,37 +73,37 @@ const TESTIMONIALS = [
   {
     name: "Nick Larson",
     role: "Co-Founder & CEO",
-    image: "/assets/crew/members/nick-larson.png",
+    image: "/assets/crew/optimized/nick-larson.webp",
   },
   {
     name: "Sandra Larson",
     role: "Co-Founder & COO",
-    image: "/assets/crew/members/sandra-larson.png",
+    image: "/assets/crew/optimized/sandra-larson.webp",
   },
   {
     name: "Hooman Khalili",
     role: "Co-Host & Liaison",
-    image: "/assets/crew/members/hooman-khalili.png",
+    image: "/assets/crew/optimized/hooman-khalili.webp",
   },
   {
     name: "Jenny Mao",
     role: "Communications",
-    image: "/assets/crew/members/jenny-mao.png",
+    image: "/assets/crew/optimized/jenny-mao.webp",
   },
   {
     name: "Linda Ching",
     role: "Media Strategy",
-    image: "/assets/crew/members/linda-ching.png",
+    image: "/assets/crew/optimized/linda-ching.webp",
   },
   {
     name: "Maddi Mrcela",
     role: "Business Development",
-    image: "/assets/crew/members/maddi-mrcela.png",
+    image: "/assets/crew/optimized/maddi-mrcela.webp",
   },
   {
     name: "Richard Simpkins",
     role: "Chief of Strategy",
-    image: "/assets/crew/members/richard-simpkins.png",
+    image: "/assets/crew/optimized/richard-simpkins.webp",
   },
 ] as const;
 
@@ -111,91 +111,72 @@ const PAST_SPEAKERS = [
   {
     name: "Peter Crone",
     role: "The Mind Architect · Human potential and transformation",
-    image: "/assets/past-speakers/peter-crone-final-v2.png",
+    image: "/assets/past-speakers/optimized/peter-crone-final-v2.webp",
   },
   {
     name: "Dr. Beth McDougall, M.D.",
     role: "Co-Founder & Chief Medical Officer, Jyzen",
-    image: "/assets/past-speakers/beth-mcdougall-final-v2.png",
+    image: "/assets/past-speakers/optimized/beth-mcdougall-final-v2.webp",
   },
   {
     name: "Dr. Aubrey de Grey",
     role: "Biomedical gerontologist · Author of Ending Aging",
-    image: "/assets/past-speakers/aubrey-de-grey-final-v2.png",
+    image: "/assets/past-speakers/optimized/aubrey-de-grey-final-v2.webp",
   },
   {
     name: "William Kapp, MD",
     role: "Co-Founder & CEO, Fountain Life",
-    image: "/assets/past-speakers/william-kapp-final-v2.png",
+    image: "/assets/past-speakers/optimized/william-kapp-final-v2.webp",
   },
   {
     name: "Mark Victor Hansen",
     role: "Co-creator, Chicken Soup for the Soul",
-    image: "/assets/past-speakers/mark-victor-hansen-final-v2.png",
+    image: "/assets/past-speakers/optimized/mark-victor-hansen-final-v2.webp",
   },
   {
     name: "Daniel Kraft, MD",
     role: "Physician-scientist · Founder of NextMed Health",
-    image: "/assets/past-speakers/daniel-kraft-final-v2.png",
+    image: "/assets/past-speakers/optimized/daniel-kraft-final-v2.webp",
   },
   {
     name: "Dr. Anastasia Chemeritskaya, MD, MHA",
     role: "Physician · Longevity medicine leader",
-    image: "/assets/current-speakers/anastasia-chemeritskaya.png",
+    image: "/assets/current-speakers/optimized/anastasia-chemeritskaya.webp",
   },
   {
     name: "Dr. Niko Dimitriadis",
     role: "Applied neuroscientist · Award-winning author",
-    image: "/assets/past-speakers/niko-dimitriadis-final-v2.png",
+    image: "/assets/past-speakers/optimized/niko-dimitriadis-final-v2.webp",
   },
   {
     name: "Dr. Ronjon Nag",
     role: "Founder, R42 · Adjunct Professor, Stanford Medicine",
-    image: "/assets/past-speakers/ronjon-nag-final-v2.png",
+    image: "/assets/past-speakers/optimized/ronjon-nag-final-v2.webp",
   },
   {
     name: "Wei-Wu He, Ph.D.",
     role: "CEO, Human Longevity, Inc. · Precision health",
-    image: "/assets/past-speakers/wei-wu-he-final-v2.png",
+    image: "/assets/past-speakers/optimized/wei-wu-he-final-v2.webp",
   },
   {
     name: "Dr. Hillary Lin",
     role: "Physician · Digital health and longevity innovator",
-    image: "/assets/current-speakers/hillary-lin.png",
+    image: "/assets/current-speakers/optimized/hillary-lin.webp",
   },
   {
     name: "Dr. David Furman",
     role: "Director, Buck Institute AI & Bioinformatics Platform",
-    image: "/assets/past-speakers/david-furman-final-v2.png",
+    image: "/assets/past-speakers/optimized/david-furman-final-v2.webp",
   },
   {
     name: "Max Marchione",
     role: "CEO, Superpower · Proactive health innovator",
-    image: "/assets/past-speakers/max-marchione-final-v2.png",
+    image: "/assets/past-speakers/optimized/max-marchione-final-v2.webp",
   },
 ] as const;
 
 function RecapVideo({ src }: { src: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          void video.play().catch(() => undefined);
-        } else {
-          video.pause();
-        }
-      },
-      { rootMargin: "240px 0px", threshold: 0.05 },
-    );
-
-    observer.observe(video);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <video
@@ -204,10 +185,11 @@ function RecapVideo({ src }: { src: string }) {
       loop
       muted
       playsInline
-      preload="metadata"
+      preload="none"
+      data-ageless-deferred-video="viewport"
       aria-hidden="true"
     >
-      <source src={src} type="video/mp4" />
+      <source data-src={src} type="video/mp4" />
     </video>
   );
 }
@@ -393,15 +375,16 @@ function HomePricingSection() {
           loop
           muted
           playsInline
-          preload="metadata"
-          poster="/assets/speakers/colorful3-background-poster.png?v=1"
+          preload="none"
+          data-ageless-deferred-video="viewport"
+          poster="/assets/speakers/colorful3-background-poster.webp?v=2"
         >
           <source
-            src="/assets/speakers/colorful3-background-hevc.mov?v=1"
+            data-src="/assets/speakers/colorful3-background-hevc.mov?v=1"
             type='video/quicktime; codecs="hvc1"'
           />
           <source
-            src="/assets/speakers/colorful3-background.webm?v=1"
+            data-src="/assets/speakers/colorful3-background.webm?v=1"
             type="video/webm"
           />
         </video>
@@ -670,7 +653,7 @@ export function TuomSplitFeature() {
 
   return createPortal(
     <section
-      className={styles.recapSection}
+      className={`${styles.recapSection} ageless-defer-render`}
       aria-labelledby="ageless-recap-title"
     >
       <h2 id="ageless-recap-title" className={styles.sectionTitle}>

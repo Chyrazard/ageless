@@ -145,7 +145,7 @@ export function AvooraStats() {
   return createPortal(
     <section
       ref={sectionRef}
-      className={`${styles.section} ${isVisible ? styles.visible : ""}`}
+      className={`${styles.section} ${isVisible ? styles.visible : ""} ageless-defer-render`}
       aria-label="Ageless impact statistics"
     >
       <div className={styles.container}>

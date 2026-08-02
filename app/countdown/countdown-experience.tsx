@@ -208,7 +208,6 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 
 export function CountdownExperience() {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-  const [preloaderVisible, setPreloaderVisible] = useState(true);
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -216,11 +215,6 @@ export function CountdownExperience() {
     update();
     const timer = window.setInterval(update, 1000);
     return () => window.clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => setPreloaderVisible(false), 820);
-    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -236,13 +230,6 @@ export function CountdownExperience() {
 
   return (
     <>
-      {preloaderVisible ? (
-        <div className={styles.preloader} aria-label="Loading Ageless Evolution Summit">
-          <img src="/logo.jpeg" alt="Ageless Evolution" />
-          <span aria-hidden="true" />
-        </div>
-      ) : null}
-
       {portalTarget
         ? createPortal(
           <div className={styles.countdownExperience}>
