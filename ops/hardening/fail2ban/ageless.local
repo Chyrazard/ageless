@@ -1,0 +1,37 @@
+[DEFAULT]
+backend = systemd
+banaction = ufw
+bantime = 1h
+bantime.increment = true
+bantime.factor = 2
+bantime.maxtime = 1w
+findtime = 10m
+maxretry = 4
+
+[sshd]
+enabled = true
+
+[ageless-scanners]
+enabled = true
+backend = auto
+filter = ageless-scanners
+logpath = /var/log/nginx/security.log
+findtime = 10m
+maxretry = 3
+bantime = 1d
+
+[nginx-limit-req]
+enabled = true
+backend = auto
+logpath = /var/log/nginx/error.log
+findtime = 5m
+maxretry = 20
+bantime = 1h
+
+[recidive]
+enabled = true
+backend = auto
+logpath = /var/log/fail2ban.log
+findtime = 1d
+maxretry = 5
+bantime = 1w
