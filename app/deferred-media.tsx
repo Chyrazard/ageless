@@ -32,6 +32,7 @@ export function DeferredMedia() {
     let timer = 0;
     let initialPaintPassed = false;
     const registered = new WeakSet<HTMLVideoElement>();
+    const revealRegistered = new WeakSet<HTMLVideoElement>();
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -56,6 +57,28 @@ export function DeferredMedia() {
           }
 
           observer.observe(video);
+        });
+
+      document
+        .querySelectorAll<HTMLVideoElement>("video[data-ageless-radial-reveal]")
+        .forEach((video) => {
+          if (revealRegistered.has(video)) return;
+          revealRegistered.add(video);
+
+          const reveal = () => {
+            if (video.dataset.agelessRevealReady === "true") return;
+            window.requestAnimationFrame(() => {
+              video.dataset.agelessRevealReady = "true";
+            });
+          };
+
+          if (video.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) {
+            reveal();
+            return;
+          }
+
+          video.addEventListener("canplay", reveal, { once: true });
+          video.addEventListener("playing", reveal, { once: true });
         });
     };
 

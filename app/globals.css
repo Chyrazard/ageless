@@ -229,6 +229,40 @@ body a.ageless-cta--speaker-cue {
   z-index: 2 !important;
 }
 
+video[data-ageless-radial-reveal="true"] {
+  --ageless-video-reveal-opacity: 1;
+  opacity: 0 !important;
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    #000 0 46%,
+    rgb(0 0 0 / 86%) 58%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    circle at center,
+    #000 0 46%,
+    rgb(0 0 0 / 86%) 58%,
+    transparent 72%
+  );
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 1% 1%;
+  mask-size: 1% 1%;
+  transition:
+    opacity 420ms ease-out,
+    -webkit-mask-size 1150ms cubic-bezier(0.16, 1, 0.3, 1),
+    mask-size 1150ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, mask-size;
+}
+
+video[data-ageless-radial-reveal="true"][data-ageless-reveal-ready="true"] {
+  opacity: var(--ageless-video-reveal-opacity) !important;
+  -webkit-mask-size: 260% 260%;
+  mask-size: 260% 260%;
+}
+
 #home.hero .hero-large-logo[data-ageless-hero-logo="true"] {
   animation: agelessHeroLogoReveal 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: opacity, transform;
@@ -280,6 +314,12 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  video[data-ageless-radial-reveal="true"] {
+    -webkit-mask-image: none;
+    mask-image: none;
+    transition: none;
+  }
+
   #home.hero .hero-large-logo[data-ageless-hero-logo="true"] {
     animation: none;
   }

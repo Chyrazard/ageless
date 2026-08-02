@@ -132,7 +132,7 @@ export function SpeakersPageExperience() {
       <AgelessUnusuallyHeader alwaysBackdrop darkBackdrop />
       <main ref={rootRef} className={styles.page}>
         <div className={styles.fixedBackdrop} aria-hidden="true">
-          <video autoPlay loop muted playsInline preload="none" data-ageless-deferred-video="after-paint" poster="/assets/speakers/colorful3-background-poster.webp?v=2">
+          <video autoPlay loop muted playsInline preload="none" data-ageless-deferred-video="after-paint" data-ageless-radial-reveal="true" poster="/assets/speakers/colorful3-background-poster.webp?v=2">
             <source data-src="/assets/speakers/colorful3-background-hevc.mov?v=1" type='video/quicktime; codecs="hvc1"' />
             <source data-src="/assets/speakers/colorful3-background.webm?v=1" type="video/webm" />
           </video>
