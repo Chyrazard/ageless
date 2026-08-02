@@ -750,6 +750,10 @@
   border: 1px solid rgb(255 255 255 / 8%);
 }
 
+.sponsorWhatsApp > span {
+  white-space: nowrap;
+}
+
 .sponsorWhatsAppIcon {
   color: #fff;
   background: #171717;
