@@ -175,18 +175,52 @@ const PAST_SPEAKERS = [
   },
 ] as const;
 
-function RecapVideo({ src }: { src: string }) {
+function RecapVideo({ src, poster }: { src: string; poster: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const source = video?.querySelector<HTMLSourceElement>("source[data-src]");
+    if (!video || !source) return;
+
+    let started = false;
+    const play = () => void video.play().catch(() => undefined);
+    const start = () => {
+      if (started) return;
+      started = true;
+      source.src = src;
+      video.load();
+      video.addEventListener("canplay", play, { once: true });
+      play();
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        start();
+        observer.disconnect();
+      },
+      { rootMargin: "1200px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("canplay", play);
+    };
+  }, [src]);
 
   return (
     <video
       ref={videoRef}
       className={styles.video}
+      autoPlay
       loop
       muted
       playsInline
       preload="none"
-      data-ageless-deferred-video="viewport"
+      poster={poster}
       aria-hidden="true"
     >
       <source data-src={src} type="video/mp4" />
@@ -304,7 +338,8 @@ function PastSpeakersCarousel() {
                 width={500}
                 height={600}
                 unoptimized
-                loading={index < 3 ? "eager" : "lazy"}
+                loading="eager"
+                decoding="async"
                 className={styles.speakerPortrait}
               />
             </div>
@@ -601,6 +636,7 @@ function TestimonialsSection() {
                     width={900}
                     height={900}
                     unoptimized
+                    loading="eager"
                     className={styles.testimonialImage}
                   />
                   <div className={styles.testimonialLabel}>
@@ -665,12 +701,18 @@ export function TuomSplitFeature() {
 
       <div className={styles.recapGrid}>
         <article className={styles.videoPanel} aria-label="Ageless 2025 recap">
-          <RecapVideo src={RECAP_2025_VIDEO} />
+          <RecapVideo
+            src={RECAP_2025_VIDEO}
+            poster="/assets/ageless-recap-2025-poster.webp"
+          />
           <span className={styles.year}>2025</span>
         </article>
 
         <article className={styles.videoPanel} aria-label="Ageless 2024 recap">
-          <RecapVideo src={RECAP_2024_VIDEO} />
+          <RecapVideo
+            src={RECAP_2024_VIDEO}
+            poster="/assets/ageless-recap-2024-poster.webp"
+          />
           <span className={styles.year}>2024</span>
         </article>
       </div>

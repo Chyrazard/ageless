@@ -229,6 +229,33 @@ body a.ageless-cta--speaker-cue {
   z-index: 2 !important;
 }
 
+#home.hero .hero-large-logo[data-ageless-hero-logo="true"] {
+  animation: agelessHeroLogoReveal 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform;
+}
+
+@keyframes agelessHeroLogoReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -34px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+#ageless-cinery-carousel-slot:empty {
+  min-height: 100vh;
+  background: #030303;
+}
+
+#ageless-avoora-stats-slot:empty {
+  min-height: 10rem;
+  background: #fff;
+}
+
 @media (max-width: 767px) {
   #home.hero > .ageless-okio-hero-background {
     width: 92vw !important;
@@ -253,6 +280,9 @@ svg {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  #home.hero .hero-large-logo[data-ageless-hero-logo="true"] {
+    animation: none;
+  }
   *,
   *::before,
   *::after {

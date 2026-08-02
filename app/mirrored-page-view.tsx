@@ -90,7 +90,7 @@ export function MirroredPageView({
     .replaceAll("Bungee Branding Logo Icon", "Ageless logo")
     .replace(
       '<section class="hero">',
-      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="none" poster="/colorful-centered-poster.webp?v=4" data-ageless-deferred-video="after-paint" aria-hidden="true" tabindex="-1"><source data-src="/colorful-centered-hevc.mov?v=3" type="video/quicktime; codecs=hvc1"/><source data-src="/colorful-centered.webm?v=3" type="video/webm"/></video>',
+      '<section id="home" class="hero"><video class="ageless-okio-hero-background" autoplay="" loop="" muted="" playsinline="" preload="auto" poster="/colorful-centered-poster.webp?v=4" aria-hidden="true" tabindex="-1"><source src="/colorful-centered-hevc.mov?v=3" type="video/quicktime; codecs=hvc1"/><source src="/colorful-centered.webm?v=3" type="video/webm"/></video>',
     )
     .replaceAll(
       /<div data-poster-url="\/webflow\/assets\/cafbb0c425-68f33158cced4a41f89d89a6_6903d92be1096c25ee0356a4_hero-marquee-video-01-poster-00001\.jpg"[^>]*>[\s\S]*?<\/video><\/div>/g,
@@ -203,6 +203,10 @@ export function MirroredPageView({
   const visibleHtml = removeLegacyHomeSections
     ? finalHtml
         .replaceAll('style="opacity:0"', "")
+        .replace(
+          'data-w-id="b85c28f5-d788-90c8-ef23-48448f98d854"',
+          'data-ageless-hero-logo="true"',
+        )
         .replace(
           'loading="lazy" class="hero-large-logo"',
           'loading="eager" fetchpriority="high" decoding="async" class="hero-large-logo"',

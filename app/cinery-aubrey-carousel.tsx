@@ -177,7 +177,7 @@ export function CineryAubreyCarousel() {
     <section
       id="speakers"
       ref={sectionRef}
-      className={`${styles.section} ageless-defer-render`}
+      className={styles.section}
       aria-label="Ageless Speakers 2027"
       style={
         {
@@ -192,11 +192,10 @@ export function CineryAubreyCarousel() {
         loop
         muted
         playsInline
-        preload="none"
-        data-ageless-deferred-video="viewport"
+        preload="auto"
         aria-hidden="true"
       >
-        <source data-src="/cinery-light-background.mp4" type="video/mp4" />
+        <source src="/cinery-light-background.mp4" type="video/mp4" />
       </video>
       <div className={styles.ambientGlow} aria-hidden="true" />
 
@@ -234,7 +233,7 @@ export function CineryAubreyCarousel() {
                     src={panel.image}
                     alt=""
                     draggable={false}
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                   />
                   <figcaption>{panel.name}</figcaption>
@@ -283,7 +282,7 @@ export function CineryAubreyCarousel() {
                     src={panel.image}
                     alt={panel.name}
                     draggable={false}
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
                   />
                   <figcaption>{panel.name}</figcaption>
