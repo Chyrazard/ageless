@@ -21,6 +21,7 @@ type TurnstileApi = {
       cData: string;
       "error-callback": () => void;
       "expired-callback": () => void;
+      language: "en";
       sitekey: string;
       size: "flexible";
       theme: "light";
@@ -128,6 +129,7 @@ export function TurnstileWidget({
           action: "inquiry",
           cData: context,
           appearance: "interaction-only",
+          language: "en",
           size: "flexible",
           theme: "light",
           callback: (token) => onTokenChangeRef.current(token),
