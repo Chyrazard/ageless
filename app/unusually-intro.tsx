@@ -10,7 +10,7 @@ const headlineLines = [
   <>3 years of Ageless:</>,
   <>be in the room where</>,
   <span className={styles.secondary}>
-    <span className={styles.accentWord}>health</span> meets decisions.
+    <span className={styles.accentWord}>health</span> meets the future.
   </span>,
 ];
 
