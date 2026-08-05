@@ -7,10 +7,14 @@ import { createPortal } from "react-dom";
 import styles from "./unusually-intro.module.css";
 
 const headlineLines = [
-  <>3 years of Ageless:</>,
-  <>be in the room where</>,
-  <span className={styles.secondary}>
-    <span className={styles.accentWord}>health</span> meets the future.
+  <span key="years">
+    3 <em className={styles.titleItalic}>years of</em> Ageless:
+  </span>,
+  <span key="where">
+    be in the room <em className={styles.titleItalic}>where</em>
+  </span>,
+  <span key="health">
+    <em className={styles.titleItalic}>health</em> meets the future.
   </span>,
 ];
 

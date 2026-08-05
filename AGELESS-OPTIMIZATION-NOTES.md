@@ -433,4 +433,5 @@ La prioridad debe seguir siendo la percepción real: que el contenido crítico e
 - El título de la galería conserva exactamente dos líneas mediante saltos explícitos y escala tipográfica responsive.
 - Sus controles reutilizan el tratamiento circular negro, borde claro, sombra y hover verde de “The Ageless Crew”.
 - `swap.webp` usa un encuadre específico para mostrar mejor a la mujer situada a la derecha, sin recortar ni recomprimir el archivo original.
-- En “health meets the future”, `health` permanece recto y bold; en “Our Partners”, `Our` permanece recto y bold y `Partners` queda italic sin bold, ambos conservando el color original de la sección.
+- En el título de tres años, `years of`, `where` y `health` quedan italic sin bold; el resto permanece recto y bold. En “Our Partners”, `Our` permanece recto y bold y `Partners` queda italic sin bold, ambos conservando el color original de la sección.
+- La galería comunitaria no conserva padding inferior: las imágenes terminan pegadas al bloque siguiente, sin una franja blanca intermedia.

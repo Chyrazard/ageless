@@ -124,18 +124,10 @@
   transform: translateY(0);
 }
 
-.secondary {
+.titleItalic {
   color: inherit;
   font-style: italic;
   font-weight: 500;
-}
-
-.accentWord {
-  display: inline-block;
-  color: inherit;
-  font-style: normal;
-  font-weight: 700;
-  transform: none;
 }
 
 .barcode {
