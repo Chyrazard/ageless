@@ -42,7 +42,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/daniel-kraft.webp",
-    pageImage: "/assets/current-speakers/optimized/daniel-kraft.webp",
+    pageImage: "/assets/current-speakers/optimized/daniel-kraft-def.webp",
     name: "Dr. Daniel Kraft",
     focus: "Predictive Medicine",
     description:
@@ -50,7 +50,7 @@ export const speakers2027: AgelessSpeaker[] = [
   },
   {
     image: "/speakers/niko.webp",
-    pageImage: "/assets/current-speakers/optimized/nikolae-sin-fondo.webp",
+    pageImage: "/assets/current-speakers/optimized/nikolae-def.webp",
     name: "Dr. Niko Dimitriadis",
     focus: "Neuro-Performance",
     description:
