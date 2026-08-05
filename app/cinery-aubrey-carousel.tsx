@@ -200,7 +200,9 @@ export function CineryAubreyCarousel() {
       <div className={styles.ambientGlow} aria-hidden="true" />
 
       <div className={styles.identity}>
-        <strong>Ageless Speakers 2027</strong>
+        <strong>
+          Ageless <em>Speakers</em> 2027
+        </strong>
         <span>Longevity visionary®</span>
       </div>
 
