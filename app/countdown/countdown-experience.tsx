@@ -7,6 +7,7 @@ import styles from "./countdown.module.css";
 
 const TARGET_DATE = new Date("2027-01-14T00:00:00-08:00").getTime();
 const TICKETS_SECTION_URL = "/#tickets";
+const DIGIT_SCALE = 0.46;
 
 type TimeLeft = {
   days: number;
@@ -82,14 +83,12 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
       const totalColumns =
         digits.length * columnsPerDigit +
         Math.max(0, digits.length - 1) * columnsBetweenDigits;
-      const step = Math.max(
-        3.4,
-        Math.min(
-          6.2,
-          (width - 18) / Math.max(1, totalColumns - 1),
-          (height - 22) / (rowsPerDigit - 1),
-        ),
+      const availableStep = Math.min(
+        6.2,
+        (width - 18) / Math.max(1, totalColumns - 1),
+        (height - 22) / (rowsPerDigit - 1),
       );
+      const step = Math.max(1.55, availableStep * DIGIT_SCALE);
       const startX = width / 2 - ((totalColumns - 1) * step) / 2;
       const startY = height * 0.46 - ((rowsPerDigit - 1) * step) / 2;
       const nextTargets: Array<{ x: number; y: number }> = [];
