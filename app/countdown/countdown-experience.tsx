@@ -77,11 +77,29 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 
     const createTargets = () => {
       const digits = currentValue.current.split("");
-      const columnsPerDigit = 7;
       const rowsPerDigit = 9;
-      const columnsBetweenDigits = 2;
+      const columnsBetweenDigits = 0.75;
+      const digitLayouts = digits.map((digit) => {
+        const pattern = DIGIT_MATRIX[digit] ?? DIGIT_MATRIX["0"];
+        let minColumn = 7;
+        let maxColumn = 0;
+
+        pattern.forEach((row) => {
+          row.split("").forEach((cell, columnIndex) => {
+            if (cell !== "1") return;
+            minColumn = Math.min(minColumn, columnIndex);
+            maxColumn = Math.max(maxColumn, columnIndex);
+          });
+        });
+
+        return {
+          pattern,
+          minColumn,
+          columnCount: maxColumn - minColumn + 1,
+        };
+      });
       const totalColumns =
-        digits.length * columnsPerDigit +
+        digitLayouts.reduce((total, digit) => total + digit.columnCount, 0) +
         Math.max(0, digits.length - 1) * columnsBetweenDigits;
       const availableStep = Math.min(
         6.2,
@@ -92,21 +110,22 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
       const startX = width / 2 - ((totalColumns - 1) * step) / 2;
       const startY = height * 0.46 - ((rowsPerDigit - 1) * step) / 2;
       const nextTargets: Array<{ x: number; y: number }> = [];
+      let digitColumnOffset = 0;
 
-      digits.forEach((digit, digitIndex) => {
-        const pattern = DIGIT_MATRIX[digit] ?? DIGIT_MATRIX["0"];
-        const digitColumnOffset =
-          digitIndex * (columnsPerDigit + columnsBetweenDigits);
-
+      digitLayouts.forEach(({ pattern, minColumn, columnCount }) => {
         pattern.forEach((row, rowIndex) => {
           row.split("").forEach((cell, columnIndex) => {
             if (cell !== "1") return;
             nextTargets.push({
-              x: startX + (digitColumnOffset + columnIndex) * step,
+              x:
+                startX +
+                (digitColumnOffset + columnIndex - minColumn) * step,
               y: startY + rowIndex * step,
             });
           });
         });
+
+        digitColumnOffset += columnCount + columnsBetweenDigits;
       });
 
       dotRadius = step * 0.32;

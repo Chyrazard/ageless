@@ -209,7 +209,7 @@ Al quitar el runtime heredado de la Home se eliminó la posibilidad de que dos s
 
 ### Countdown del hero
 
-Los números se dibujan con matrices geométricas 7×9 diseñadas punto por punto, sin depender del rasterizado de una fuente. Cada bolita comparte exactamente el mismo radio y separación. Al cambiar una cifra, los puntos hacen un morph corto y vuelven rápidamente a su cuadrícula perfecta; el hover y el clic conservan la deformación interactiva, pero con un resorte más rápido para recuperar inmediatamente la legibilidad. La matriz se muestra al 46% de su escala anterior para mantener esa definición con una presencia visual más delicada.
+Los números se dibujan con matrices geométricas 7×9 diseñadas punto por punto, sin depender del rasterizado de una fuente. Cada bolita comparte exactamente el mismo radio y separación. Al cambiar una cifra, los puntos hacen un morph corto y vuelven rápidamente a su cuadrícula perfecta; el hover y el clic conservan la deformación interactiva, pero con un resorte más rápido para recuperar inmediatamente la legibilidad. La matriz se muestra al 46% de su escala anterior para mantener esa definición con una presencia visual más delicada. Cada glifo se recorta a su ancho geométrico real y usa una separación compacta común, evitando que cifras estrechas como el 1 dejen espacios visuales excesivos.
 
 ## 11. Scroll y navegación interna
 
