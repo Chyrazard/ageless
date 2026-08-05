@@ -635,8 +635,9 @@
 }
 
 .partnersTitle em {
-  color: #9b9b9b;
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .partnersMarquee {

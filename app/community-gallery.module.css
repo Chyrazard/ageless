@@ -23,7 +23,8 @@
 }
 
 .heading {
-  max-width: 38rem;
+  max-width: none;
+  flex: 1 1 auto;
   margin: 0;
   color: #131313;
   font-family: "Ageless Overused Grotesk", Interdisplay, Arial, sans-serif;
@@ -42,6 +43,7 @@
 
 .headingLine {
   display: block;
+  white-space: nowrap;
 }
 
 .arrows {
@@ -151,8 +153,8 @@
   }
 
   .heading {
-    max-width: 28rem;
-    font-size: clamp(2.25rem, 11vw, 3rem);
+    max-width: none;
+    font-size: clamp(1.75rem, 7.8vw, 2.35rem);
   }
 
   .arrows {

@@ -133,8 +133,8 @@
 .accentWord {
   display: inline-block;
   color: inherit;
-  font-style: inherit;
-  font-weight: inherit;
+  font-style: normal;
+  font-weight: 700;
   transform: none;
 }
 
