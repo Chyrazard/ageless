@@ -315,7 +315,7 @@ function PastSpeakersCarousel() {
 
     const timer = window.setInterval(() => {
       moveOneCard(1);
-    }, 5000);
+    }, 1000);
 
     return () => window.clearInterval(timer);
   }, [isPaused, isVisible, moveOneCard]);
@@ -327,14 +327,17 @@ function PastSpeakersCarousel() {
   }, [activeIndex, showCard]);
 
   return (
-    <div ref={sectionRef} className={styles.speakerCarousel}>
+    <div
+      ref={sectionRef}
+      className={styles.speakerCarousel}
+      onPointerEnter={() => setIsPaused(true)}
+      onPointerLeave={() => setIsPaused(false)}
+    >
       <div ref={trackRef} className={styles.speakerTrack}>
         {PAST_SPEAKERS.map((speaker) => (
           <article
             className={styles.speakerCard}
             key={speaker.name}
-            onPointerEnter={() => setIsPaused(true)}
-            onPointerLeave={() => setIsPaused(false)}
           >
             <div className={styles.speakerPortraitWrap}>
               <Image

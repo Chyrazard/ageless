@@ -181,6 +181,8 @@ La revelación se ejecuta una sola vez por elemento. Con `prefers-reduced-motion
 
 Las imágenes de las tarjetas se cargan de forma eager. La intención es que pulsar “Next” solamente mueva contenido ya disponible y no inicie una descarga visible.
 
+El carrusel avanza automáticamente cada 1 segundo mientras está visible. Al colocar el cursor sobre cualquier parte del componente completo —tarjetas, espacios o controles— la rotación se pausa y continúa al retirar el cursor.
+
 ### Segundo bloque de la Home
 
 El fondo y las imágenes críticas dejaron de esperar un lazy loader distante. Se reservó espacio para los portales y se priorizó el contenido que aparece inmediatamente después del hero.
