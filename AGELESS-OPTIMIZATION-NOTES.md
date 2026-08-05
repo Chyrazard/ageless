@@ -440,3 +440,4 @@ La prioridad debe seguir siendo la percepción real: que el contenido crítico e
 - La galería comunitaria utiliza el mismo fondo gris `#f4f4f4` del bloque de tres años y `2027` recibe separación óptica adicional después de `SPEAKERS`.
 - La sección Past Speakers usa menos padding superior e inferior. En pricing, sponsors y partners, los fragmentos italic sobre fondo negro usan gris claro `#b9b9b9`, conservando el peso medio sin bold.
 - Pricing muestra General Admission Early Bird en `$330`, VIP Experience Early Bird en `$1,499` y “General connection areas”. El padding superior del bloque se redujo para acercar el título al borde inicial.
+- El título de pricing queda más próximo a sus tarjetas. “Our Partners” usa una escala menor, alineación izquierda y menos separación frente al marquee; el bloque de sponsors también termina con menos padding inferior.
