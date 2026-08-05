@@ -15,6 +15,28 @@ type TimeLeft = {
   seconds: number;
 };
 
+type DotParticle = {
+  x: number;
+  y: number;
+  targetX: number;
+  targetY: number;
+  velocityX: number;
+  velocityY: number;
+};
+
+const DIGIT_MATRIX: Record<string, readonly string[]> = {
+  "0": ["0111110", "1100011", "1100011", "1100011", "1100011", "1100011", "1100011", "1100011", "0111110"],
+  "1": ["0001100", "0011100", "0111100", "0001100", "0001100", "0001100", "0001100", "0001100", "0111110"],
+  "2": ["0111110", "1100011", "0000011", "0000110", "0001100", "0011000", "0110000", "1100000", "1111111"],
+  "3": ["1111110", "0000011", "0000011", "0011110", "0000011", "0000011", "0000011", "0000011", "1111110"],
+  "4": ["0000110", "0001110", "0011110", "0110110", "1100110", "1111111", "0000110", "0000110", "0000110"],
+  "5": ["1111111", "1100000", "1100000", "1100000", "1111110", "0000011", "0000011", "0000011", "1111110"],
+  "6": ["0111110", "1100000", "1100000", "1100000", "1111110", "1100011", "1100011", "1100011", "0111110"],
+  "7": ["1111111", "0000011", "0000110", "0000110", "0001100", "0011000", "0011000", "0110000", "0110000"],
+  "8": ["0111110", "1100011", "1100011", "1100011", "0111110", "1100011", "1100011", "1100011", "0111110"],
+  "9": ["0111110", "1100011", "1100011", "1100011", "0111111", "0000011", "0000011", "0000011", "0111110"],
+};
+
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
   return {
@@ -45,58 +67,180 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
     let width = 1;
     let height = 1;
     let targets: Array<{ x: number; y: number }> = [];
+    let particles: DotParticle[] = [];
     let dotRadius = 1;
+    let frame = 0;
+    let pulse = 0;
+    const pointer = { x: -1000, y: -1000, active: false };
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const createTargets = () => {
-      const mask = document.createElement("canvas");
-      mask.width = Math.max(1, Math.round(width));
-      mask.height = Math.max(1, Math.round(height));
-      const maskContext = mask.getContext("2d", { willReadFrequently: true });
-      if (!maskContext) return [];
-
-      const text = currentValue.current;
-      const fontSize = Math.min(height * 0.67, width / Math.max(1.55, text.length * 0.58));
-      maskContext.clearRect(0, 0, width, height);
-      maskContext.fillStyle = "#ffffff";
-      maskContext.font = `900 ${fontSize}px Arial Black, Helvetica Neue, Arial, sans-serif`;
-      maskContext.textAlign = "center";
-      maskContext.textBaseline = "middle";
-      maskContext.fillText(text, width / 2, height / 2 + fontSize * 0.035);
-
-      const pixels = maskContext.getImageData(0, 0, mask.width, mask.height).data;
-      const gap = height < 62 ? 3 : 4;
-      const offsetX = (width % gap) / 2;
-      const offsetY = (height % gap) / 2;
+      const digits = currentValue.current.split("");
+      const columnsPerDigit = 7;
+      const rowsPerDigit = 9;
+      const columnsBetweenDigits = 2;
+      const totalColumns =
+        digits.length * columnsPerDigit +
+        Math.max(0, digits.length - 1) * columnsBetweenDigits;
+      const step = Math.max(
+        3.4,
+        Math.min(
+          6.2,
+          (width - 18) / Math.max(1, totalColumns - 1),
+          (height - 22) / (rowsPerDigit - 1),
+        ),
+      );
+      const startX = width / 2 - ((totalColumns - 1) * step) / 2;
+      const startY = height * 0.46 - ((rowsPerDigit - 1) * step) / 2;
       const nextTargets: Array<{ x: number; y: number }> = [];
 
-      for (let y = offsetY; y < mask.height; y += gap) {
-        for (let x = offsetX; x < mask.width; x += gap) {
-          const pixelX = Math.min(mask.width - 1, Math.round(x));
-          const pixelY = Math.min(mask.height - 1, Math.round(y));
-          if (pixels[(pixelY * mask.width + pixelX) * 4 + 3] > 150) {
-            nextTargets.push({ x, y });
-          }
-        }
+      digits.forEach((digit, digitIndex) => {
+        const pattern = DIGIT_MATRIX[digit] ?? DIGIT_MATRIX["0"];
+        const digitColumnOffset =
+          digitIndex * (columnsPerDigit + columnsBetweenDigits);
+
+        pattern.forEach((row, rowIndex) => {
+          row.split("").forEach((cell, columnIndex) => {
+            if (cell !== "1") return;
+            nextTargets.push({
+              x: startX + (digitColumnOffset + columnIndex) * step,
+              y: startY + rowIndex * step,
+            });
+          });
+        });
+      });
+
+      dotRadius = step * 0.32;
+      return nextTargets;
+    };
+
+    const assignTargets = (nextTargets: Array<{ x: number; y: number }>) => {
+      if (particles.length === 0) {
+        particles = nextTargets.map((target) => ({
+          x: target.x,
+          y: target.y,
+          targetX: target.x,
+          targetY: target.y,
+          velocityX: 0,
+          velocityY: 0,
+        }));
+        return;
       }
 
-      dotRadius = gap * 0.34;
-      return nextTargets;
+      const availableParticles = [...particles];
+      particles = nextTargets.map((target) => {
+        if (availableParticles.length === 0) {
+          return {
+            x: width / 2,
+            y: height * 0.46,
+            targetX: target.x,
+            targetY: target.y,
+            velocityX: 0,
+            velocityY: 0,
+          };
+        }
+
+        let nearestIndex = 0;
+        let nearestDistance = Number.POSITIVE_INFINITY;
+        availableParticles.forEach((particle, index) => {
+          const dx = particle.x - target.x;
+          const dy = particle.y - target.y;
+          const distance = dx * dx + dy * dy;
+          if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestIndex = index;
+          }
+        });
+
+        const particle = availableParticles.splice(nearestIndex, 1)[0];
+        particle.targetX = target.x;
+        particle.targetY = target.y;
+        return particle;
+      });
+
+      if (reducedMotion) {
+        particles.forEach((particle) => {
+          particle.x = particle.targetX;
+          particle.y = particle.targetY;
+          particle.velocityX = 0;
+          particle.velocityY = 0;
+        });
+      }
     };
 
     const render = () => {
       context.clearRect(0, 0, width, height);
       context.fillStyle = "#000000";
 
-      for (const target of targets) {
+      for (const particle of particles) {
         context.beginPath();
-        context.arc(target.x, target.y, dotRadius, 0, Math.PI * 2);
+        context.arc(particle.x, particle.y, dotRadius, 0, Math.PI * 2);
         context.fill();
       }
     };
 
     const rebuild = () => {
       targets = createTargets();
+      assignTargets(targets);
       render();
+    };
+
+    const locatePointer = (event: PointerEvent) => {
+      const bounds = canvas.getBoundingClientRect();
+      pointer.x = event.clientX - bounds.left;
+      pointer.y = event.clientY - bounds.top;
+      pointer.active = true;
+    };
+
+    const onPointerMove = (event: PointerEvent) => locatePointer(event);
+    const onPointerLeave = () => {
+      pointer.active = false;
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      locatePointer(event);
+      pulse = 1;
+    };
+
+    const animate = () => {
+      for (const particle of particles) {
+        if (pointer.active) {
+          const dx = particle.x - pointer.x;
+          const dy = particle.y - pointer.y;
+          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+          const influenceRadius = 34 + pulse * 58;
+
+          if (distance < influenceRadius) {
+            const force =
+              (1 - distance / influenceRadius) * (0.38 + pulse * 1.45);
+            particle.velocityX += (dx / distance) * force;
+            particle.velocityY += (dy / distance) * force;
+          }
+        }
+
+        particle.velocityX += (particle.targetX - particle.x) * 0.18;
+        particle.velocityY += (particle.targetY - particle.y) * 0.18;
+        particle.velocityX *= 0.68;
+        particle.velocityY *= 0.68;
+        particle.x += particle.velocityX;
+        particle.y += particle.velocityY;
+
+        if (
+          !pointer.active &&
+          Math.abs(particle.targetX - particle.x) < 0.025 &&
+          Math.abs(particle.targetY - particle.y) < 0.025 &&
+          Math.abs(particle.velocityX) < 0.025 &&
+          Math.abs(particle.velocityY) < 0.025
+        ) {
+          particle.x = particle.targetX;
+          particle.y = particle.targetY;
+          particle.velocityX = 0;
+          particle.velocityY = 0;
+        }
+      }
+
+      render();
+      pulse *= 0.84;
+      frame = window.requestAnimationFrame(animate);
     };
 
     rebuildTargets.current = rebuild;
@@ -114,11 +258,19 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
+    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointerleave", onPointerLeave);
+    canvas.addEventListener("pointerdown", onPointerDown);
     resize();
+    if (!reducedMotion) frame = window.requestAnimationFrame(animate);
 
     return () => {
       rebuildTargets.current = null;
       observer.disconnect();
+      window.cancelAnimationFrame(frame);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerleave", onPointerLeave);
+      canvas.removeEventListener("pointerdown", onPointerDown);
     };
   }, []);
 

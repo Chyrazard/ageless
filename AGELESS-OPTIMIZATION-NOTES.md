@@ -209,7 +209,7 @@ Al quitar el runtime heredado de la Home se eliminó la posibilidad de que dos s
 
 ### Countdown del hero
 
-Los números se dibujan como una matriz de puntos uniforme sobre canvas. Cada punto comparte exactamente el mismo radio, separación y cuadrícula; las cifras se actualizan directamente en su posición final, sin tamaños aleatorios, resortes ni repulsión del cursor. Esto mantiene los dígitos perfectamente alineados y elimina un loop continuo de animación innecesario.
+Los números se dibujan con matrices geométricas 7×9 diseñadas punto por punto, sin depender del rasterizado de una fuente. Cada bolita comparte exactamente el mismo radio y separación. Al cambiar una cifra, los puntos hacen un morph corto y vuelven rápidamente a su cuadrícula perfecta; el hover y el clic conservan la deformación interactiva, pero con un resorte más rápido para recuperar inmediatamente la legibilidad.
 
 ## 11. Scroll y navegación interna
 
