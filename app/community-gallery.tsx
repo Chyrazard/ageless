@@ -112,7 +112,7 @@ export function CommunityGallery() {
             {doubledGallery.map((image, index) => {
               const duplicate = index >= galleryImages.length;
               return (
-                <figure
+                <div
                   className={styles.card}
                   aria-hidden={duplicate || undefined}
                   key={`${image.src}-${index}`}
@@ -122,10 +122,11 @@ export function CommunityGallery() {
                     src={image.src}
                     alt={duplicate ? "" : image.alt}
                     fill
+                    unoptimized
                     priority={index < 5}
-                    sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 991px) 31vw, 20vw"
+                    sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 991px) 48vw, 29vw"
                   />
-                </figure>
+                </div>
               );
             })}
           </div>
