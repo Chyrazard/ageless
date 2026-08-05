@@ -211,6 +211,12 @@ Al quitar el runtime heredado de la Home se eliminó la posibilidad de que dos s
 
 Los números se dibujan con matrices geométricas 7×9 diseñadas punto por punto, sin depender del rasterizado de una fuente. Cada bolita comparte exactamente el mismo radio y separación. Al cambiar una cifra, los puntos hacen un morph corto y vuelven rápidamente a su cuadrícula perfecta; el hover y el clic conservan la deformación interactiva, pero con un resorte más rápido para recuperar inmediatamente la legibilidad. La matriz se muestra al 46% de su escala anterior para mantener esa definición con una presencia visual más delicada. Cada glifo se recorta a su ancho geométrico real y usa una separación compacta común, evitando que cifras estrechas como el 1 dejen espacios visuales excesivos. En escritorio, los cuatro bloques usan columnas iguales dentro de un ancho máximo compacto de 460 px para reducir la distancia horizontal entre Days, Hours, Minutes y Seconds; en móvil conservan el ancho adaptable.
 
+El radio de cada punto se elevó del 32% al 42% del paso geométrico, haciendo el countdown más bold sin cambiar posiciones, proporciones ni animaciones.
+
+### Galería de comunidad
+
+La antigua tira horizontal bajo las estadísticas fue reemplazada por una galería vertical inspirada en la composición de Aurae: contenedor de 80 rem, encabezado editorial de dos líneas, cinco tarjetas visibles en escritorio, proporción 3:4, separación de 16 px y controles compactos. Usa las diez imágenes optimizadas de Ageless, se desplaza continuamente de derecha a izquierda, permite avanzar o retroceder mediante flechas y respeta `prefers-reduced-motion`.
+
 ## 11. Scroll y navegación interna
 
 `app/home-scroll-reset.tsx` controla dos comportamientos:

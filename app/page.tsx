@@ -4,6 +4,7 @@ import { CountdownExperience } from "./countdown/countdown-experience";
 import { HomeScrollReset } from "./home-scroll-reset";
 import { AvooraStats } from "./avoora-stats";
 import { CineryAubreyCarousel } from "./cinery-aubrey-carousel";
+import { CommunityGallery } from "./community-gallery";
 import { TuomSplitFeature } from "./tuom-split-feature";
 import { UnusuallyIntro } from "./unusually-intro";
 
@@ -17,6 +18,7 @@ export default function HomePage() {
       <CountdownExperience />
       <CineryAubreyCarousel />
       <AvooraStats />
+      <CommunityGallery />
       <UnusuallyIntro />
       <TuomSplitFeature />
     </>

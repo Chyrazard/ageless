@@ -277,70 +277,6 @@
   animation: none !important;
 }
 
-:global(.ageless-conference-carousel-section) {
-  width: 100%;
-  padding: clamp(12px, 1.5vw, 24px) 0 clamp(28px, 4vw, 64px);
-  overflow: hidden;
-  background: #fff;
-}
-
-:global(.ageless-conference-carousel-section .hero-marquee-wrapper-outer-block) {
-  width: 100%;
-  opacity: 1 !important;
-  animation: none !important;
-}
-
-:global(.hero-marquee-block) {
-  animation: agelessHeroMarquee 30s linear infinite !important;
-  will-change: transform;
-}
-
-:global(.hero-item-single:has(> .ageless-event-photo)),
-:global(.hero-item-single:has(> .ageless-event-video)) {
-  width: clamp(250px, 22vw, 330px);
-}
-
-:global(.ageless-event-photo) {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover;
-  object-position: center;
-  transform: none !important;
-}
-
-:global(.ageless-event-photo[src="/quintafoto.webp"]) {
-  object-position: 44% center;
-}
-
-:global(.ageless-event-photo[src="/novenafoto.webp"]) {
-  object-position: 38% center;
-}
-
-:global(.ageless-event-photo[src="/swap.webp"]) {
-  object-position: 74% center;
-}
-
-:global(.ageless-event-photo[src="/octavafoto.webp"]) {
-  transform: scale(1.1) !important;
-  transform-origin: center 15%;
-}
-
-:global(.ageless-event-photo[src="/oncefoto.webp"]) {
-  transform: scale(1.1) !important;
-  transform-origin: center;
-}
-
-:global(.ageless-event-video) {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  background: #fff;
-  object-fit: cover;
-  object-position: 18% center;
-  transform: scale(1.035);
-  transform-origin: center;
-}
-
 @media (max-width: 700px) {
   :global(.mirrored-content .hero .hero-content-wrapper .hero-top-block) { gap: 5px !important; margin-top: 44px !important; padding-top: 4px !important; transform: translateY(22px) !important; }
   :global(.hero-large-logo) { width: 82vw !important; height: auto !important; max-height: 132px; margin-top: 0 !important; }
@@ -376,7 +312,6 @@
   .ticketButtonGlow { animation-duration: 0.01ms; animation-delay: 0ms; }
   .ticketButtonLabel,
   .ticketButtonLabel::after { transition-duration: 0.01ms; }
-  :global(.hero-marquee-block) { animation: none !important; }
 }
 
 @keyframes countdownReveal {
@@ -402,9 +337,4 @@
 @keyframes fastHeroReveal {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-@keyframes agelessHeroMarquee {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(calc(-100% - 10px), 0, 0); }
 }

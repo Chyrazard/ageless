@@ -128,7 +128,7 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
         digitColumnOffset += columnCount + columnsBetweenDigits;
       });
 
-      dotRadius = step * 0.32;
+      dotRadius = step * 0.42;
       return nextTargets;
     };
 
