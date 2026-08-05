@@ -435,3 +435,4 @@ La prioridad debe seguir siendo la percepción real: que el contenido crítico e
 - `swap.webp` usa un encuadre específico para mostrar mejor a la mujer situada a la derecha, sin recortar ni recomprimir el archivo original.
 - En el título de tres años, `years of`, `where` y `health` quedan italic sin bold; el resto permanece recto y bold. En “Our Partners”, `Our` permanece recto y bold y `Partners` queda italic sin bold, ambos conservando el color original de la sección.
 - La galería comunitaria no conserva padding inferior: las imágenes terminan pegadas al bloque siguiente, sin una franja blanca intermedia.
+- En “Looking Back At / Ageless Experiences”, únicamente `Back At` queda italic sin bold; las demás palabras permanecen rectas y bold.

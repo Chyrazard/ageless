@@ -716,10 +716,10 @@ export function TuomSplitFeature() {
       aria-labelledby="ageless-recap-title"
     >
       <h2 id="ageless-recap-title" className={styles.sectionTitle}>
-        <span className={styles.titleLine}>Looking Back At</span>
         <span className={styles.titleLine}>
-          Ageless <em className={styles.titleAccent}>Experiences</em>
+          Looking <em className={styles.titleAccent}>Back At</em>
         </span>
+        <span className={styles.titleLine}>Ageless Experiences</span>
       </h2>
 
       <div className={styles.recapGrid}>
