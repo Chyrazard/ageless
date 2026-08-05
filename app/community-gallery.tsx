@@ -9,7 +9,11 @@ const galleryImages = [
   { src: "/assets/event-gallery/primerafoto.webp", alt: "Ageless speaker presenting on stage" },
   { src: "/assets/event-gallery/quintafoto.webp", alt: "Ageless attendees enjoying the summit" },
   { src: "/assets/event-gallery/oncefoto.webp", alt: "Ageless audience during a conference session" },
-  { src: "/assets/event-gallery/swap.webp", alt: "Ageless community members at the summit" },
+  {
+    src: "/assets/event-gallery/swap.webp",
+    alt: "Ageless community members at the summit",
+    position: "74% center",
+  },
   { src: "/assets/event-gallery/septimafoto.webp", alt: "Ageless event experience" },
   { src: "/assets/event-gallery/decimafoto.webp", alt: "Ageless summit community" },
   { src: "/assets/event-gallery/octavafoto.webp", alt: "Ageless conference moment" },
@@ -86,7 +90,12 @@ export function CommunityGallery() {
       <div className={styles.container}>
         <div className={styles.headingRow}>
           <h2 className={styles.heading} id="community-gallery-heading">
-            Growing <em>together</em>, one <em>experience</em> at a time
+            <span className={styles.headingLine}>
+              You Have <em>The Power</em> to
+            </span>
+            <span className={styles.headingLine}>
+              Live Well, <em>Age Less</em>.
+            </span>
           </h2>
           <div className={styles.arrows} aria-label="Gallery controls">
             <button
@@ -125,6 +134,7 @@ export function CommunityGallery() {
                     unoptimized
                     priority={index < 5}
                     sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 991px) 48vw, 29vw"
+                    style={"position" in image ? { objectPosition: image.position } : undefined}
                   />
                 </div>
               );

@@ -40,6 +40,10 @@
   letter-spacing: -0.055em;
 }
 
+.headingLine {
+  display: block;
+}
+
 .arrows {
   display: flex;
   flex: none;
@@ -48,33 +52,39 @@
 }
 
 .arrow {
-  display: inline-flex;
-  width: 2.5rem;
-  height: 2.5rem;
+  display: grid;
+  width: clamp(3.5rem, 4.5vw, 4.8rem);
+  aspect-ratio: 1;
   padding: 0;
-  align-items: center;
-  justify-content: center;
-  color: #131313;
-  background: #f5f5f5;
-  border: 0;
-  border-radius: 0.5rem;
+  color: #fff;
+  background: #111;
+  border: 1px solid rgb(255 255 255 / 75%);
+  border-radius: 50%;
   cursor: pointer;
   font-family: Arial, sans-serif;
-  font-size: 1.45rem;
-  line-height: 1;
-  transition: color 220ms ease, background-color 220ms ease, transform 220ms ease;
+  place-items: center;
+  box-shadow: 0 0.8rem 2rem rgb(0 0 0 / 15%);
+  transition:
+    color 350ms ease,
+    background-color 350ms ease,
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .arrow:hover,
 .arrow:focus-visible {
-  color: #fff;
-  background: #131313;
-  transform: translateY(-2px);
+  color: #050505;
+  background: #bdff39;
+  transform: scale(1.08);
 }
 
 .arrow:focus-visible {
   outline: 2px solid #b8ff00;
   outline-offset: 3px;
+}
+
+.arrow span {
+  font-size: 1.35rem;
+  line-height: 1;
 }
 
 .viewport {
@@ -150,6 +160,10 @@
     right: 1rem;
     bottom: 2.5rem;
     z-index: 2;
+  }
+
+  .arrow {
+    width: 3.3rem;
   }
 
   .track {

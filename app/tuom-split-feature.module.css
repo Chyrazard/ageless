@@ -22,8 +22,9 @@
 }
 
 .titleAccent {
-  color: #050505;
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .recapGrid {
@@ -95,7 +96,9 @@
 .pastSpeakersFirstWord {
   grid-column: 1;
   grid-row: 1;
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .pastSpeakersSecondLine {
@@ -309,8 +312,9 @@
 }
 
 .pricingIntro h2 em {
-  color: #9b9b9b;
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .pricingIntro p {
@@ -558,8 +562,9 @@
 }
 
 .sponsorsTitle em {
-  color: #9b9b9b;
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .sponsorsGrid {
@@ -733,7 +738,9 @@
 }
 
 .testimonialsTitleAccent {
+  color: inherit;
   font-style: italic;
+  font-weight: 500;
 }
 
 .testimonialsIntro p {

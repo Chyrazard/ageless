@@ -423,3 +423,12 @@ Si después de esta ronda se desea seguir mejorando:
 7. monitorizar errores del formulario y entregabilidad de Resend.
 
 La prioridad debe seguir siendo la percepción real: que el contenido crítico esté listo, que nada salte y que las optimizaciones no degraden la estética.
+
+## 22. Sistema tipográfico y galería comunitaria
+
+- Los fragmentos rectos de los títulos principales usan peso bold.
+- Los fragmentos en cursiva usan un peso medio, nunca bold, y conservan el mismo color del título; en fondos oscuros permanecen blancos.
+- Esta regla se aplica a la introducción de tres años, recap, past speakers, pricing, sponsors, crew y galería comunitaria.
+- La galería ahora se titula “You Have The Power to Live Well, Age Less.”, con “The Power” y “Age Less” en cursiva.
+- Sus controles reutilizan el tratamiento circular negro, borde claro, sombra y hover verde de “The Ageless Crew”.
+- `swap.webp` usa un encuadre específico para mostrar mejor a la mujer situada a la derecha, sin recortar ni recomprimir el archivo original.
