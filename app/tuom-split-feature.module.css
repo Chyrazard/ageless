@@ -616,7 +616,7 @@
 .partnersTitle {
   display: flex;
   align-items: baseline;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 0.18em;
   margin: 0 0 clamp(1rem, 2vw, 1.75rem);
   color: #fff;
@@ -625,7 +625,7 @@
   font-weight: 700 !important;
   letter-spacing: -0.05em;
   line-height: 0.9;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -673,8 +673,8 @@
 .partnerLogo {
   display: grid;
   flex: none;
-  width: clamp(7.5rem, 10.5vw, 11.5rem);
-  height: clamp(3.75rem, 5vw, 5.25rem);
+  width: clamp(6.9rem, 9.6vw, 10.6rem);
+  height: clamp(3.4rem, 4.6vw, 4.8rem);
   place-items: center;
 }
 
@@ -682,7 +682,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  max-height: 3.75rem;
+  max-height: 3.4rem;
   object-fit: contain;
   filter: grayscale(1) brightness(0) invert(1);
   opacity: 0.78;
@@ -1054,8 +1054,8 @@
   }
 
   .partnerLogo {
-    width: clamp(7rem, 31vw, 10rem);
-    height: 4rem;
+    width: clamp(6.5rem, 28vw, 9.2rem);
+    height: 3.6rem;
   }
 
   .testimonialsSection {
