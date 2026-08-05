@@ -437,3 +437,4 @@ La prioridad debe seguir siendo la percepción real: que el contenido crítico e
 - La galería comunitaria no conserva padding inferior: las imágenes terminan pegadas al bloque siguiente, sin una franja blanca intermedia.
 - En “Looking Back At / Ageless Experiences”, únicamente `Back At` queda italic sin bold; las demás palabras permanecen rectas y bold.
 - En la identidad “AGELESS SPEAKERS 2027” del segundo bloque, `SPEAKERS` queda italic sin bold; `AGELESS` y `2027` permanecen rectos y bold.
+- La galería comunitaria utiliza el mismo fondo gris `#f4f4f4` del bloque de tres años y `2027` recibe separación óptica adicional después de `SPEAKERS`.

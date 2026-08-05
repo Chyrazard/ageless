@@ -201,7 +201,8 @@ export function CineryAubreyCarousel() {
 
       <div className={styles.identity}>
         <strong>
-          Ageless <em>Speakers</em> 2027
+          Ageless <em>Speakers</em>{" "}
+          <b className={styles.identityYear}>2027</b>
         </strong>
         <span>Longevity visionary®</span>
       </div>

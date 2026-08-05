@@ -89,6 +89,11 @@
   font-weight: 500;
 }
 
+.identityYear {
+  margin-left: 0.12em;
+  font-weight: inherit;
+}
+
 .identity span {
   padding-left: 1.1rem;
   color: rgb(255 255 255 / 56%);
