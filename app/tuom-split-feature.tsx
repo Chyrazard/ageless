@@ -238,7 +238,8 @@ function PastSpeakersCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+  const [manualNavigationVersion, setManualNavigationVersion] = useState(0);
+  const lastManualNavigationAt = useRef(0);
 
   const showCard = useCallback(
     (index: number, behavior: ScrollBehavior = "smooth") => {
@@ -297,6 +298,15 @@ function PastSpeakersCarousel() {
     [showCard],
   );
 
+  const moveFromArrow = useCallback(
+    (direction: -1 | 1) => {
+      lastManualNavigationAt.current = Date.now();
+      moveOneCard(direction);
+      setManualNavigationVersion((version) => version + 1);
+    },
+    [moveOneCard],
+  );
+
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -311,14 +321,24 @@ function PastSpeakersCarousel() {
   }, []);
 
   useEffect(() => {
-    if (!isVisible || isPaused) return;
+    if (!isVisible) return;
 
-    const timer = window.setInterval(() => {
-      moveOneCard(1);
-    }, 1000);
+    let timer = 0;
+    const scheduleNextCard = (delay: number) => {
+      timer = window.setTimeout(() => {
+        moveOneCard(1);
+        scheduleNextCard(1000);
+      }, delay);
+    };
 
-    return () => window.clearInterval(timer);
-  }, [isPaused, isVisible, moveOneCard]);
+    const elapsedSinceManualNavigation =
+      Date.now() - lastManualNavigationAt.current;
+    const remainingManualPause = 3000 - elapsedSinceManualNavigation;
+
+    scheduleNextCard(remainingManualPause > 0 ? remainingManualPause : 1000);
+
+    return () => window.clearTimeout(timer);
+  }, [isVisible, manualNavigationVersion, moveOneCard]);
 
   useEffect(() => {
     const handleResize = () => showCard(activeIndex, "auto");
@@ -327,12 +347,7 @@ function PastSpeakersCarousel() {
   }, [activeIndex, showCard]);
 
   return (
-    <div
-      ref={sectionRef}
-      className={styles.speakerCarousel}
-      onPointerEnter={() => setIsPaused(true)}
-      onPointerLeave={() => setIsPaused(false)}
-    >
+    <div ref={sectionRef} className={styles.speakerCarousel}>
       <div ref={trackRef} className={styles.speakerTrack}>
         {PAST_SPEAKERS.map((speaker) => (
           <article
@@ -362,7 +377,7 @@ function PastSpeakersCarousel() {
       <button
         type="button"
         className={`${styles.speakerArrow} ${styles.speakerPrev}`}
-        onClick={() => moveOneCard(-1)}
+        onClick={() => moveFromArrow(-1)}
         aria-label="Show previous past speaker"
       >
         <span aria-hidden="true">←</span>
@@ -371,7 +386,7 @@ function PastSpeakersCarousel() {
       <button
         type="button"
         className={`${styles.speakerArrow} ${styles.speakerNext}`}
-        onClick={() => moveOneCard(1)}
+        onClick={() => moveFromArrow(1)}
         aria-label="Show next past speaker"
       >
         <span aria-hidden="true">→</span>
