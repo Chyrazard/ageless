@@ -243,7 +243,7 @@
   --pricing-line: rgb(255 255 255 / 18%);
   position: relative;
   width: 100%;
-  padding: clamp(6rem, 9vw, 9rem) clamp(1.25rem, 4vw, 4rem)
+  padding: clamp(3rem, 5vw, 5rem) clamp(1.25rem, 4vw, 4rem)
     clamp(2rem, 3vw, 3rem);
   overflow: hidden;
   color: #fff;
@@ -1001,7 +1001,7 @@
   }
 
   .pricingSection {
-    padding: 5rem 1rem 2rem;
+    padding: 3rem 1rem 2rem;
   }
 
   .pricingIntro {
