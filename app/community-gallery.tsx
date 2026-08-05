@@ -91,10 +91,11 @@ export function CommunityGallery() {
         <div className={styles.headingRow}>
           <h2 className={styles.heading} id="community-gallery-heading">
             <span className={styles.headingLine}>
-              You Have <em>The Power</em> to
+              You Have <em>The Power</em>
+              <span className={styles.powerSuffix}> to</span>
             </span>
             <span className={styles.headingLine}>
-              Live Well, <em>Age Less</em>.
+              <em>Live Well,</em> Age Less.
             </span>
           </h2>
           <div className={styles.arrows} aria-label="Gallery controls">

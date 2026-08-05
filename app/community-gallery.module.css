@@ -46,6 +46,10 @@
   white-space: nowrap;
 }
 
+.powerSuffix {
+  margin-left: 0.12em;
+}
+
 .arrows {
   display: flex;
   flex: none;

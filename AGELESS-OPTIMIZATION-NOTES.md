@@ -429,7 +429,7 @@ La prioridad debe seguir siendo la percepción real: que el contenido crítico e
 - Los fragmentos rectos de los títulos principales usan peso bold.
 - Los fragmentos en cursiva usan un peso medio, nunca bold, y conservan el mismo color del título; en fondos oscuros permanecen blancos.
 - Esta regla se aplica a la introducción de tres años, recap, past speakers, pricing, sponsors, crew y galería comunitaria.
-- La galería ahora se titula “You Have The Power to Live Well, Age Less.”, con “The Power” y “Age Less” en cursiva.
+- La galería ahora se titula “You Have The Power to Live Well, Age Less.”, con “The Power” y “Live Well” en cursiva sin bold; “You Have”, “to” y “Age Less” permanecen rectos y bold. Un espaciado óptico adicional separa “Power” de “to”.
 - El título de la galería conserva exactamente dos líneas mediante saltos explícitos y escala tipográfica responsive.
 - Sus controles reutilizan el tratamiento circular negro, borde claro, sombra y hover verde de “The Ageless Crew”.
 - `swap.webp` usa un encuadre específico para mostrar mejor a la mujer situada a la derecha, sin recortar ni recomprimir el archivo original.
