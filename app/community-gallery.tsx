@@ -49,7 +49,7 @@ export function CommunityGallery() {
 
       if (loopWidth > 0) {
         if (!reducedMotion && !document.hidden) {
-          positionRef.current += elapsed * 0.034;
+          positionRef.current += elapsed * 0.041;
         }
 
         if (Math.abs(nudgeRef.current) > 0.1) {

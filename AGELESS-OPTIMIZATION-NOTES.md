@@ -215,7 +215,7 @@ El radio de cada punto se elevó del 32% al 42% del paso geométrico, haciendo e
 
 ### Galería de comunidad
 
-La antigua tira horizontal bajo las estadísticas fue reemplazada por una galería vertical inspirada en la composición de Aurae: contenedor de 80 rem, encabezado editorial de dos líneas, cinco tarjetas visibles en escritorio, proporción 3:4, separación de 16 px y controles compactos. Usa las diez imágenes optimizadas de Ageless, se desplaza continuamente de derecha a izquierda, permite avanzar o retroceder mediante flechas y respeta `prefers-reduced-motion`.
+La antigua tira horizontal bajo las estadísticas fue reemplazada por una galería vertical inspirada en la composición de Aurae: contenedor de 80 rem, encabezado editorial de dos líneas, proporción 3:4 y controles compactos. Las tarjetas se ampliaron aproximadamente un 30%, se eliminaron por completo sus espacios y radios para formar una cinta visual continua. Usa las diez imágenes optimizadas de Ageless, se desplaza continuamente de derecha a izquierda a una velocidad ligeramente mayor, permite avanzar o retroceder mediante flechas y respeta `prefers-reduced-motion`. El título completo usa Ageless Overused Grotesk; `together` y `experience` conservan el contraste bold italic dentro de la misma familia.
 
 ## 11. Scroll y navegación interna
 
