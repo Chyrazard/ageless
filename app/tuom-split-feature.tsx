@@ -173,6 +173,11 @@ const PAST_SPEAKERS = [
     role: "CEO, Superpower · Proactive health innovator",
     image: "/assets/past-speakers/optimized/max-marchione-final-v2.webp",
   },
+  {
+    name: "Mark Cofano",
+    role: "Mark is CEO of GREAT LongLife. He’s 70 years old and THRIVING to 150+",
+    image: "/assets/past-speakers/optimized/mark-cofano.webp",
+  },
 ] as const;
 
 function RecapVideo({ src, poster }: { src: string; poster: string }) {
@@ -324,7 +329,7 @@ function PastSpeakersCarousel() {
   return (
     <div ref={sectionRef} className={styles.speakerCarousel}>
       <div ref={trackRef} className={styles.speakerTrack}>
-        {PAST_SPEAKERS.map((speaker, index) => (
+        {PAST_SPEAKERS.map((speaker) => (
           <article
             className={styles.speakerCard}
             key={speaker.name}

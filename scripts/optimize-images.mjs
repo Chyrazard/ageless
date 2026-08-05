@@ -54,6 +54,12 @@ await optimizeDirectory(
   (filename) => filename.endsWith("-final-v2.png"),
 );
 
+await optimize(
+  "public/assets/past-speakers/source/mark-cofano.png",
+  "public/assets/past-speakers/optimized/mark-cofano.webp",
+  { width: 900, quality: 88 },
+);
+
 await optimizeDirectory(
   "public/assets/crew/members",
   "public/assets/crew/optimized",
