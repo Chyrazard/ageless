@@ -207,6 +207,10 @@ La animación de entrada del logo se reconstruyó en CSS y se identifica con `da
 
 Al quitar el runtime heredado de la Home se eliminó la posibilidad de que dos sistemas intentaran animar el mismo logo.
 
+### Countdown del hero
+
+Los números se dibujan como una matriz de puntos uniforme sobre canvas. Cada punto comparte exactamente el mismo radio, separación y cuadrícula; las cifras se actualizan directamente en su posición final, sin tamaños aleatorios, resortes ni repulsión del cursor. Esto mantiene los dígitos perfectamente alineados y elimina un loop continuo de animación innecesario.
+
 ## 11. Scroll y navegación interna
 
 `app/home-scroll-reset.tsx` controla dos comportamientos:

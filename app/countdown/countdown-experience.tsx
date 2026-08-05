@@ -15,19 +15,6 @@ type TimeLeft = {
   seconds: number;
 };
 
-type Particle = {
-  x: number;
-  y: number;
-  targetX: number;
-  targetY: number;
-  velocityX: number;
-  velocityY: number;
-  size: number;
-  color: string;
-};
-
-const PARTICLE_COLORS = ["#000000"];
-
 function getTimeLeft(): TimeLeft {
   const distance = Math.max(0, TARGET_DATE - Date.now());
   return {
@@ -57,11 +44,8 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
 
     let width = 1;
     let height = 1;
-    let frame = 0;
-    let pulse = 0;
-    let particles: Particle[] = [];
-    const pointer = { x: -1000, y: -1000, active: false };
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let targets: Array<{ x: number; y: number }> = [];
+    let dotRadius = 1;
 
     const createTargets = () => {
       const mask = document.createElement("canvas");
@@ -80,38 +64,39 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
       maskContext.fillText(text, width / 2, height / 2 + fontSize * 0.035);
 
       const pixels = maskContext.getImageData(0, 0, mask.width, mask.height).data;
-      const gap = width < 120 ? 3 : width < 230 ? 4 : 5;
-      const targets: Array<{ x: number; y: number }> = [];
+      const gap = height < 62 ? 3 : 4;
+      const offsetX = (width % gap) / 2;
+      const offsetY = (height % gap) / 2;
+      const nextTargets: Array<{ x: number; y: number }> = [];
 
-      for (let y = 0; y < mask.height; y += gap) {
-        for (let x = 0; x < mask.width; x += gap) {
-          if (pixels[(y * mask.width + x) * 4 + 3] > 100) targets.push({ x, y });
+      for (let y = offsetY; y < mask.height; y += gap) {
+        for (let x = offsetX; x < mask.width; x += gap) {
+          const pixelX = Math.min(mask.width - 1, Math.round(x));
+          const pixelY = Math.min(mask.height - 1, Math.round(y));
+          if (pixels[(pixelY * mask.width + pixelX) * 4 + 3] > 150) {
+            nextTargets.push({ x, y });
+          }
         }
       }
-      return targets;
+
+      dotRadius = gap * 0.34;
+      return nextTargets;
+    };
+
+    const render = () => {
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = "#000000";
+
+      for (const target of targets) {
+        context.beginPath();
+        context.arc(target.x, target.y, dotRadius, 0, Math.PI * 2);
+        context.fill();
+      }
     };
 
     const rebuild = () => {
-      const targets = createTargets();
-      while (particles.length < targets.length) {
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 18 + Math.random() * Math.min(width, height) * 0.35;
-        particles.push({
-          x: width / 2 + Math.cos(angle) * distance,
-          y: height / 2 + Math.sin(angle) * distance,
-          targetX: width / 2,
-          targetY: height / 2,
-          velocityX: 0,
-          velocityY: 0,
-          size: width < 120 ? 0.68 + Math.random() * 0.28 : 0.75 + Math.random() * 1.15,
-          color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)],
-        });
-      }
-      particles.length = targets.length;
-      targets.forEach((target, index) => {
-        particles[index].targetX = target.x;
-        particles[index].targetY = target.y;
-      });
+      targets = createTargets();
+      render();
     };
 
     rebuildTargets.current = rebuild;
@@ -127,70 +112,13 @@ function ParticleNumber({ value, label }: { value: string; label: string }) {
       rebuild();
     };
 
-    const locatePointer = (event: PointerEvent) => {
-      const bounds = canvas.getBoundingClientRect();
-      pointer.x = event.clientX - bounds.left;
-      pointer.y = event.clientY - bounds.top;
-      pointer.active = true;
-    };
-
-    const onPointerMove = (event: PointerEvent) => locatePointer(event);
-    const onPointerLeave = () => {
-      pointer.active = false;
-    };
-    const onPointerDown = (event: PointerEvent) => {
-      locatePointer(event);
-      pulse = reducedMotion ? 0 : 1;
-    };
-
-    const animate = () => {
-      context.clearRect(0, 0, width, height);
-
-      for (const particle of particles) {
-        if (!reducedMotion && pointer.active) {
-          const dx = particle.x - pointer.x;
-          const dy = particle.y - pointer.y;
-          const distance = Math.sqrt(dx * dx + dy * dy) || 1;
-          const radius = 38 + pulse * 74;
-          if (distance < radius) {
-            const force = (1 - distance / radius) * (0.32 + pulse * 1.85);
-            particle.velocityX += (dx / distance) * force;
-            particle.velocityY += (dy / distance) * force;
-          }
-        }
-
-        particle.velocityX += (particle.targetX - particle.x) * 0.055;
-        particle.velocityY += (particle.targetY - particle.y) * 0.055;
-        particle.velocityX *= 0.81;
-        particle.velocityY *= 0.81;
-        particle.x += particle.velocityX;
-        particle.y += particle.velocityY;
-
-        context.beginPath();
-        context.fillStyle = particle.color;
-        context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        context.fill();
-      }
-
-      pulse *= 0.9;
-      frame = requestAnimationFrame(animate);
-    };
-
     const observer = new ResizeObserver(resize);
     observer.observe(canvas);
-    canvas.addEventListener("pointermove", onPointerMove);
-    canvas.addEventListener("pointerleave", onPointerLeave);
-    canvas.addEventListener("pointerdown", onPointerDown);
     resize();
-    animate();
 
     return () => {
       rebuildTargets.current = null;
       observer.disconnect();
-      cancelAnimationFrame(frame);
-      canvas.removeEventListener("pointermove", onPointerMove);
-      canvas.removeEventListener("pointerleave", onPointerLeave);
-      canvas.removeEventListener("pointerdown", onPointerDown);
     };
   }, []);
 
@@ -218,6 +146,8 @@ export function CountdownExperience() {
   }, []);
 
   useEffect(() => {
+    // The target is part of the mirrored DOM and is only available after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPortalTarget(document.getElementById("ageless-countdown-slot"));
   }, []);
 
@@ -254,13 +184,13 @@ export function CountdownExperience() {
                 <span className={styles.ticketButtonGlow} aria-hidden="true" />
                 <span className={styles.ticketButtonLabel} data-text="Buy tickets">Buy tickets</span>
               </Link>
-              <a
+              <Link
                 className={`${styles.ticketButton} ${styles.ticketButtonDark}`}
                 href="/contact"
               >
                 <span className={styles.ticketButtonGlow} aria-hidden="true" />
                 <span className={styles.ticketButtonLabel} data-text="Exhibit &amp; Sponsor">Exhibit &amp; Sponsor</span>
-              </a>
+              </Link>
             </div>
           </div>,
           portalTarget,
